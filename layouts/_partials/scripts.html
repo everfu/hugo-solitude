@@ -1,0 +1,15 @@
+{{ $cfg := site.Params.solitude }}
+<script src="{{ $cfg.cdn.pjax }}"></script>
+<script defer src="{{ "js/third_party/waterfall.min.js" | relURL }}"></script>
+{{ if $cfg.lazyload.enable }}<script src="{{ $cfg.cdn.lazyload }}"></script>{{ end }}
+<script defer src="{{ $cfg.cdn.snackbar }}"></script>
+{{ if $cfg.mermaid }}<script defer src="{{ $cfg.cdn.mermaid }}"></script>{{ end }}
+{{ if $cfg.chart }}<script defer src="{{ $cfg.cdn.chart }}"></script>{{ end }}
+{{ if $cfg.typeit }}<script defer src="{{ $cfg.cdn.typeit }}"></script>{{ end }}
+{{ if eq $cfg.lightbox "fancybox" }}<script src="{{ $cfg.cdn.fancyapps_js }}"></script>{{ end }}
+{{ if and $cfg.search.enable (eq $cfg.search.type "algolia") }}<script src="{{ $cfg.cdn.algoliasearch }}"></script><script src="{{ $cfg.cdn.instantsearch }}"></script>{{ end }}
+{{ if or $cfg.capsule.enable $cfg.music.enable }}<script>window.meting_api={{ $cfg.meting_api | jsonify | safeJS }};</script><script defer src="{{ $cfg.cdn.aplayer_js }}"></script><script defer src="{{ $cfg.cdn.meting_js }}"></script>{{ end }}
+{{ if and $cfg.post.covercolor.enable (eq $cfg.post.covercolor.mode "local") }}<script defer src="{{ $cfg.cdn.colorthief }}"></script>{{ end }}
+{{ with resources.Get "ts/entry.ts" }}{{ $opts := dict "format" "esm" "target" "es2020" "minify" (not hugo.IsDevelopment) "sourceMap" (cond hugo.IsDevelopment "linked" "none") "targetPath" "js/solitude.js" }}{{ with . | js.Build $opts | fingerprint }}<script type="module" src="{{ .RelPermalink }}"{{ if not hugo.IsDevelopment }} integrity="{{ .Data.Integrity }}" crossorigin="anonymous"{{ end }}></script>{{ end }}{{ end }}
+{{ with resources.Get "ts/tag-runtime/index.ts" }}{{ with . | js.Build (dict "format" "iife" "target" "es2020" "minify" (not hugo.IsDevelopment) "targetPath" "js/shortcodes.js") | fingerprint }}<script defer src="{{ .RelPermalink }}"{{ if not hugo.IsDevelopment }} integrity="{{ .Data.Integrity }}" crossorigin="anonymous"{{ end }} data-solitude-tag-runtime data-chartjs="{{ $cfg.cdn.chart }}" data-abcjs="{{ $cfg.cdn.abcjs }}"></script>{{ end }}{{ end }}
+{{ range $cfg.extends.body }}{{ . | safeHTML }}{{ end }}

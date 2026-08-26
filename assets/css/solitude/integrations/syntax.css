@@ -1,0 +1,317 @@
+/* Legacy highlight markup compatibility. */
+/* Syntax highlighting, search, comments, music dock, and third-party overrides. */
+.post-radius-bottom {
+  border-radius: var(--radius) var(--radius) 0 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--efu-background);
+  z-index: 2;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+  .post #page-header.post-bg .post-radius-bottom {
+    z-index: 12;
+    height: 12px;
+    background: var(--efu-card-bg);
+  }
+}
+
+figure.highlight .highlight-tools .copy-button {
+  right: 1.7rem;
+}
+
+figure.highlight .highlight-tools:after {
+  position: absolute;
+  left: 14px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fc625d;
+  -webkit-box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  content: ' ';
+}
+
+figure.highlight .highlight-tools .expand {
+  right: 0;
+}
+
+figure.highlight .highlight-tools .expand + .code-lang {
+  left: 75px;
+}
+
+figure.highlight .highlight-tools.closed .expand {
+  transform: rotate(90deg);
+}
+
+figure.highlight table::-webkit-scrollbar {
+  color: var(--efu-secondbg);
+  height: 6px;
+  background: var(--efu-hl-bg);
+  border-radius: 6px;
+  display: initial;
+}
+
+figure.highlight .keyword,
+figure.highlight .attr,
+figure.highlight .variable,
+figure.highlight .literal,
+figure.highlight .property {
+  color: #00f;
+}
+
+figure.highlight .number {
+  color: #098658;
+}
+
+figure.highlight .string {
+  color: #a31515;
+}
+
+figure.highlight .built_in,
+figure.highlight .title,
+figure.highlight .params,
+figure.highlight .name {
+  color: #795e26;
+}
+
+figure.highlight .emphasis {
+  color: #0451a5;
+}
+
+figure.highlight .addition {
+  color: #35cd4b;
+}
+
+figure.highlight .deletion {
+  color: #f00;
+}
+
+[data-theme=dark] figure.highlight .keyword,
+[data-theme=dark] figure.highlight .attr,
+[data-theme=dark] figure.highlight .variable,
+[data-theme=dark] figure.highlight .property {
+  color: #569cd6;
+}
+
+[data-theme=dark] figure.highlight .number {
+  color: #b5cea8;
+}
+
+[data-theme=dark] figure.highlight .string {
+  color: #ce9178;
+}
+
+[data-theme=dark] figure.highlight .built_in,
+[data-theme=dark] figure.highlight .title,
+[data-theme=dark] figure.highlight .params {
+  color: #dcdcaa;
+}
+
+[data-theme=dark] figure.highlight .emphasis {
+  color: #6a9955;
+}
+
+[data-theme=dark] figure.highlight .addition {
+  color: #35cd4b;
+}
+
+[data-theme=dark] figure.highlight .deletion {
+  color: #f00;
+}
+
+figure pre {
+  margin: 0;
+  padding: 8px 0;
+  border: none;
+}
+
+figure table {
+  display: block;
+  border: none;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+figure table td {
+  padding: 0;
+  border: none;
+  height: 100%;
+}
+
+figure table td.gutter {
+  opacity: 0.6;
+  user-select: none;
+  min-width: initial;
+}
+
+figure table td.gutter pre {
+  overflow: auto;
+  line-height: 1.6;
+  margin: 0;
+  padding: 8px 0.5rem;
+  border: none;
+  color: var(--efu-secondtext);
+  background: var(--efu-secondbg);
+  border-right: var(--style-border-always);
+  text-align: center;
+}
+
+figure table td.code {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+figure table td.code pre {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  width: 100%;
+}
+
+figure .line.marked {
+  background-color: rgba(97,97,97,0.314);
+}
+
+figure:hover {
+  box-shadow: var(--efu-shadow-border-hover);
+}
+
+figure .copy-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  color: var(--efu-fontcolor);
+  cursor: pointer;
+  transition: all 0.2s ease 0s;
+}
+
+figure .copy-btn:hover {
+  color: var(--efu-lighttext);
+}
+
+figure.highlight {
+  background-color: var(--efu-hl-bg);
+  color: var(--efu-fontcolor);
+  border: var(--style-border-always);
+  overflow: hidden;
+  border-radius: 8px 8px 4px 4px;
+  position: relative;
+  margin: 0.5rem 0 0.5rem;
+  padding: 0;
+  line-height: 1.6;
+}
+
+figure.highlight .highlight-tools {
+  position: relative;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  overflow: hidden;
+  min-height: 1.2rem;
+  border-radius: 8px 8px 0 0;
+  height: 2.15em;
+  font-size: 16px;
+  background: var(--efu-hltools-bg);
+  border-bottom: var(--style-border-always);
+  color: var(--efu-fontcolor);
+}
+
+figure.highlight .highlight-tools.closed .expand {
+  transition: all 0.3s ease 0s;
+}
+
+figure.highlight .highlight-tools.closed ~ * {
+  display: none;
+}
+
+figure.highlight .highlight-tools .copy-button {
+  position: absolute;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 18px;
+}
+
+figure.highlight .highlight-tools .copy-button:hover {
+  color: var(--efu-main);
+}
+
+figure.highlight .highlight-tools .expand {
+  position: absolute;
+  padding: 0.4rem 0.3rem;
+  cursor: pointer;
+  transition: transform 0.3s ease 0s;
+}
+
+figure.highlight .highlight-tools .code-lang {
+  text-transform: capitalize;
+  position: absolute;
+  font-weight: 700;
+  font-size: 1.15em;
+  user-select: none;
+}
+
+figure.highlight .highlight-tools .caption {
+  position: absolute;
+  right: 3.5rem;
+  font-size: 14px;
+  color: var(--efu-secondtext);
+}
+
+@media screen and (max-width: 768px) {
+  figure.highlight .highlight-tools .caption {
+    display: none;
+  }
+}
+
+figure.highlight .code-expand-btn {
+  background: var(--efu-hltools-bg);
+  transition: 0.3s;
+  backdrop-filter: saturate(180%) blur(20px);
+  transform: translateZ(0);
+  border-top: var(--style-border-always);
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+}
+
+figure.highlight .code-expand-btn i {
+  color: var(--efu-fontcolor);
+  line-height: 1;
+  animation: 1.2s ease 0s infinite normal none running code-expand-key;
+}
+
+figure.highlight .code-expand-btn:hover {
+  background: var(--efu-main);
+}
+
+figure.highlight .code-expand-btn:hover i {
+  color: var(--efu-white);
+}
+
+figure.highlight .code-expand-btn.expand-done {
+  display: none;
+}
+
+figure.highlight .code-expand-btn:not(.expand-done) ~ table,
+figure.highlight .code-expand-btn:not(.expand-done) ~ pre {
+  overflow: hidden;
+  height: 200px;
+}
+
+html.search-open {
+  overflow: hidden;
+}

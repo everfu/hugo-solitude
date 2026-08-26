@@ -1,0 +1,19 @@
+{{ $cfg := site.Params.solitude }}
+{{ $enabled := and $cfg.comment.use (ne .Params.comment false) }}
+{{ if $enabled }}
+  <section id="post-comment">
+    <div class="comment-head"><div class="comment-headline"><i class="solitude fas fa-comments"></i><span>{{ i18n "comments" }}</span></div></div>
+    <div class="comment-wrap">
+      {{ range split $cfg.comment.use "," }}
+        {{ $name := lower (strings.TrimSpace .) }}
+        {{ if eq $name "giscus" }}
+          <div class="comment-item giscus-comment"><script data-pjax src="https://giscus.app/client.js" data-repo="{{ $cfg.giscus.repo }}" data-repo-id="{{ $cfg.giscus.repo_id }}" data-category-id="{{ $cfg.giscus.category_id }}" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="{{ $cfg.giscus.theme.light | default "light" }}" data-lang="{{ site.Language.Lang }}" crossorigin="anonymous" async></script></div>
+        {{ else if eq $name "twikoo" }}<div class="comment-item" id="twikoo"></div>
+        {{ else if eq $name "waline" }}<div class="comment-item" id="waline-wrap"></div>
+        {{ else if eq $name "valine" }}<div class="comment-item vcomment{{ if $cfg.valine.style }} valine-theme-style{{ end }}" id="vcomment"></div>
+        {{ else if eq $name "artalk" }}<div class="comment-item" id="artalk-wrap"></div>
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

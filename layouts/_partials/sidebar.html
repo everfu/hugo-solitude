@@ -1,0 +1,21 @@
+{{ $cfg := site.Params.solitude }}
+<div id="sidebar" style="zoom:1">
+  <div id="menu-mask" style="display:none"></div>
+  <div id="sidebar-menus">
+    <div class="site-data">
+      {{ range $item := slice (dict "name" (i18n "archives") "url" "/archives/" "count" (len (where site.RegularPages "Section" "posts"))) (dict "name" (i18n "categories") "url" "/categories/" "count" (len site.Taxonomies.categories)) (dict "name" (i18n "tags") "url" "/tags/" "count" (len site.Taxonomies.tags)) }}
+        <div class="data-item is-center"><div class="data-item-link"><a href="{{ $item.url | relLangURL }}"><div class="headline">{{ $item.name }}</div><div class="length-num">{{ $item.count }}</div></a></div></div>
+      {{ end }}
+      {{ if and $cfg.comment.sidebar (in (lower $cfg.comment.use) "valine") }}
+        <div class="data-item is-center"><div class="data-item-link"><a href="{{ $cfg.recent_comments.page | relLangURL }}"><div class="headline">{{ i18n "comments" }}</div><div class="length-num" id="valine_allcount"><i class="solitude fas fa-spinner fa-spin"></i></div></a></div></div>
+      {{ end }}
+    </div>
+    <span class="sidebar-menu-item-title">功能</span>
+    <div class="sidebar-menu-item"><span class="darkmode_switchbutton menu-child" data-solitude-action="toggleTheme"><i class="solitude fas fa-circle-half-stroke"></i><span>显示模式</span></span></div>
+    {{ partial "menu.html" . }}
+    <span class="sidebar-menu-item-title">{{ i18n "tags" }}</span>
+    <div class="card-tags">{{ partial "aside-tags.html" . }}</div>
+    <span class="sidebar-menu-item-title">站点信息</span>
+    {{ partial "aside-webinfo.html" . }}
+  </div>
+</div>

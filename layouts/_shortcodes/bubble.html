@@ -1,0 +1,1 @@
+{{ $color := .Get "color" | default "blue" }}<span class="solitude-tag bubble tag-bubble"><span class="bubble-content" tabindex="0">{{ .Inner | plainify | default (.Get "text") }}</span><span class="bubble-notation bg-{{ $color }}">{{ .Get "notation" | default (.Get "position") }}</span></span>

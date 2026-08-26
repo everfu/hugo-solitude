@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale | default site.Language.Lang }}" data-theme="light">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  {{ $isPost := and .IsPage (eq .Section "posts") }}
+  {{ $pageType := cond .IsHome "solitude" (cond $isPost "post" (or .Params.type .Kind)) }}
+  <body id="body" data-type="{{ $pageType }}" data-search="{{ site.Params.solitude.search.type }}" data-aside-position="{{ site.Params.solitude.aside.position }}" data-index-layout="{{ site.Params.solitude.index_post_list.direction }}">
+    {{ partial "console.html" . }}
+    {{ partial "keyboard.html" . }}
+    {{ partial "sidebar.html" . }}
+    {{ partial "rightside.html" . }}
+    {{ partial "rightmenu.html" . }}
+    <div id="body-wrap" class="{{ if eq $pageType "404" }}error{{ else if and .IsPage (eq .Section "posts") }}post{{ else }}page{{ end }}">
+      {{ partial "header.html" . }}
+      {{ block "main" . }}{{ end }}
+      {{ if ne $pageType "404" }}<footer id="footer">{{ partial "footer.html" . }}</footer>{{ end }}
+    </div>
+    {{ partial "search.html" . }}
+    {{ if site.Params.solitude.capsule.enable }}{{ partial "capsule.html" . }}{{ end }}
+    {{ partial "scripts.html" . }}
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<h1 class="page-title">{{ .Title }}</h1>
+<div class="category-lists">
+  <div class="tag-cloud-list is-center">
+    {{ range site.Taxonomies.categories.ByCount }}
+      <a href="{{ .Page.RelPermalink }}" title="{{ .Page.LinkTitle }}" heotip="{{ .Page.LinkTitle }}"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>{{ .Page.LinkTitle }}<span class="tagsPageCount">{{ .Count }}</span></span></a>
+    {{ end }}
+  </div>
+</div>

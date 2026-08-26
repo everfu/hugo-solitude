@@ -1,0 +1,168 @@
+#rightMenu {
+  --right-menu-width: 9rem;
+  --right-menu-shell-padding: 0 0.25rem;
+  --right-menu-group-padding: 0.35rem 0.3rem;
+  --right-menu-row-height: 2rem;
+  --right-menu-row-gap: 0.25rem;
+  --right-menu-row-padding: 0.25rem 0;
+  --right-menu-icon-size: 1.5rem;
+  --right-menu-icon-gap: 0.5rem;
+  --right-menu-radius: var(--efu-radius-md);
+  --right-menu-item-radius: var(--efu-radius-sm);
+  --right-menu-accent: var(--solitude-theme-dark, #ffc848);
+  --right-menu-surface: rgba(0, 0, 0, 0.85);
+  --right-menu-foreground: #f7f7fa;
+  --right-menu-border: #3d3d3f;
+  --right-menu-divider: color-mix(in srgb, var(--right-menu-accent) 14%, transparent);
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  z-index: 99994;
+  display: none;
+  box-sizing: border-box;
+  width: max-content;
+  min-width: var(--right-menu-width);
+  max-width: calc(100vw - 24px);
+  height: fit-content;
+  padding: var(--right-menu-shell-padding);
+  color: var(--right-menu-foreground);
+  user-select: none;
+  background: var(--right-menu-surface);
+  border: 1px solid var(--right-menu-border);
+  border-radius: var(--right-menu-radius);
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.05);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transform: translateZ(0);
+  transition:
+    border-color var(--efu-motion-fast),
+    box-shadow var(--efu-motion-fast);
+}
+
+body[data-right-menu="false"] #rightMenu,
+body[data-right-menu="false"] #rightmenu-mask {
+  display: none !important;
+}
+
+#rightMenu:hover {
+  border-color: var(--right-menu-accent);
+  box-shadow: 0 8px 12px -3px color-mix(in srgb, var(--right-menu-accent) 14%, transparent);
+}
+
+#rightMenu .rightMenu-group {
+  padding: var(--right-menu-group-padding);
+}
+
+#rightMenu .rightMenu-group.rightMenu-small {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+#rightMenu .rightMenu-group.rightMenu-small .rightMenu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  min-height: 30px;
+  padding: 0;
+  line-height: 30px;
+  border-radius: var(--right-menu-item-radius);
+}
+
+#rightMenu .rightMenu-group.rightMenu-small .rightMenu-item i {
+  flex-basis: auto;
+  width: auto;
+  margin: 0;
+}
+
+#rightMenu .rightMenu-group.rightMenu-line .rightMenu-item {
+  display: flex;
+}
+
+#rightMenu .rightMenu-item {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--right-menu-row-height);
+  margin: var(--right-menu-row-gap) 0;
+  padding: var(--right-menu-row-padding);
+  align-items: center;
+  color: inherit;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  border-radius: var(--right-menu-item-radius);
+  transition:
+    color var(--efu-motion-fast),
+    background-color var(--efu-motion-fast),
+    box-shadow var(--efu-motion-fast);
+}
+
+#rightMenu .rightMenu-item:hover,
+#rightMenu .rightMenu-item:focus-visible {
+  color: #1d1e22;
+  background-color: var(--right-menu-accent);
+  box-shadow: none;
+}
+
+#rightMenu .rightMenu-item:focus-visible {
+  outline: 0;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--right-menu-accent) 44%, transparent),
+    0 0 0 2px color-mix(in srgb, var(--right-menu-accent) 18%, transparent);
+}
+
+#rightMenu .rightMenu-small .rightMenu-item:hover,
+#rightMenu .rightMenu-small .rightMenu-item:focus-visible {
+  color: #1d1e22;
+  background-color: var(--right-menu-accent);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--right-menu-accent) 22%, transparent);
+}
+
+#rightMenu .rightMenu-item i {
+  display: inline-block;
+  flex: 0 0 var(--right-menu-icon-size);
+  width: var(--right-menu-icon-size);
+  margin: 0 var(--right-menu-icon-gap) 0 0;
+  padding: 0;
+  line-height: var(--right-menu-icon-size);
+  text-align: center;
+}
+
+#rightMenu .rightMenu-item span {
+  min-width: 0;
+  max-width: 14rem;
+  overflow: hidden;
+  line-height: 1.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#rightMenu .rightMenu-line {
+  border-top: 1px dashed var(--right-menu-divider);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #rightMenu,
+  #rightMenu .rightMenu-item {
+    transition: none;
+  }
+}
+
+#rightmenu-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99993;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 !important;
+  background: transparent;
+}

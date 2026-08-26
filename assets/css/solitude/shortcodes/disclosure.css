@@ -1,0 +1,280 @@
+/* Shortcode notices and disclosure components. */
+/* Notices and disclosure components */
+.article-container aside.solitude-tag.note {
+  --tag-note-color: var(--efu-theme);
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: var(--efu-space-4) 0;
+  min-height: 60px;
+  padding: 14px var(--efu-space-4);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--tag-note-color) 30%, var(--efu-card-border));
+  border-radius: var(--efu-radius-md);
+  background: color-mix(in srgb, var(--tag-note-color) 6%, var(--efu-card-bg));
+  color: var(--efu-fontcolor);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--tag-note-color) 7%, transparent);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.article-container aside.solitude-tag.note.info,
+.article-container aside.solitude-tag.note.blue {
+  --tag-note-color: var(--efu-blue);
+}
+
+.article-container aside.solitude-tag.note.danger,
+.article-container aside.solitude-tag.note.red {
+  --tag-note-color: var(--efu-red);
+}
+
+.article-container aside.solitude-tag.note.primary,
+.article-container aside.solitude-tag.note.purple {
+  --tag-note-color: var(--efu-purple);
+}
+
+.article-container aside.solitude-tag.note.warning {
+  --tag-note-color: var(--efu-yellow);
+}
+
+.article-container aside.solitude-tag.note.success,
+.article-container aside.solitude-tag.note.green {
+  --tag-note-color: var(--efu-green);
+}
+
+.article-container aside.solitude-tag.note.orange {
+  --tag-note-color: var(--efu-orange);
+}
+
+.article-container aside.solitude-tag.note.default {
+  --tag-note-color: var(--efu-secondtext);
+}
+
+.article-container aside.solitude-tag.note.simple {
+  background: var(--efu-card-bg);
+  box-shadow: none;
+}
+
+.article-container aside.solitude-tag.note.modern {
+  box-shadow: var(--efu-shadow-border);
+}
+
+.article-container aside.solitude-tag.note.flat {
+  box-shadow: none;
+}
+
+.article-container aside.solitude-tag.note.disabled {
+  --tag-note-color: var(--efu-secondtext);
+}
+
+.article-container aside.solitude-tag.note .note-icon {
+  display: flex;
+  flex: 0 0 30px;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid color-mix(in srgb, var(--tag-note-color) 22%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--tag-note-color) 8%, var(--efu-card-bg));
+  color: var(--tag-note-color);
+  font-size: 0.88rem;
+}
+
+.article-container aside.solitude-tag.note > :not(.note-icon) {
+  min-width: 0;
+}
+
+.article-container aside.solitude-tag.note :is(h2, h3, h4, h5, h6, p) {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.article-container aside.solitude-tag.note a {
+  color: var(--tag-note-color);
+}
+
+.article-container details.solitude-tag.tag-fold {
+  display: block;
+  margin: var(--efu-space-4) 0;
+  overflow: clip;
+  border: 1px solid var(--efu-card-border);
+  border-radius: var(--efu-radius-md);
+  background: var(--efu-card-bg);
+  box-shadow: 0 4px 14px rgba(44, 52, 68, 0.035);
+  transition: border-color var(--efu-motion-fast), box-shadow var(--efu-motion-fast), background-color var(--efu-motion-fast);
+}
+
+.article-container details.solitude-tag.tag-fold:hover,
+.article-container details.solitude-tag.tag-fold:focus-within,
+.article-container details.solitude-tag.tag-fold[open] {
+  border-color: color-mix(in srgb, var(--efu-theme) 42%, var(--efu-card-border));
+  box-shadow: var(--efu-shadow-border);
+}
+
+.article-container details.solitude-tag.tag-fold[open] .tag-fold-summary {
+  border-bottom: 1px solid var(--efu-card-border);
+  background: color-mix(in srgb, var(--efu-theme) 5%, var(--efu-card-bg));
+}
+
+.article-container details.solitude-tag.tag-fold[open] .tag-fold-icon::after {
+  transform: translate(-50%, -50%) rotate(0);
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-summary {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--efu-space-3);
+  width: 100%;
+  min-height: 52px;
+  margin: 0;
+  padding: 10px var(--efu-space-4);
+  border: 0;
+  background: var(--efu-card-bg);
+  box-shadow: none;
+  color: var(--efu-fontcolor);
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  transition: background-color var(--efu-motion-fast), color var(--efu-motion-fast);
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-summary::-webkit-details-marker {
+  display: none;
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-summary:hover {
+  background: var(--efu-secondbg);
+  color: var(--efu-theme);
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-summary:focus-visible {
+  outline: 0;
+  box-shadow: inset var(--efu-focus-ring);
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-icon {
+  position: relative;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--efu-theme-op);
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-icon::before,
+.article-container details.solitude-tag.tag-fold .tag-fold-icon::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--efu-theme);
+  content: '';
+  transform: translate(-50%, -50%);
+  transition: transform var(--efu-motion-fast);
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-content {
+  padding: var(--efu-space-4);
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-content > :first-child,
+.article-container .solitude-tag.tag-hide .tag-hide-content > :first-child {
+  margin-top: 0;
+}
+
+.article-container details.solitude-tag.tag-fold .tag-fold-content > :last-child,
+.article-container .solitude-tag.tag-hide .tag-hide-content > :last-child {
+  margin-bottom: 0;
+}
+
+.article-container .solitude-tag.tag-hide {
+  --tag-hide-color: var(--efu-theme);
+  margin: var(--efu-space-3) 0;
+}
+
+.article-container .solitude-tag.tag-hide.tag-hide-inline {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0 3px;
+}
+
+.article-container .solitude-tag.tag-hide.tag-hide-block,
+.article-container .solitude-tag.tag-hide.tag-hide-toggle {
+  padding: var(--efu-space-3);
+  border: 1px solid var(--efu-card-border);
+  border-radius: var(--efu-radius-md);
+  background: var(--efu-card-bg);
+  box-shadow: 0 4px 14px rgba(44, 52, 68, 0.035);
+}
+
+.article-container .solitude-tag.tag-hide.tag-hide-block .tag-hide-content,
+.article-container .solitude-tag.tag-hide.tag-hide-toggle .tag-hide-content {
+  display: block;
+  margin-top: var(--efu-space-3);
+  padding: var(--efu-space-3) var(--efu-space-1) var(--efu-space-1);
+  border-top: 1px solid var(--efu-card-border);
+  color: var(--efu-secondtext);
+}
+
+.article-container .solitude-tag.tag-hide .tag-hide-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid color-mix(in srgb, var(--tag-hide-color) 34%, var(--efu-card-border));
+  border-radius: var(--efu-radius-md);
+  background: color-mix(in srgb, var(--tag-hide-color) 7%, var(--efu-card-bg));
+  color: var(--tag-hide-color);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color var(--efu-motion-fast), border-color var(--efu-motion-fast), box-shadow var(--efu-motion-fast);
+}
+
+.article-container .solitude-tag.tag-hide .tag-hide-button::after {
+  margin-left: var(--efu-space-2);
+  content: '＋';
+  font-size: 0.85em;
+}
+
+.article-container .solitude-tag.tag-hide .tag-hide-button[aria-expanded='true']::after {
+  content: '−';
+}
+
+.article-container .solitude-tag.tag-hide .tag-hide-button:hover {
+  border-color: var(--tag-hide-color);
+  background: color-mix(in srgb, var(--tag-hide-color) 11%, var(--efu-card-bg));
+}
+
+.article-container .solitude-tag.tag-hide .tag-hide-button:focus-visible {
+  outline: 0;
+  box-shadow: var(--efu-focus-ring);
+}
+
+.article-container .solitude-tag.tag-hide .tag-hide-content[hidden] {
+  display: none !important;
+}

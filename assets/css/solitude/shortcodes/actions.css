@@ -1,0 +1,296 @@
+/* Shortcode buttons and link components. */
+/* Buttons and links */
+.article-container a.solitude-tag.tag-button {
+  --tag-button-color: var(--efu-theme);
+  --tag-button-background: var(--efu-secondbg);
+  --tag-button-border: var(--efu-card-border);
+  --tag-button-text: var(--tag-button-color);
+  --tag-button-soft: color-mix(in srgb, var(--tag-button-color) 14%, transparent);
+  --tag-button-icon-background: var(--efu-theme-op);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  margin: var(--efu-space-2) var(--efu-space-2) var(--efu-space-2) 0;
+  padding: 7px 14px;
+  overflow: hidden;
+  border: 1px solid var(--tag-button-border);
+  border-radius: var(--efu-radius-lg);
+  background: var(--tag-button-background);
+  box-shadow: 0 2px 8px rgba(44, 45, 48, 0.06);
+  color: var(--tag-button-text);
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1.2;
+  text-decoration: none;
+  isolation: isolate;
+  transition: border-color var(--efu-motion-fast), background var(--efu-motion-fast), color var(--efu-motion-fast), transform var(--efu-motion-fast), box-shadow var(--efu-motion-fast);
+}
+
+.article-container a.solitude-tag.tag-button::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 10px;
+  left: 10px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--efu-motion-fast);
+}
+
+.article-container a.solitude-tag.tag-button.has-icon {
+  padding: 6px 14px 6px 7px;
+}
+
+.article-container a.solitude-tag.tag-button i {
+  display: flex;
+  flex: 0 0 28px;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  border: 0;
+  border-radius: var(--efu-radius-sm);
+  background: var(--tag-button-icon-background);
+  color: inherit;
+  font-size: 0.78rem;
+  transition: background var(--efu-motion-fast), transform var(--efu-motion-fast);
+}
+
+.article-container a.solitude-tag.tag-button span {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article-container a.solitude-tag.tag-button:hover {
+  border-color: var(--tag-button-color);
+  border-radius: var(--efu-radius-lg);
+  background: var(--efu-card-bg);
+  box-shadow: 0 6px 16px var(--tag-button-soft);
+  transform: translateY(-1px);
+}
+
+.article-container a.solitude-tag.tag-button:hover::before {
+  opacity: 1;
+}
+
+.article-container a.solitude-tag.tag-button:hover i {
+  transform: translateY(-1px);
+}
+
+.article-container a.solitude-tag.tag-button:active {
+  border-radius: var(--efu-radius-lg);
+  box-shadow: 0 2px 6px rgba(44, 45, 48, 0.08);
+  transform: translateY(0);
+}
+
+.article-container a.solitude-tag.tag-button:active i {
+  transform: translateY(0);
+}
+
+.article-container a.solitude-tag.tag-button:focus-visible,
+.article-container a.solitude-tag.tag-link:focus-visible,
+.article-container .solitude-tag.repo-card a:focus-visible,
+.article-container .solitude-tag.card_box a:focus-visible,
+.article-container .solitude-tag.tag-series a:focus-visible,
+.article-container .solitude-tag.tag-flink a:focus-visible {
+  outline: 0;
+  box-shadow: var(--efu-focus-ring);
+}
+
+.article-container a.solitude-tag.tag-button:focus-visible {
+  border-radius: var(--efu-radius-lg);
+  outline: 3px solid var(--tag-button-soft);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.article-container a.solitude-tag.tag-button.is-icon-only {
+  width: 44px;
+  min-width: 44px;
+  padding: 7px;
+  aspect-ratio: 1;
+}
+
+.article-container a.solitude-tag.tag-button.blue {
+  --tag-button-color: var(--efu-blue);
+}
+
+.article-container a.solitude-tag.tag-button.pink {
+  --tag-button-color: var(--efu-pink);
+}
+
+.article-container a.solitude-tag.tag-button.red {
+  --tag-button-color: var(--efu-red);
+}
+
+.article-container a.solitude-tag.tag-button.purple {
+  --tag-button-color: var(--efu-purple);
+}
+
+.article-container a.solitude-tag.tag-button.orange {
+  --tag-button-color: var(--efu-orange);
+}
+
+.article-container a.solitude-tag.tag-button.green {
+  --tag-button-color: var(--efu-green);
+}
+
+.article-container a.solitude-tag.tag-button:is(.blue, .pink, .red, .purple, .orange, .green):not(.outline) {
+  --tag-button-background: var(--tag-button-color);
+  --tag-button-border: var(--tag-button-color);
+  --tag-button-text: var(--efu-white);
+  --tag-button-icon-background: rgba(255, 255, 255, 0.14);
+}
+
+.article-container a.solitude-tag.tag-button:is(.blue, .pink, .red, .purple, .orange, .green):not(.outline):hover {
+  background: var(--tag-button-color);
+  box-shadow: 0 6px 16px var(--tag-button-soft);
+  filter: brightness(1.04);
+}
+
+.article-container a.solitude-tag.tag-button.outline {
+  --tag-button-background: var(--efu-card-bg);
+  --tag-button-border: var(--tag-button-color);
+  --tag-button-text: var(--tag-button-color);
+  --tag-button-icon-background: var(--efu-secondbg);
+  box-shadow: none;
+}
+
+.article-container a.solitude-tag.tag-button.outline:hover {
+  background: var(--tag-button-soft);
+  box-shadow: 0 4px 12px var(--tag-button-soft);
+  filter: none;
+}
+
+.article-container a.solitude-tag.tag-button.block {
+  display: flex;
+  width: 100%;
+  margin-right: 0;
+}
+
+.article-container a.solitude-tag.tag-button.center {
+  margin-inline: auto;
+}
+
+.article-container a.solitude-tag.tag-button.right {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.article-container a.solitude-tag.tag-button.larger {
+  min-height: 48px;
+  padding-inline: 17px;
+  font-size: 0.88rem;
+}
+
+.article-container a.solitude-tag.tag-button.larger.has-icon {
+  padding: 7px 17px 7px 8px;
+}
+
+.article-container a.solitude-tag.tag-button.larger i {
+  flex-basis: 32px;
+  width: 32px;
+  height: 32px;
+  font-size: 0.84rem;
+}
+
+.article-container a.solitude-tag.tag-link {
+  display: block;
+  margin: var(--efu-space-4) 0;
+  padding: 14px var(--efu-space-4);
+  overflow: hidden;
+  border: 1px solid var(--efu-card-border);
+  border-radius: var(--efu-radius-md);
+  background: var(--efu-card-bg);
+  box-shadow: 0 4px 16px rgba(44, 52, 68, 0.04);
+  color: var(--efu-fontcolor);
+  font-size: inherit;
+  font-weight: 400;
+  text-decoration: none;
+  transition: border-color var(--efu-motion-fast), background-color var(--efu-motion-fast), box-shadow var(--efu-motion-fast);
+}
+
+.article-container a.solitude-tag.tag-link:hover {
+  border-color: color-mix(in srgb, var(--efu-theme) 42%, var(--efu-card-border));
+  background: var(--efu-secondbg);
+  box-shadow: var(--efu-shadow-border);
+}
+
+.article-container a.solitude-tag.tag-link:hover .tag-link-bottom > i {
+  color: var(--efu-theme);
+  transform: translateX(3px);
+}
+
+.article-container a.solitude-tag.tag-link .tag-link-tips {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  color: var(--efu-secondtext);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.article-container a.solitude-tag.tag-link .tag-link-bottom {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--efu-space-3);
+}
+
+.article-container a.solitude-tag.tag-link .tag-link-bottom > i {
+  color: var(--efu-secondtext);
+  transition: color var(--efu-motion-fast), transform var(--efu-motion-fast);
+}
+
+.article-container a.solitude-tag.tag-link .tag-link-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--efu-radius-md);
+  border: 1px solid color-mix(in srgb, var(--efu-blue) 18%, transparent);
+  background: color-mix(in srgb, var(--efu-blue) 8%, var(--efu-card-bg));
+  color: var(--efu-blue);
+}
+
+.article-container a.solitude-tag.tag-link .tag-link-left i {
+  margin: 0;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.article-container a.solitude-tag.tag-link .tag-link-right {
+  min-width: 0;
+}
+
+.article-container a.solitude-tag.tag-link .tag-link-title {
+  overflow: hidden;
+  color: var(--efu-fontcolor);
+  font-size: 0.96rem;
+  font-weight: 750;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.article-container a.solitude-tag.tag-link .tag-link-sitename {
+  display: -webkit-box;
+  margin-top: 2px;
+  overflow: hidden;
+  color: var(--efu-secondtext);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

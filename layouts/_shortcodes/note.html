@@ -1,0 +1,22 @@
+{{ $type := .Get "type" | default (.Get 0) | default "default" }}
+{{ $style := .Get "style" | default "flat" }}
+{{ $icon := "fas fa-note-sticky" }}
+{{ if in (slice "info" "blue") $type }}
+  {{ $icon = "fas fa-circle-info" }}
+{{ else if in (slice "danger" "red") $type }}
+  {{ $icon = "fas fa-circle-exclamation" }}
+{{ else if eq $type "warning" }}
+  {{ $icon = "fas fa-triangle-exclamation" }}
+{{ else if in (slice "success" "green") $type }}
+  {{ $icon = "fas fa-circle-check" }}
+{{ else if in (slice "primary" "purple") $type }}
+  {{ $icon = "fas fa-star" }}
+{{ else if eq $type "orange" }}
+  {{ $icon = "fas fa-bell" }}
+{{ else if eq $type "disabled" }}
+  {{ $icon = "fas fa-ban" }}
+{{ end }}
+<aside class="solitude-tag note {{ $type }} {{ $style }} no-icon has-icon">
+  <span class="note-icon" aria-hidden="true"><i class="{{ $icon }}"></i></span>
+  <div class="note-content">{{ .Inner | markdownify }}</div>
+</aside>

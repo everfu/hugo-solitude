@@ -1,0 +1,23 @@
+{{- $data := hugo.Data.about -}}
+{{- if not (isset $data "sections") -}}
+  {{- errorf "Solitude About: data/about.yaml must define the new sections array; the legacy flat schema is no longer supported" -}}
+{{- end -}}
+{{- $allowed := slice "intro" "skills_career" "personality_photo" "values" "interests" "stats_profile" "story" -}}
+<section id="about-page" aria-labelledby="about-page-title">
+  <h1 class="about-page-title" id="about-page-title">{{ $data.title | default .Title }}</h1>
+  <div class="author-page-content">
+    {{- range $index, $section := $data.sections -}}
+      {{- $enabled := true -}}
+      {{- if isset $section "enabled" }}{{ $enabled = $section.enabled }}{{ end -}}
+      {{- if $enabled -}}
+        {{- $type := lower ($section.type | default "") -}}
+        {{- if not (in $allowed $type) -}}
+          {{- errorf "Solitude About: unknown section type %q at sections[%d]" $type $index -}}
+        {{- else -}}
+          {{- $partial := printf "pages/about/%s.html" (replace $type "_" "-") -}}
+          {{- partial $partial (dict "section" $section "page" $ "index" $index) -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  </div>
+</section>

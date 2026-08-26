@@ -1,0 +1,2 @@
+{{ $cfg := site.Params.solitude }}{{ $highlights := $cfg.aside.tags.highlight_list | default slice }}
+<div class="card-tag-cloud">{{ range first ($cfg.aside.tags.limit | default 20) site.Taxonomies.tags.ByCount }}<a{{ if in $highlights .Page.LinkTitle }} class="highlight"{{ end }} href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}<sup>{{ .Count }}</sup></a>{{ end }}</div>{{ if ge (len site.Taxonomies.tags) ($cfg.aside.tags.limit | default 20) }}<span id="more-tags-btn" data-solitude-action="openAllTags">更多标签</span>{{ end }}

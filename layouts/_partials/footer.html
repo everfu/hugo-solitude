@@ -1,0 +1,89 @@
+{{ $cfg := site.Params.solitude }}
+{{ $author := site.Params.author.name | default site.Title }}
+{{ $currentYear := now.Year }}
+{{ $startYear := $currentYear }}
+{{ with $cfg.aside.siteinfo.runtime }}{{ $startYear = (time.AsTime .).Year }}{{ end }}
+{{ $yearRange := cond (eq $startYear $currentYear) (printf "%d" $currentYear) (printf "%d – %d" $startYear $currentYear) }}
+
+{{ $info := $cfg.footer.information }}
+{{ if or $info.left $info.right $info.author }}
+  <div id="footer_deal">
+    {{ range $info.left }}
+      <a class="deal_link" href="{{ .url }}" title="{{ .name }}" aria-label="{{ .name }}"><i class="solitude {{ .icon }}" aria-hidden="true"></i></a>
+    {{ end }}
+    {{ with $info.author }}
+      <button class="footer_mini_logo nolazyload" id="footer_mini_logo" type="button" data-solitude-action="toTop" title="{{ i18n "backTop" }}" aria-label="{{ i18n "backTop" }}">
+        <img src="{{ . | relURL }}" alt="" aria-hidden="true">
+      </button>
+    {{ end }}
+    {{ range $info.right }}
+      <a class="deal_link" href="{{ .url }}" title="{{ .name }}" aria-label="{{ .name }}"><i class="solitude {{ .icon }}" aria-hidden="true"></i></a>
+    {{ end }}
+  </div>
+{{ end }}
+
+{{ with $cfg.footer.group }}
+  <div id="st-footer">
+    {{ range $name, $items := . }}
+      <div class="footer-group">
+        <h3 class="footer-title">{{ $name }}</h3>
+        <div class="footer-links">
+          {{ range $items }}<a class="footer-item" href="{{ .url | relURL }}" title="{{ .name }}">{{ .name }}</a>{{ end }}
+        </div>
+      </div>
+    {{ end }}
+    {{ if $cfg.footer.randomlink }}
+      <div class="footer-group">
+        <div class="footer-title-group">
+          <h3 class="footer-title">随机友链</h3>
+          <button class="random-friends-btn" type="button" data-solitude-action="randomLinksList" title="随机友链" aria-label="随机友链"><i class="solitude fas fa-arrows-rotate" aria-hidden="true"></i></button>
+        </div>
+        <div class="footer-links" id="friend-links-in-footer"></div>
+      </div>
+    {{ end }}
+  </div>
+{{ end }}
+
+<div id="footer-bar">
+  <div class="footer-bar-links">
+    <div class="footer-bar-left">
+      <div class="copyright">
+        © {{ $yearRange }} By
+        <a class="footer-bar-link" href="{{ site.Home.RelPermalink }}">
+          {{ with $cfg.site.icon }}<img class="author-avatar" src="{{ . | relURL }}" alt="" aria-hidden="true">{{ end }}
+          {{ $author }}
+        </a>
+      </div>
+      <div class="beian-group">
+        {{ range $cfg.footer.beian }}
+          <a class="footer-bar-link" href="{{ .url }}" title="{{ .name }}">
+            {{ with .icon }}<img class="beian-icon" src="{{ . | relURL }}" alt="">{{ end }}
+            <span class="beian-name">{{ .name }}</span>
+          </a>
+        {{ end }}
+        <a class="footer-bar-link" href="https://gohugo.io/">{{ i18n "frameworkBy" }} Hugo</a>
+        <a class="footer-bar-link" href="https://github.com/everfu/hugo-solitude">{{ i18n "themeBy" }} Solitude</a>
+      </div>
+    </div>
+    {{ with $cfg.footer.links }}
+      <div class="footer-bar-right">
+        {{ range . }}
+          {{ $item := . }}
+          <a class="footer-bar-link" href="{{ .url }}" title="{{ .name }}" aria-label="{{ .name }}">
+            {{ with .icon }}
+              {{ if reflect.IsSlice . }}
+                {{ range . }}<i class="solitude {{ . }}" aria-hidden="true"></i>{{ end }}
+              {{ else }}
+                <i class="solitude {{ . }}" aria-hidden="true"></i>
+              {{ end }}
+            {{ else }}
+              {{ with $item.img }}<img src="{{ . | relURL }}" alt="{{ $item.name }}">{{ else }}{{ $item.name }}{{ end }}
+            {{ end }}
+          </a>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</div>
+
+{{ if and $cfg.comment.use $cfg.comment.commentBarrage }}<div class="comment-barrage needEndHide"></div>{{ end }}

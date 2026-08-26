@@ -1,0 +1,12 @@
+{{ $cfg := site.Params.solitude }}
+{{ if ne .Params.aside false }}
+  {{ $scope := $cfg.aside.page }}{{ if .IsHome }}{{ $scope = $cfg.aside.home }}{{ else if and .IsPage (eq .Section "posts") }}{{ $scope = $cfg.aside.post }}{{ end }}
+  {{ $plain := split ($scope.noSticky | default "") "," }}{{ $sticky := split ($scope.Sticky | default "") "," }}
+  <div class="aside-content" id="aside-content">
+    {{ range $plain }}{{ partial "aside-component.html" (dict "name" (strings.TrimSpace .) "page" $) }}{{ end }}
+    <div class="sticky_layout">
+      {{ $showToc := and $.IsPage (ne $.TableOfContents "") (ne $.Params.toc false) }}{{ if $showToc }}{{ partial "aside-toc.html" $ }}{{ end }}
+      {{ range $sticky }}{{ partial "aside-component.html" (dict "name" (strings.TrimSpace .) "page" $) }}{{ end }}
+    </div>
+  </div>
+{{ end }}

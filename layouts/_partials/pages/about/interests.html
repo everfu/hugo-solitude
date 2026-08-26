@@ -1,0 +1,29 @@
+{{- $section := .section -}}
+<div class="author-content about-row about-row--interests">
+  {{- range $section.items -}}
+    {{- $item := . -}}
+    <article class="author-content-item interest-card interest-card--{{ .variant | default "media" }}" tabindex="0" style="--interest-background:url('{{ .background | relURL }}');--interest-color:{{ (.color | default "var(--efu-main)") | safeCSS }}">
+      <div class="interest-card-content">
+        {{ with .label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}
+        <h2 class="author-content-item-title">
+          {{- with .title_lines -}}
+            {{- range . }}<span>{{ . }}</span>{{ end -}}
+          {{- else -}}
+            <span>{{ .title }}</span>
+          {{- end -}}
+          {{- with .mode.image }}<img class="interest-mode-image" src="{{ . | relURL }}" alt="{{ $item.mode.name }}" title="{{ $item.mode.tooltip | default $item.mode.name }}">{{ end -}}
+        </h2>
+        <div class="interest-card-footer">
+          {{- with .heroes }}
+            <ul class="interest-heroes" aria-label="擅长英雄">
+              {{- range $heroIndex, $hero := . }}<li style="--hero-index:{{ $heroIndex }}"><img src="{{ $hero.image | relURL }}" alt="{{ $hero.name }}" title="擅长英雄：{{ $hero.name }}"></li>{{ end -}}
+            </ul>
+          {{- end }}
+          {{- with .subtitle }}<p class="interest-subtitle">{{ . }}</p>{{ end }}
+          {{- with .right_text }}<p class="interest-right-text"{{ with $item.right_tip }} title="{{ . }}"{{ end }}>{{ . }}</p>{{ end }}
+          {{- with .button }}<a class="about-card-button" href="{{ .url | safeURL }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ with .icon }}<i class="{{ . }}" aria-hidden="true"></i>{{ end }}<span>{{ .text }}</span></a>{{ end }}
+        </div>
+      </div>
+    </article>
+  {{- end -}}
+</div>

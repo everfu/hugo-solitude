@@ -1,0 +1,1 @@
+{{ $columns := .Get "col" | default 2 }}<div class="solitude-tag videos tag-videos" data-columns="{{ $columns }}">{{ range split (strings.TrimSpace .Inner) "\n" }}{{ if . }}<video controls preload="metadata"><source src="{{ strings.TrimSpace . | safeURL }}"></video>{{ end }}{{ end }}</div>

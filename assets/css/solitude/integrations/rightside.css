@@ -1,0 +1,214 @@
+/* Floating right-side controls. */
+.aplayer-thumb {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+#rightside {
+  position: fixed;
+  right: -2.5rem;
+  bottom: 20px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#rightside.needEndHide {
+  display: block !important;
+}
+
+#rightside.hide.needEndHide {
+  bottom: 0 !important;
+  transform: none !important;
+}
+
+#rightside .rs_show,
+#rightside .rs_hide {
+  width: 46px;
+  padding: 2px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, var(--efu-maskbg), var(--efu-maskbgdeep));
+  border: var(--style-border);
+  border-radius: 24px;
+  box-shadow: var(--efu-shadow-glass-inset), var(--efu-shadow-border);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  transform: translateZ(0);
+}
+
+#rightside .rs_show {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#rightside button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: var(--efu-fontcolor);
+  background: transparent;
+  border: 0;
+  border-radius: 20px;
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+#rightside button:hover,
+#rightside button:focus-visible {
+  color: var(--efu-white);
+  background: var(--efu-main);
+  box-shadow: 0 4px 12px var(--efu-main-op);
+}
+
+#rightside button:active {
+  transform: scale(0.88);
+}
+
+#rightside button:focus-visible {
+  outline: 2px solid var(--efu-main);
+  outline-offset: -2px;
+}
+
+#rightside button i,
+#rightside button span {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#rightside button i {
+  font-size: 16px;
+  transition: transform 0.25s;
+}
+
+#rightside button.pc {
+  display: flex;
+}
+
+@media screen and (max-width: 1200px) {
+  #rightside button.pc {
+    display: none;
+  }
+}
+
+#rightside button.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  #rightside button.mobile {
+    display: flex;
+  }
+}
+
+#rightside button.barrage span {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#rightside button.translate {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#rightside button.config:hover i,
+#rightside button.config:focus-visible i {
+  transform: rotate(90deg);
+}
+
+#rightside .rs_hide {
+  display: flex;
+  flex-direction: column-reverse;
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(58px) scale(0.96);
+  transform-origin: right bottom;
+  transition: opacity 0.25s, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#rightside .rs_hide.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
+}
+
+[data-theme='dark'] #rightside .rs_show,
+[data-theme='dark'] #rightside .rs_hide {
+  border-color: var(--efu-none);
+  box-shadow: var(--efu-shadow-glass-inset), 0 8px 20px -8px rgba(0,0,0,0.55);
+}
+
+@media screen and (max-width: 768px) {
+  #rightside {
+    bottom: 15px;
+  }
+  #rightside .rs_show,
+  #rightside .rs_hide {
+    width: 44px;
+  }
+  #rightside button {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 19px;
+    font-size: 14px;
+  }
+}
+
+.pace {
+  pointer-events: none;
+  user-select: none;
+  z-index: 2000;
+  position: fixed;
+  margin: auto;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  border-radius: 8px;
+  width: 4rem;
+  background: var(--efu-secondbg);
+  border: var(--style-border);
+  overflow: hidden;
+}
+
+.pace.pace-inactive {
+  opacity: 0;
+  transition: 0.3s;
+  top: -8px;
+}
+
+.pace.pace-inactive .pace-progress {
+  opacity: 0;
+  transition: 0.3s ease-in;
+}
+
+.pace .pace-progress {
+  box-sizing: border-box;
+  transform: translate3d(0, 0, 0);
+  max-width: 200px;
+  z-index: 2000;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  height: 100%;
+  width: 100%;
+  background: var(--efu-logo-color);
+  animation: gradient 2s ease infinite;
+  background-size: 200%;
+}

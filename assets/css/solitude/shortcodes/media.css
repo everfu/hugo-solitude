@@ -1,0 +1,199 @@
+/* Shortcode media and visualization components. */
+/* Media and visualizations */
+.article-container .solitude-tag.video-container,
+.article-container .solitude-tag.tag-video {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: var(--efu-space-4) 0;
+  overflow: hidden;
+  border: 1px solid var(--efu-card-border);
+  border-radius: var(--efu-radius-md);
+  background: #0d0e12;
+}
+
+.article-container .solitude-tag.video-container {
+  aspect-ratio: 16 / 9;
+}
+
+.article-container .solitude-tag.video-container iframe,
+.article-container .solitude-tag.tag-video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.article-container .solitude-tag.tag-video video {
+  height: auto;
+}
+
+.article-container .solitude-tag.tag-audio {
+  display: flex;
+  align-items: center;
+  gap: var(--efu-space-3);
+  margin: var(--efu-space-4) 0;
+  padding: 10px var(--efu-space-3);
+  border: 1px solid var(--efu-card-border);
+  border-radius: var(--efu-radius-md);
+  background: var(--efu-card-bg);
+  box-shadow: 0 4px 16px rgba(44, 52, 68, 0.04);
+  font-size: inherit;
+}
+
+.article-container .solitude-tag.tag-audio .tag-media-icon {
+  display: flex;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid color-mix(in srgb, var(--efu-theme) 18%, transparent);
+  border-radius: var(--efu-radius-sm);
+  background: color-mix(in srgb, var(--efu-theme) 7%, var(--efu-card-bg));
+  color: var(--efu-theme);
+  font-size: 0.9rem;
+}
+
+.article-container .solitude-tag.tag-audio audio {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+}
+
+.article-container .solitude-tag.tag-videos {
+  --tag-video-columns: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--tag-video-columns), minmax(0, 1fr));
+  align-items: start;
+  gap: var(--efu-space-3);
+  margin: var(--efu-space-4) 0;
+}
+
+.article-container .solitude-tag.tag-videos[data-columns='1'] {
+  --tag-video-columns: 1;
+}
+
+.article-container .solitude-tag.tag-videos[data-columns='3'] {
+  --tag-video-columns: 3;
+}
+
+.article-container .solitude-tag.tag-videos[data-columns='4'] {
+  --tag-video-columns: 4;
+}
+
+.article-container .solitude-tag.tag-videos > video {
+  display: block;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--efu-card-border);
+  border-radius: var(--efu-radius-md);
+  background: #0d0e12;
+}
+
+.article-container .solitude-tag.tag-image-wrap {
+  display: block;
+  margin: var(--efu-space-4) 0;
+}
+
+.article-container img.solitude-tag.tag-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border: 0;
+  border-radius: var(--efu-radius-md);
+  box-shadow: var(--efu-shadow-border);
+}
+
+.article-container .solitude-tag.tag-image-wrap figcaption {
+  margin-top: var(--efu-space-2);
+  color: var(--efu-secondtext);
+  font-size: 12px;
+  text-align: center;
+}
+
+.article-container img.solitude-tag.inline-img {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  margin: 0 var(--efu-space-1);
+  border: 0;
+  border-radius: var(--efu-radius-sm);
+  box-shadow: none;
+  object-fit: cover;
+  vertical-align: -0.2em;
+}
+
+.article-container .solitude-tag.chartjs-container,
+.article-container .solitude-tag.abc-music-sheet,
+.article-container .solitude-tag.tag-mermaid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--efu-space-3);
+  margin: var(--efu-space-4) 0;
+  padding: var(--efu-space-4);
+  overflow-x: auto;
+  border: 1px solid var(--efu-card-border);
+  border-radius: var(--efu-radius-md);
+  background: var(--efu-card-bg);
+  box-shadow: 0 4px 18px rgba(44, 52, 68, 0.04);
+  color: var(--efu-fontcolor);
+  scrollbar-width: thin;
+}
+
+.article-container .solitude-tag.chartjs-container.chartjs-abreast {
+  flex-direction: row;
+  align-items: center;
+}
+
+.article-container .solitude-tag.chartjs-container.chartjs-abreast .chartjs-desc {
+  flex: 0 1 34%;
+}
+
+.article-container .solitude-tag.chartjs-container.chartjs-abreast .chartjs-wrap {
+  flex: 1 1 66%;
+}
+
+.article-container .solitude-tag.chartjs-container .chartjs-wrap {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.article-container .solitude-tag.chartjs-container .chartjs-desc {
+  min-width: 0;
+  padding: var(--efu-space-3);
+  border-radius: var(--efu-radius-md);
+  border: 1px solid var(--efu-card-border);
+  background: var(--efu-secondbg);
+  color: var(--efu-secondtext);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.article-container .solitude-tag.abc-music-sheet {
+  min-height: 120px;
+}
+
+.article-container .solitude-tag.abc-music-sheet svg,
+.article-container .solitude-tag.tag-mermaid svg {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.article-container .solitude-tag.abc-music-sheet.tag-plugin-error {
+  white-space: pre-wrap;
+}
+
+.article-container .solitude-tag.tag-typeit {
+  display: block;
+  margin: var(--efu-space-3) 0;
+  color: var(--efu-theme);
+  font-weight: 700;
+}

@@ -1,0 +1,58 @@
+{{ $cfg := site.Params.solitude }}
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ $random := slice }}{{ range $posts }}{{ if ne .Params.random false }}{{ $random = $random | append .RelPermalink }}{{ end }}{{ end }}
+{{ $linkGroups := slice }}{{ with hugo.Data.links.links }}{{ $linkGroups = . }}{{ else }}{{ with hugo.Data.links }}{{ $linkGroups = . }}{{ end }}{{ end }}
+{{ $linkTotal := 0 }}{{ range $linkGroups }}{{ with .link_list }}{{ $linkTotal = add $linkTotal (len .) }}{{ end }}{{ end }}
+{{ $commentRoutes := dict }}
+{{ range site.Pages }}
+  {{ $special := lower (or .Params.type .Layout) }}
+  {{ $regularMount := and .IsPage (not (in (slice "tags" "categories") $special)) }}
+  {{ $sectionMount := and (eq .Kind "section") (in (slice "message" "kit") $special) }}
+  {{ if and (ne .Params.comment false) (or $regularMount $sectionMount) }}
+    {{ $commentRoutes = merge $commentRoutes (dict .RelPermalink (.LinkTitle | default .Title)) }}
+  {{ end }}
+{{ end }}
+{{ $threshold := int ($cfg.page.links.async_threshold | default 200) }}
+{{ $rightMenuPageType := lower (.Params.type | default "") }}
+{{ $rightMenuPageLayout := lower (.Layout | default "") }}
+{{ $rightMenuPageKind := lower (.Kind | default "") }}
+{{ $rightMenuExcluded := false }}
+{{ range $cfg.right_menu.exclude }}
+  {{ $excludedPage := lower . }}
+  {{ if or (eq $excludedPage $rightMenuPageType) (eq $excludedPage $rightMenuPageLayout) (eq $excludedPage $rightMenuPageKind) }}{{ $rightMenuExcluded = true }}{{ end }}
+{{ end }}
+{{ $rightMenuEnabled := and $cfg.right_menu.enable (ne .Params.right_menu false) (not $rightMenuExcluded) }}
+{{ $rightMenu := merge $cfg.right_menu (dict
+  "ctrlOriginalMenu" (cond $cfg.right_menu.ctrlOriginalMenu (i18n "rightMenuCtrlOriginal") false)
+  "img_error" (i18n "rightMenuImageError")
+  "mode" (dict "dark" (i18n "rightMenuDark") "light" (i18n "rightMenuLight"))
+  "barrage" (dict "open" (i18n "rightMenuBarrageOpen") "close" (i18n "rightMenuBarrageClose"))
+  "music" (cond $cfg.capsule.enable (dict "start" (i18n "rightMenuMusicStart") "stop" (i18n "rightMenuMusicStop") "back" (i18n "rightMenuMusicBack") "forward" (i18n "rightMenuMusicForward") "copyMusicName" (i18n "rightMenuMusicCopy")) false)
+) }}
+{{ $computed := dict
+  "root" ("/" | relLangURL)
+  "runtime" (cond $cfg.aside.siteinfo.runtimeenable $cfg.aside.siteinfo.runtime false)
+  "localsearch" (dict "preload" $cfg.search.local.preload "path" ($cfg.search.local.CDN | default "/search.xml"))
+  "algolia" $cfg.search.algolia
+  "random_posts" $random
+  "randomlink" $cfg.footer.randomlink
+  "lazyload" (dict "enable" $cfg.lazyload.enable "error" ($cfg.lazyload.errorimg | relURL))
+  "highlight" $cfg.highlight
+  "friend_links" (dict "async" (gt $linkTotal $threshold) "path" ("/links.json" | relURL) "total" $linkTotal "placeholder" $cfg.lazyload.placeholder "default_avatar" ("/img/default_avatar.avif" | relURL) "more_url" ("/links/" | relURL) "loading" (i18n "linksLoading") "error" (i18n "linksError") "retry" (i18n "retry") "random" (i18n "randomLink") "to" (i18n "visit") "more" (i18n "more") "default_sort" (i18n "defaultSort") "random_sort" (i18n "randomSort") "sort_label" (i18n "sortLinks") "scroll_left" (i18n "scrollLeft") "scroll_right" (i18n "scrollRight"))
+  "feature_modules" (dict "search" (cond $cfg.search.enable $cfg.search.type false) "friend_links" (gt $linkTotal 0) "keyboard" $cfg.keyboard.enable "music" (or $cfg.capsule.enable $cfg.music.enable) "right_menu" $rightMenuEnabled "translate" $cfg.translate.enable "covercolor" (cond $cfg.post.covercolor.enable $cfg.post.covercolor.mode false))
+  "lang" (dict "theme" (dict "dark" (i18n "themeDark") "light" (i18n "themeLight")) "copy" (dict "success" (i18n "copySuccess") "error" (i18n "copyError")) "backtop" (i18n "backTop") "day" (i18n "dayUnit") "f12" (i18n "developerMode") "totalk" (i18n "commentHint") "time" (dict "day" (i18n "timeDay") "hour" (i18n "timeHour") "just" (i18n "timeJust") "min" (i18n "timeMinute") "month" (i18n "timeMonth")) "search" (dict "empty" (i18n "searchEmpty") "hit" (i18n "searchHit") "placeholder" (i18n "searchPlaceholder") "count" (i18n "searchCount") "loading" (i18n "searchLoading")) "comments" (dict "loading" (i18n "commentsLoading") "empty" (i18n "commentsEmpty") "error" (i18n "commentsError") "image" (i18n "commentImage") "link" (i18n "commentLink") "code" (i18n "commentCode") "emoji" (i18n "commentEmoji") "anonymous" (i18n "commentAnonymous") "participants" (i18n "commentParticipants") "moreParticipants" (i18n "commentMoreParticipants")) "barrage" (dict "title" (i18n "comments")))
+  "aside" (dict "state" $cfg.aside.my_card.state "witty_words" $cfg.aside.my_card.witty_words "witty_comment" (dict "prefix" (i18n "hello") "back" (i18n "welcomeBack")))
+  "covercolor" $cfg.post.covercolor
+  "comment" (dict "avatar" $cfg.comment.avatar "commentBarrage" $cfg.comment.commentBarrage)
+  "comment_runtime" (dict "routes" $commentRoutes "default_avatar" ("/img/default_avatar.avif" | relURL) "barrage_script" ("/js/third_party/barrage.min.js" | relURL) "envelope_script" ("/js/third_party/envelope.min.js" | relURL))
+  "lightbox" $cfg.lightbox
+  "right_menu" (cond $rightMenuEnabled $rightMenu false)
+  "translate" (cond $cfg.translate.enable $cfg.translate false)
+  "expire" $cfg.expire
+}}
+{{ $global := merge $computed $cfg (dict "right_menu" (cond $rightMenuEnabled $rightMenu false)) }}
+<script>window.Solitude=window.Solitude||{};window.globalFn=window.globalFn||{};</script>
+<template id="site-config">{{ $global | jsonify | safeHTML }}</template>
+{{ $pageType := cond .IsHome "solitude" (cond (and .IsPage (eq .Section "posts")) "post" (or .Params.type .Kind)) }}
+{{ $pageConfig := dict "is_post" (and .IsPage (eq .Section "posts")) "is_page" (and .IsPage (ne .Section "posts")) "is_home" .IsHome "page" $pageType "toc" (and .IsPage (ne .TableOfContents "")) "comment" (ne .Params.comment false) "color" (.Params.color | default false) }}
+<template id="config-diff">{{ $pageConfig | jsonify | safeHTML }}</template>

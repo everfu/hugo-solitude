@@ -1,0 +1,25 @@
+{{ $cfg := site.Params.solitude }}
+{{ $pwa := $cfg.pwa }}
+{{ if $pwa.enable }}
+  {{ with $pwa.theme_color }}
+    <meta name="theme-color" content="{{ . }}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="{{ . }}">
+    <meta name="msapplication-TileColor" content="{{ . }}">
+  {{ end }}
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  {{ with $pwa.manifest }}<link rel="manifest" href="{{ strings.TrimPrefix "/" . | relURL }}">{{ end }}
+  {{ with $pwa.mask_icon }}<link rel="mask-icon" href="{{ strings.TrimPrefix "/" . | relURL }}"{{ with $pwa.theme_color }} color="{{ . }}"{{ end }}>{{ end }}
+  {{ with $pwa.apple_touch_icon }}<link rel="apple-touch-icon" sizes="180x180" href="{{ strings.TrimPrefix "/" . | relURL }}">{{ end }}
+  {{ with $pwa.favicon_16_16 }}<link rel="icon" type="image/png" sizes="16x16" href="{{ strings.TrimPrefix "/" . | relURL }}">{{ end }}
+  {{ with $pwa.favicon_32_32 }}<link rel="icon" type="image/png" sizes="32x32" href="{{ strings.TrimPrefix "/" . | relURL }}">{{ end }}
+  {{ with $pwa.bookmark_icon }}<link rel="bookmark" href="{{ strings.TrimPrefix "/" . | relURL }}">{{ end }}
+{{ else }}
+  {{ with $cfg.theme_color.light }}
+    <meta name="theme-color" content="{{ . }}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="{{ . }}">
+  {{ end }}
+  {{ with $cfg.site.icon }}
+    <link rel="bookmark" href="{{ strings.TrimPrefix "/" . | relURL }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ strings.TrimPrefix "/" . | relURL }}">
+  {{ end }}
+{{ end }}

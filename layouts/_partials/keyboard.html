@@ -1,0 +1,31 @@
+{{ $cfg := site.Params.solitude }}
+{{ if $cfg.keyboard.enable }}
+  {{ $actionLabels := dict
+    "toggleKeyboard" (i18n "keyboardDisable")
+    "showConsole" (i18n "keyboardConsole")
+    "musicToggle" (i18n "keyboardMusic")
+    "toggleTheme" (i18n "keyboardThemeDark")
+    "openSearch" (i18n "keyboardSearch")
+    "randomPost" (i18n "keyboardRandomPost")
+  }}
+  <aside id="keyboard-tips" aria-hidden="true" aria-labelledby="keyboard-title">
+    <div class="keyboardTitle" id="keyboard-title">{{ i18n "keyboardTitle" }}</div>
+    <div class="keyboardList" role="list">
+      {{ range $index, $item := $cfg.keyboard.list }}
+        {{ $action := printf "%v" ($item.action | default "") }}
+        {{ $customName := printf "%v" ($item.name | default "") }}
+        {{ $fallbackName := index $actionLabels $action | default "" }}
+        {{ $label := $customName | default $fallbackName }}
+        {{ $modifier := lower (printf "%v" ($item.modifier | default "")) }}
+        {{ $modifierLabel := cond (eq $modifier "mod") "⌘/Ctrl" (cond (eq $modifier "shift") "Shift" ($modifier | title)) }}
+        <div class="keyboardItem" role="listitem" data-shortcut-index="{{ $index }}" data-shortcut-action="{{ $action }}" data-shortcut-custom-label="{{ ne $customName "" }}"{{ if eq $action "toggleTheme" }} data-theme-light-label="{{ i18n "keyboardThemeLight" }}" data-theme-dark-label="{{ i18n "keyboardThemeDark" }}"{{ end }}>
+          <div class="keyGroup" aria-label="{{ $modifierLabel }} + {{ $item.key }}">
+            <kbd class="key">{{ $modifierLabel }}</kbd>
+            <kbd class="key">{{ $item.key }}</kbd>
+          </div>
+          <div class="keyContent"><span class="content">{{ $label }}</span></div>
+        </div>
+      {{ end }}
+    </div>
+  </aside>
+{{ end }}

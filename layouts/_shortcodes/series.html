@@ -1,0 +1,1 @@
+{{ $name := .Get "name" | default (.Get 0) | default .Page.Params.series }}{{ $pages := where site.RegularPages "Params.series" "intersect" (slice $name) }}<ol class="solitude-tag series-items tag-series">{{ range $pages.ByDate }}<li><a href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Title }}</a></li>{{ end }}</ol>

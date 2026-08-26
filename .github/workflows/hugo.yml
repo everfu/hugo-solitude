@@ -1,0 +1,50 @@
+name: Hugo
+
+on:
+  push:
+    branches: [hugo]
+  pull_request:
+    branches: [hugo]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Hugo v0.164.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 \
+            https://github.com/gohugoio/hugo/releases/download/v0.164.0/hugo_0.164.0_linux-amd64.tar.gz \
+            -o "$RUNNER_TEMP/hugo.tar.gz"
+          echo "d9c8b17285ea4ec004d9f814273ea910f2051ce02c284993fd1f91ba455ae50d  $RUNNER_TEMP/hugo.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/hugo.tar.gz" -C "$RUNNER_TEMP" hugo
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+
+      - name: Build example site without Node.js
+        run: hugo --source exampleSite --themesDir ../.. --theme solitude --gc --minify --panicOnWarning --printUnusedTemplates
+
+      - name: Verify generated routes and assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f exampleSite/public/index.html
+          test -f exampleSite/public/page/2/index.html
+          test -f exampleSite/public/p/20260818.html
+          test -f exampleSite/public/categories/index.html
+          test -f exampleSite/public/tags/index.html
+          test -f exampleSite/public/about/index.html
+          test -f exampleSite/public/links/index.html
+          test -f exampleSite/public/404.html
+          test -f exampleSite/public/index.xml
+          test -f exampleSite/public/sitemap.xml
+          test -f exampleSite/public/robots.txt
+          test -f exampleSite/public/search.xml
+          test -f exampleSite/public/links.json
+          find exampleSite/public/css -name 'solitude.min.*.css' -print -quit | grep -q .
+          find exampleSite/public/js -name 'solitude.*.js' -print -quit | grep -q .

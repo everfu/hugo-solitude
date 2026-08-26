@@ -1,0 +1,1 @@
+{{ $checked := .Get "checked" }}<div class="solitude-tag checkbox tag-choice {{ .Get "style" }}"><input type="radio" aria-label="{{ .Inner | plainify }}" {{ if ne $checked false }}checked{{ end }} disabled><span class="tag-choice-content">{{ .Inner | markdownify }}</span></div>

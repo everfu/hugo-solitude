@@ -1,0 +1,401 @@
+module:
+  hugoVersion:
+    min: 0.164.0
+
+pagination:
+  pagerSize: 10
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+mediaTypes:
+  application/x-solitude-search:
+    suffixes: [xml]
+  application/x-solitude-links:
+    suffixes: [json]
+
+outputFormats:
+  Search:
+    mediaType: application/x-solitude-search
+    baseName: search
+    isPlainText: false
+    notAlternative: true
+  Links:
+    mediaType: application/x-solitude-links
+    baseName: links
+    isPlainText: true
+    notAlternative: true
+
+outputs:
+  home: [HTML, RSS, Search, Links]
+  section: [HTML, RSS]
+  taxonomy: [HTML, RSS]
+  term: [HTML, RSS]
+
+params:
+  _merge: deep
+  solitude:
+    site:
+      name:
+        class: text
+        custom: Solitude
+      icon: /img/logo.png
+    nav:
+      group: {}
+      right:
+        random: true
+        custom: []
+    hometop:
+      enable: true
+      banner:
+        title: Solitude
+        desc: A fast, elegant and feature-rich Hugo theme
+        icon: {}
+      group: {}
+      recommendList: []
+    aside:
+      position: 1
+      home:
+        noSticky: about
+        Sticky: allInfo
+      post:
+        noSticky: about
+        Sticky: newestPost,allInfo
+      page:
+        noSticky: about
+        Sticky: newestPost,allInfo
+      my_card:
+        author:
+          img: /img/logo.png
+          emoji:
+          sticker: 
+        description: A Hugo theme for expressive personal sites.
+        content: Write, collect, and share with Solitude.
+        state:
+          morning: Good morning
+          noon: Good noon
+          afternoon: Good afternoon
+          night: Good evening
+          goodnight: Good night
+        witty_words: []
+        information: []
+      toc:
+        post: true
+        page: false
+        vague: true
+      tags:
+        enable: true
+        limit: 20
+        highlight_list: []
+      siteinfo:
+        postcount: true
+        wordcount: true
+        updatetime: true
+        runtimeenable: true
+        runtime: 2023-04-20 00:00:00
+    page:
+      error: true
+      tags: true
+      categories: true
+      archives: 0
+      links:
+        async_threshold: 200
+      default:
+        cover: [/img/default.avif]
+    post:
+      default:
+        cover: [/img/default.avif]
+        locate: China
+        copyright:
+          enable: true
+          author: /img/logo.png
+          author_background: ""
+          license: CC BY-NC-SA 4.0
+          licenurl: https://creativecommons.org/licenses/by-nc-sa/4.0/
+      meta:
+        date: true
+        updated: true
+        locate: true
+        wordcount: true
+        readtime: true
+        pv: false
+        comment: false
+      award:
+        enable: false
+        list: []
+      share:
+        enable: false
+        list: []
+      rss: /index.xml
+      covercolor:
+        enable: false
+        mode: local
+        api: https://api.qjqq.cn/api/Imgcolor?img=
+        time: 43200000
+    theme_color:
+      dark: "#ffc848"
+      light: "#425aef"
+      nav_hover_text:
+        dark: "#1b1c20"
+        light: "#ffffff"
+    display_mode:
+      type: auto
+    font:
+      font_size: 16px
+      code_font_size: 16px
+      font_family: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      code_font_family: "ui-monospace, SFMono-Regular, Menlo, monospace"
+    index_post_list:
+      direction: column
+      column: 2
+      cover: both
+    related_post:
+      enable: true
+      limit: 3
+      date_type: created
+    expire:
+      enable: false
+      time: 30
+      position: top
+      text_prev: 本文最后更新于
+      text_next: 天前，部分内容可能已经失效。
+    right_menu:
+      enable: true
+      # Hide the custom context menu on matching page types/layouts/kinds.
+      exclude:
+        - music
+      commentBarrage: false
+      ctrlOriginalMenu: false
+      translate: false
+      music: false
+      limit: 50
+      author: "Author: "
+      link: "Link: "
+      source: "Source: Solitude"
+      info: ""
+      img_error: Unable to download image
+      mode:
+        dark: Dark mode
+        light: Light mode
+      barrage:
+        open: Show comment barrage
+        close: Hide comment barrage
+      custom_list: []
+    copy:
+      enable: true
+      copyright:
+        enable: false
+        limit: 50
+    mermaid: true
+    chart: true
+    typeit: true
+    console:
+      enable: true
+      recentComment:
+        enable: false
+        storage: 0.2
+      card:
+        tags: true
+        archive: month
+    translate:
+      enable: false
+      defaultEncoding: 2
+      translateDelay: 0
+    rightside:
+      enable: true
+      hide:
+        enable: true
+        translate: true
+        mode: true
+        aside: true
+    footer:
+      randomlink: false
+      information:
+        author: /img/logo.png
+        left: []
+        right: []
+      group: {}
+      links: []
+      beian: []
+    errorpage:
+      img: /img/404.avif
+      text: =awa= Page Not Found
+      recommendList: true
+    capsule:
+      enable: false
+      id: ""
+      server: netease
+      type: playlist
+      volume: 0.8
+    music:
+      enable: false
+      id: ""
+      server: netease
+      type: playlist
+      volume: 0.8
+      mutex: true
+      order: list
+    meting_api: https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&r=:r
+    keyboard:
+      enable: false
+      # modifier: shift | mod (Command on macOS, Ctrl elsewhere)
+      # Each item must define exactly one of action or url.
+      list: []
+    lazyload:
+      enable: true
+      field: site
+      placeholder: ""
+      errorimg: /img/error_load.avif
+    loading:
+      fullpage: false
+      pace: true
+    highlight:
+      _merge: shallow
+      enable: true
+      copy: true
+      line_numbers: true
+      themes:
+        light: github-light
+        dark: github-dark
+    lightbox: fancybox
+    memorial:
+      enable: false
+      date: []
+    katex:
+      enable: true
+      per_page: true
+      copytex: true
+    pwa:
+      enable: false
+      manifest: /manifest.json
+      theme_color: "#425aef"
+      mask_icon: /img/pwa/favicon.png
+      apple_touch_icon: /img/pwa/favicon.png
+      favicon_32_32: /img/pwa/favicon_32.png
+      favicon_16_16: /img/pwa/favicon_16.png
+      bookmark_icon: /img/pwa/favicon.png
+    comment:
+      use: ""
+      commentBarrage: false
+      lazyload: false
+      count: false
+      sidebar: false
+      pv: false
+      avatar: https://weavatar.com
+      hot_tip:
+        enable: false
+        count: 3
+      newest_comment:
+        enable: false
+        storage: 0.5
+        limit: 5
+    twikoo:
+      envId: ""
+      region: ""
+      style: true
+      accessToken: ""
+      option: {}
+    waline:
+      serverURL: ""
+      pageview: false
+      option: {}
+    valine:
+      appId: ""
+      appKey: ""
+      serverURLs: ""
+      avatar: mp
+      visitor: false
+      style: true
+      option: {}
+    artalk:
+      server: ""
+      site: ""
+      option: {}
+    giscus:
+      repo: ""
+      repo_id: ""
+      category_id: ""
+      mapping: pathname
+      theme:
+        light: light
+        dark: dark
+      option: {}
+    search:
+      enable: true
+      type: local
+      tags: []
+      local:
+        preload: false
+        CDN: /search.xml
+      algolia:
+        appId: ""
+        apiKey: ""
+        indexName: ""
+        hits:
+          per_page: 6
+      docsearch:
+        appId: ""
+        apiKey: ""
+        indexName: ""
+        placeholder: ""
+        option: {}
+    envelope:
+      enable: false
+      line: 10
+      speed: 20
+      hover: true
+      loop: true
+      page: /message/
+    brevity:
+      enable: false
+      home_mini: false
+      music: false
+      page: /essay/
+      style: 1
+      strip: 30
+    recent_comments:
+      enable: false
+      limit: 50
+      cache: 0.2
+      page: /recentcomments/
+    verify_site: []
+    extends:
+      head: []
+      body: []
+    cdn:
+      shiki: https://esm.sh/shiki@4.4.3
+      fontawesome: https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.0/css/all.min.css
+      pjax: https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js
+      snackbar: https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js
+      lazyload: https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js
+      fancyapps_css: https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.css
+      fancyapps_js: https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.umd.js
+      mermaid: https://cdn.jsdelivr.net/npm/mermaid@11.16.0/dist/mermaid.min.js
+      chart: https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js
+      abcjs: https://cdn.jsdelivr.net/npm/abcjs@6.6.4/dist/abcjs-basic-min.js
+      typeit: https://cdn.jsdelivr.net/npm/typeit@8.8.7/dist/index.umd.min.js
+      katex_css: https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css
+      katex_copytex: https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/contrib/copy-tex.min.js
+      aplayer_css: https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css
+      aplayer_js: https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js
+      meting_js: https://cdn.jsdelivr.net/npm/meting@2.0.2/dist/Meting.min.js
+      colorthief: https://cdn.jsdelivr.net/npm/colorthief@3.4.0/dist/umd/color-thief.global.min.js
+      twikoo: https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js
+      waline_css: https://cdn.jsdelivr.net/npm/@waline/client@3.6.0/dist/waline.css
+      waline: https://cdn.jsdelivr.net/npm/@waline/client@3.6.0/dist/waline.umd.js
+      valine: https://cdn.jsdelivr.net/npm/valine@1.5.3/dist/Valine.min.js
+      blueimp_md5: https://cdn.jsdelivr.net/npm/blueimp-md5@2.19.0/js/md5.min.js
+      artalk_css: https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.css
+      artalk: https://cdn.jsdelivr.net/npm/artalk@2.9.1/dist/Artalk.js
+      algoliasearch: https://cdn.jsdelivr.net/npm/algoliasearch@5.46.3/dist/lite/builds/browser.umd.js
+      instantsearch_css: https://cdn.jsdelivr.net/npm/instantsearch.css@8.9.0/themes/satellite-min.css
+      instantsearch: https://cdn.jsdelivr.net/npm/instantsearch.js@4.84.0/dist/instantsearch.production.min.js
+      docsearch_css: https://cdn.jsdelivr.net/npm/@docsearch/css@4.5.0/dist/style.css
+      docsearch_js: https://cdn.jsdelivr.net/npm/@docsearch/js@4.5.0/dist/umd/index.js

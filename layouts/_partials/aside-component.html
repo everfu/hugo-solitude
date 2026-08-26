@@ -1,0 +1,10 @@
+{{ $name := .name }}{{ $page := .page }}{{ $cfg := site.Params.solitude }}
+{{ if eq $name "about" }}
+  {{ partial "aside-info.html" $page }}
+{{ else if eq $name "newestPost" }}
+  {{ partial "aside-recent.html" $page }}
+{{ else if eq $name "allInfo" }}
+  <div class="card-widget card-tags card-archives card-webinfo card-allinfo">{{ if $cfg.aside.tags.enable }}{{ partial "aside-tags.html" $page }}<hr>{{ end }}{{ partial "aside-webinfo.html" $page }}</div>
+{{ else if eq $name "newest_comment" }}
+  {{ if and $cfg.comment.use $cfg.comment.sidebar }}<div class="card-widget card-recent-comment"><div class="item-headline"><i class="solitude fas fa-comment"></i><span>{{ i18n "recentComments" }}</span>{{ if $cfg.recent_comments.enable }}<a class="recent-comment-more" href="{{ $cfg.recent_comments.page | relLangURL }}" title="{{ i18n "more" }}" aria-label="{{ i18n "more" }}"><i class="solitude fas fa-circle-chevron-right" aria-hidden="true"></i></a>{{ end }}</div><div class="aside-list" data-comment-provider="{{ lower $cfg.comment.use }}" aria-live="polite" aria-busy="true"><div class="comment-loading" role="status">{{ i18n "commentsLoading" }}</div></div></div>{{ end }}
+{{ end }}

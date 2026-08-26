@@ -1,0 +1,230 @@
+/* Footer and footer-bar layout. */
+#footer #footer_deal i {
+  font-size: 0.8rem;
+  line-height: 0.9rem;
+  height: 0.9rem;
+}
+
+#footer #footer_deal .deal_link {
+  display: flex;
+  margin: 1rem 27px;
+  color: var(--efu-card-bg);
+  border-radius: 3rem;
+  width: 32px;
+  height: 32px;
+  background: var(--efu-fontcolor);
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+
+#footer #footer_deal .deal_link:hover {
+  color: var(--efu-white);
+  background: var(--efu-main);
+  transform: scale(1.1);
+}
+
+#footer #footer_deal .footer_mini_logo {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  margin: 0 1rem;
+  cursor: pointer;
+  transition: cubic-bezier(0, 0, 0, 1.29) 0.5s;
+  user-select: none;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  #footer #footer_deal .footer_mini_logo {
+    display: none;
+  }
+}
+
+#footer #footer_deal .footer_mini_logo:hover {
+  transform: scale(1.2);
+}
+
+#footer #st-footer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 1rem auto 3rem;
+  padding: 0 1rem;
+}
+
+#footer #st-footer .footer-links {
+  display: flex;
+  flex-direction: column;
+}
+
+#footer #st-footer .footer-item {
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+  color: var(--efu-fontcolor);
+  margin-right: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 120px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+#footer #st-footer .footer-item:hover {
+  color: var(--efu-theme);
+  background: var(--efu-main-op-light);
+}
+
+[data-theme=dark] #footer #st-footer .footer-item:hover {
+  background: var(--efu-theme-op);
+}
+
+#footer #st-footer .footer-group {
+  min-width: 120px;
+}
+
+#footer #st-footer .footer-title-group {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0 0.7rem 8px;
+}
+
+#footer #st-footer .footer-title-group a {
+  margin-left: 8px;
+}
+
+#footer #st-footer .footer-title-group a:hover i {
+  color: var(--efu-main);
+  opacity: 1;
+}
+
+#footer #st-footer .footer-title-group i {
+  line-height: 1;
+  color: var(--efu-secondtext);
+  transition: 0.3s;
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+#footer #st-footer .footer-title-group .footer-title {
+  margin: 0;
+}
+
+#footer #st-footer .footer-title {
+  color: var(--efu-secondtext);
+  font-size: 0.8rem;
+  margin-left: 8px;
+}
+
+#footer #st-footer .random-friends-btn {
+  display: flex;
+  margin-left: 8px;
+}
+
+#footer-bar {
+  color: var(--efu-fontcolor);
+  margin-top: 1rem;
+  background: var(--efu-secondbg);
+  display: flex;
+  overflow: hidden;
+  z-index: 1;
+  transition: 0.3s;
+  border-top: var(--style-border-always);
+}
+
+#footer-bar .footer-bar-links {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  line-height: 1;
+  padding: 1rem 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  #footer-bar .footer-bar-links {
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+#footer-bar .footer-bar-left {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  #footer-bar .footer-bar-left {
+    align-items: center;
+  }
+}
+
+#footer-bar .footer-bar-left .copyright {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#footer-bar .footer-bar-left .copyright .footer-bar-link {
+  margin: 0;
+}
+
+#footer-bar .footer-bar-left .beian-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  #footer-bar .footer-bar-left .beian-group {
+    justify-content: center;
+  }
+}
+
+#footer-bar .footer-bar-left .beian-group a:hover {
+  background: 0 0;
+  color: var(--efu-main);
+}
+
+#footer-bar .footer-bar-left .beian-group .beian-icon {
+  height: 14px;
+  min-width: 13px;
+  min-height: 14px;
+}
+
+#footer-bar .footer-bar-left .beian-group .footer-bar-link {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--efu-secondtext);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#footer-bar .footer-bar-link {
+  margin: 0 4px;
+  color: var(--efu-fontcolor);
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 8px;
+  border-radius: 32px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

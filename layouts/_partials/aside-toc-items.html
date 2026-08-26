@@ -1,0 +1,16 @@
+{{- range .headings -}}
+  {{- if gt .Level 0 -}}
+    <li class="toc-item toc-level-{{ .Level }}">
+      <a class="toc-link" href="#{{ .ID }}"><span class="toc-text">{{ .Title | safeHTML }}</span></a>
+      {{- with .Headings -}}
+        <ol class="toc-child">
+          {{- partial "aside-toc-items.html" (dict "headings" .) -}}
+        </ol>
+      {{- end -}}
+    </li>
+  {{- else -}}
+    {{- with .Headings -}}
+      {{- partial "aside-toc-items.html" (dict "headings" .) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

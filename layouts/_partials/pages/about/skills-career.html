@@ -1,0 +1,48 @@
+{{- $section := .section -}}
+<div class="author-content about-row about-row--skills-career">
+  <article class="author-content-item skills" tabindex="0">
+    <div class="about-card-flow">
+      {{ with $section.skills.label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}
+      <h2 class="author-content-item-title">{{ $section.skills.title }}</h2>
+      <div class="skills-style-group">
+        <div class="skills-marquee" aria-hidden="true">{{ range seq 2 }}<div class="skills-marquee-track">
+          {{ range seq 2 }}<div class="skills-marquee-set">{{ range $section.skills.items }}<span class="skills-marquee-icon" style="--skill-color:{{ .color | default "var(--efu-main)" }}">{{ with .image }}<img src="{{ . | relURL }}" alt="">{{ else }}<i class="{{ .icon | default "fas fa-code" }}"></i>{{ end }}</span>{{ end }}</div>{{ end }}
+        </div>{{ end }}</div>
+        <ul class="skills-list" aria-label="{{ $section.skills.label | default $section.skills.title }}">
+          {{ range $section.skills.items }}<li class="skill-info"><span class="skill-icon" style="--skill-color:{{ .color | default "var(--efu-main)" }}">{{ with .image }}<img src="{{ . | relURL }}" alt="">{{ else }}<i class="{{ .icon | default "fas fa-code" }}"></i>{{ end }}</span><span class="skill-name">{{ .name }}</span></li>{{ end }}
+          <li class="skill-info skill-info--more" aria-hidden="true">…</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+  <article class="author-content-item careers">
+    <div class="about-card-flow">
+      {{ with $section.career.label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}
+      <h2 class="author-content-item-title">{{ $section.career.title }}</h2>
+      <ul class="careers-summary" aria-label="{{ $section.career.label | default $section.career.title }}">{{ range $section.career.summary }}<li style="--career-color:{{ .color | default "var(--efu-main)" }}"><span aria-hidden="true"></span>{{ .name }}</li>{{ end }}</ul>
+      {{ with $section.career.timeline }}
+        {{- $start := float .start -}}{{- $end := float .end -}}{{- $duration := sub $end $start -}}
+        {{- $startText := printf "%.0f" $start -}}{{- $endText := printf "%.0f" $end -}}
+        {{- $startLabel := .start_label | default $startText -}}{{- $endLabel := .end_label | default $endText -}}
+        {{- $trackColor := "var(--efu-main)" -}}
+        {{- with .events }}{{ with index . 0 }}{{ $trackColor = .color | default $trackColor }}{{ end }}{{ end -}}
+        <div class="career-timeline" style="--career-track-color:{{ $trackColor }}" role="group" aria-label="{{ .aria_label | default $section.career.title }}">
+          <p class="career-track-label">{{ .track_label | default $section.career.label }}</p>
+          <div class="career-timeline-axis" aria-hidden="true"></div>
+          <i class="career-timeline-tick career-timeline-tick--start" aria-hidden="true"></i>
+          <i class="career-timeline-tick career-timeline-tick--end" aria-hidden="true"></i>
+          <ul class="career-track" aria-label="生涯阶段">
+            {{ range .events }}
+              {{- $eventStart := float .from -}}{{- $eventEnd := float (.to | default .from) -}}{{- $left := 0.0 -}}{{- $width := 0.0 -}}
+              {{- if gt $duration 0.0 -}}{{- $left = mul (div (sub $eventStart $start) $duration) 100.0 -}}{{- $width = mul (div (sub $eventEnd $eventStart) $duration) 100.0 -}}{{- end -}}
+              {{- $eventStartText := replace (printf "%.1f" $eventStart) ".0" "" -}}{{- $eventEndText := replace (printf "%.1f" $eventEnd) ".0" "" -}}
+              {{- $period := $eventStartText -}}{{- if .to }}{{ $period = printf "%s — %s" $eventStartText $eventEndText }}{{ end -}}
+              <li class="career-event{{ if not .to }} career-event--point{{ end }}" style="--career-left:{{ $left }}%;--career-width:{{ $width }}%;--career-color:{{ .color | default "var(--efu-main)" }}" tabindex="0" aria-label="{{ .label }}，{{ .period | default $period }}"><span class="career-event-bar" aria-hidden="true"></span></li>
+            {{ end }}
+          </ul>
+          <div class="career-timeline-years" aria-hidden="true"><span>{{ $startLabel }}</span><span>{{ $endLabel }}</span></div>
+        </div>
+      {{ end }}
+    </div>
+  </article>
+</div>

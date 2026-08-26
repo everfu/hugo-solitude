@@ -1,0 +1,20 @@
+{{ $groups := transform.Unmarshal (dict "format" "yaml") .Inner }}
+<div class="solitude-tag flink tag-flink">
+  {{ range $groups }}
+    {{ with .class_name }}<div class="flink-name">{{ . }}</div>{{ end }}
+    {{ with .class_desc }}<div class="flink-desc">{{ . }}</div>{{ end }}
+    <div class="flink-list">
+      {{ range .link_list }}
+        <div class="flink-list-item">
+          <a class="cf-friends-link" href="{{ .link | safeURL }}" title="{{ .name }}" {{ if strings.HasPrefix .link "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>
+            <img class="flink-avatar cf-friends-avatar no-lightbox" src="{{ .avatar | default "/img/default_avatar.avif" | safeURL }}" alt="" loading="lazy">
+            <div class="flink-item-info">
+              <span class="flink-item-name cf-friends-name">{{ .name }}</span>
+              <span class="flink-item-desc" title="{{ .descr | default .description }}">{{ .descr | default .description }}</span>
+            </div>
+          </a>
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+</div>

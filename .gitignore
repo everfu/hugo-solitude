@@ -1,0 +1,8 @@
+.DS_Store
+.idea/
+.vscode/
+/node_modules/
+/exampleSite/.hugo_build.lock
+/exampleSite/public/
+/exampleSite/resources/
+MIGRATION.md

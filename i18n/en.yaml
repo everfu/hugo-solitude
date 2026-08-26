@@ -1,0 +1,129 @@
+home: {other: Home}
+startReading: {other: Start reading}
+backHome: {other: Back home}
+pageNotFound: {other: Page not found}
+backTop: {other: Back to top}
+homeSticky: {other: Sticky}
+homeNew: {other: New}
+homeRead: {other: Unread}
+randomPost: {other: Random post}
+console: {other: Console}
+menu: {other: Menu}
+toggleTheme: {other: Toggle theme}
+toggleAside: {other: Toggle sidebar}
+keyboardTitle: {other: Blog shortcuts}
+keyboardToggle: {other: Toggle keyboard shortcuts}
+keyboardDisable: {other: Disable keyboard shortcuts}
+keyboardConsole: {other: Open console}
+keyboardMusic: {other: Play/pause music}
+keyboardThemeDark: {other: Dark mode}
+keyboardThemeLight: {other: Light mode}
+keyboardSearch: {other: Site search}
+keyboardRandomPost: {other: Random post}
+rightMenuLabel: {other: Context menu}
+rightMenuBack: {other: Back}
+rightMenuForward: {other: Forward}
+rightMenuRefresh: {other: Refresh}
+rightMenuCopy: {other: Copy text}
+rightMenuPaste: {other: Paste}
+rightMenuComment: {other: Quote}
+rightMenuNew: {other: New tab}
+rightMenuLink: {other: Copy link}
+rightMenuImage: {other: Copy image}
+rightMenuDownloadImage: {other: Download}
+rightMenuSearch: {other: Search}
+rightMenuDark: {other: Dark}
+rightMenuLight: {other: Light}
+rightMenuToTraditional: {other: Traditional}
+rightMenuToSimplified: {other: Simplified}
+rightMenuBarrageOpen: {other: Show comments}
+rightMenuBarrageClose: {other: Hide comments}
+rightMenuMusicStart: {other: Play}
+rightMenuMusicStop: {other: Pause}
+rightMenuMusicBack: {other: Previous}
+rightMenuMusicForward: {other: Next}
+rightMenuMusicCopy: {other: Copy title}
+rightMenuImageError: {other: This image cannot be copied or downloaded.}
+rightMenuCtrlOriginal: {other: Hold Ctrl + right-click to open the browser context menu}
+posts: {other: Posts}
+allPosts: {other: All posts}
+categories: {other: Categories}
+tags: {other: Tags}
+toc: {other: Contents}
+recentPosts: {other: Recent posts}
+archives: {other: Archives}
+archiveAll: {other: All}
+archiveYearFilter: {other: Filter by year}
+archiveDateFormat: {other: "January 2, 2006"}
+archiveLoading: {other: Loading posts...}
+archiveLoadError: {other: Unable to load posts. Please try again later.}
+archiveEmpty: {other: No posts for this year.}
+uncategorized: {other: Uncategorized}
+relatedPosts: {other: Related posts}
+relatedPostsLead: {other: Readers who liked this post also read}
+browseRandomly: {other: Surprise me}
+previousPost: {other: Previous}
+nextPost: {other: Next}
+previousPage: {other: Previous page}
+nextPage: {other: Next page}
+paginationNavigation: {other: Pagination}
+postNavigation: {other: Post navigation}
+author: {other: Author}
+license: {other: License}
+copyrightSection: {other: Article copyright}
+copyrightActions: {other: Article actions}
+copyrightReprint: {other: This article is republished from another source.}
+copyrightOriginalPrefix: {other: This article is licensed under}
+copyrightOriginalMiddle: {other: and published by}
+copyrightOriginalSuffix: {other: "."}
+copyLink: {other: Copy article link}
+shareTo: {other: Share to}
+comments: {other: Comments}
+commentsLoading: {other: Loading comments…}
+recentComments: {other: Recent comments}
+commentsEmpty: {other: No comments yet}
+commentsError: {other: Unable to load comments. Please try again later.}
+commentImage: {other: Image}
+commentLink: {other: Link}
+commentCode: {other: Code}
+commentEmoji: {other: Emoji}
+commentAnonymous: {other: Anonymous}
+commentParticipants: {other: "Comment participants: ${names}"}
+commentMoreParticipants: {other: "${count} more participants"}
+pageViews: {other: Views}
+search: {other: Search}
+searchPlaceholder: {other: Search posts}
+searchEmpty: {other: "No result for ${query}"}
+searchHit: {other: "Found ${hits} results in ${time} ms"}
+searchCount: {other: "${count} results"}
+searchLoading: {other: Searching…}
+more: {other: More}
+explore: {other: Explore topics}
+frameworkBy: {other: "Framework:"}
+themeBy: {other: "Theme:"}
+themeDark: {other: Dark mode enabled}
+themeLight: {other: Light mode enabled}
+copySuccess: {other: Copied}
+copyError: {other: Copy failed}
+codeCopy: {other: Copy}
+codeExpand: {other: Expand all}
+timeDay: {other: days ago}
+timeHour: {other: hours ago}
+timeJust: {other: just now}
+timeMinute: {other: minutes ago}
+timeMonth: {other: months ago}
+dayUnit: {other: " days"}
+developerMode: {other: Developer mode enabled}
+commentHint: {other: Write a comment directly}
+hello: {other: "Hello, "}
+welcomeBack: {other: "Welcome back, "}
+linksLoading: {other: Loading links…}
+linksError: {other: Unable to load links.}
+retry: {other: Retry}
+randomLink: {other: Visit a random friend link}
+visit: {other: Visit}
+defaultSort: {other: Default order}
+randomSort: {other: Random order}
+sortLinks: {other: Change link order}
+scrollLeft: {other: Scroll left}
+scrollRight: {other: Scroll right}

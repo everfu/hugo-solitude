@@ -1,0 +1,16 @@
+{{ if site.Menus.main }}
+  <div class="menus_items">
+    {{ range site.Menus.main }}
+      <div class="menus_item">
+        <a class="site-page" href="{{ if .HasChildren }}javascript:void(0);{{ else }}{{ .URL | relLangURL }}{{ end }}">
+          {{ with .Params.icon }}<i class="solitude {{ . }}"></i>{{ end }}<span>{{ .Name }}</span>
+        </a>
+        {{ if .HasChildren }}
+          <ul class="menus_item_child">
+            {{ range .Children }}<li><a class="site-page child" href="{{ if .Params.action }}javascript:void(0);{{ else }}{{ .URL | relLangURL }}{{ end }}"{{ with .Params.action }} data-solitude-action="{{ . }}" data-solitude-prevent="true"{{ end }}>{{ with .Params.icon }}<i class="solitude {{ . }}"></i>{{ end }}<span>{{ .Name }}</span></a></li>{{ end }}
+          </ul>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

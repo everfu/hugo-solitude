@@ -1,0 +1,8 @@
+{{ define "main" }}
+  <main class="layout" id="content-inner">
+    <div id="tag"><div class="article-sort-title">{{ .Title }}</div><div class="article-sort">
+      {{ range .Pages.ByDate.Reverse }}{{ partial "archive-item.html" . }}{{ end }}
+    </div></div>
+    {{ partial "aside.html" . }}
+  </main>
+{{ end }}

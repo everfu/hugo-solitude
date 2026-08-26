@@ -1,0 +1,14 @@
+{{ $cfg := site.Params.solitude }}
+{{ if and $cfg.recent_comments.enable $cfg.comment.use }}
+  {{ $cover := .Params.cover | default "/img/demo/cover-pagination-v2.webp" }}
+  {{ $tip := .Params.desc | default .Params.description }}
+  <section class="author-content author-content-item single sharePage" style="background: url('{{ $cover | relURL }}') no-repeat center; background-size: cover;">
+    <div class="card-content">
+      {{ with $tip }}<div class="author-content-item-tips">{{ . }}</div>{{ end }}
+      <span class="author-content-item-title">{{ .Title }}</span>
+      {{ if or .Params.leftend .Params.rightend }}<div class="content-bottom">{{ with .Params.leftend }}<span class="tips">{{ . }}</span>{{ end }}{{ with .Params.rightend }}<span class="tips">{{ . }}</span>{{ end }}</div>{{ end }}
+      {{ if and .Params.rightbtn .Params.rightbtnlink }}<div class="banner-button-group"><a class="banner-button" href="{{ .Params.rightbtnlink | safeURL }}"><i class="solitude fas fa-circle-chevron-right"></i><span class="banner-button-text">{{ .Params.rightbtn }}</span></a></div>{{ end }}
+    </div>
+  </section>
+  <div class="console_recentcomments recent-comments-list" data-comment-provider="{{ lower $cfg.comment.use }}">{{ i18n "commentsLoading" }}</div>
+{{ end }}

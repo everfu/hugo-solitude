@@ -1,0 +1,25 @@
+{{ define "main" }}
+  {{ $special := lower (or .Params.type .Layout) }}
+  {{ $isTaxonomyOverview := in (slice "tags" "categories") $special }}
+  {{ $isWideOverview := or $isTaxonomyOverview (in (slice "links" "kit") $special) }}
+  {{ $hideAside := or (in (slice "about" "music") $special) $isWideOverview (eq .Params.aside false) }}
+  <main class="layout{{ if $hideAside }} hide-aside{{ end }}" id="content-inner">
+    <div id="page">
+      {{ if eq $special "about" }}{{ partial "pages/about.html" . }}
+      {{ else if eq $special "links" }}{{ partial "pages/links.html" . }}
+      {{ else if eq $special "kit" }}{{ partial "pages/kit.html" . }}
+      {{ else if eq $special "music" }}{{ partial "pages/music.html" . }}
+      {{ else if eq $special "message" }}{{ partial "pages/message.html" . }}
+      {{ else if eq $special "brevity" }}{{ partial "pages/brevity.html" . }}
+      {{ else if eq $special "recentcomment" }}{{ partial "pages/recentcomment.html" . }}
+      {{ else if eq $special "tags" }}{{ partial "pages/tags.html" . }}
+      {{ else if eq $special "categories" }}{{ partial "pages/categories.html" . }}
+      {{ else }}
+        <header class="page-title-wrap"><h1 class="page-title">{{ .Title }}</h1>{{ with .Params.description }}<p>{{ . }}</p>{{ end }}</header>
+        <article class="post-content article-container">{{ .Content }}</article>
+      {{ end }}
+      {{ if not $isTaxonomyOverview }}{{ partial "comments.html" . }}{{ end }}
+    </div>
+    {{ if not $isWideOverview }}{{ partial "aside.html" . }}{{ end }}
+  </main>
+{{ end }}

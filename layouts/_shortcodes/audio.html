@@ -1,0 +1,1 @@
+{{ $src := .Get "url" | default (.Get "src") | default (.Get 0) }}<div class="solitude-tag audio tag-audio"><span class="tag-media-icon" aria-hidden="true"><i class="fas fa-music"></i></span><audio controls preload="metadata" aria-label="{{ .Get "name" }}"><source src="{{ $src | safeURL }}">Your browser does not support the audio tag.</audio></div>

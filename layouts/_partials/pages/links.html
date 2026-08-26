@@ -1,0 +1,104 @@
+{{ $groups := hugo.Data.links.links }}
+{{ $applyTarget := "#friend-links-apply" }}
+{{ if and site.Params.solitude.comment.use (ne .Params.comment false) }}{{ $applyTarget = "#post-comment" }}{{ end }}
+{{ $bannerLinks := slice }}
+{{ range $groups }}
+  {{ range .link_list }}
+    {{ $bannerLinks = $bannerLinks | append . }}
+  {{ end }}
+{{ end }}
+
+{{ if gt (len $bannerLinks) 0 }}
+  {{ $cycleLinks := slice }}
+  {{ $repeatCount := div 24 (len $bannerLinks) }}
+  {{ if lt $repeatCount 1 }}{{ $repeatCount = 1 }}{{ end }}
+  {{ range seq $repeatCount }}
+    {{ $cycleLinks = $cycleLinks | append $bannerLinks }}
+  {{ end }}
+  {{ if eq (mod (len $cycleLinks) 2) 1 }}
+    {{ $cycleLinks = $cycleLinks | append (index $cycleLinks 0) }}
+  {{ end }}
+  {{ $marqueeLinks := $cycleLinks | append $cycleLinks }}
+
+  <div class="flink" id="banners">
+    <div class="banners-title">
+      <div class="banners-title-small">{{ .Params.description | default "友情链接" }}</div>
+      <div class="banners-title-big">{{ .Title }}</div>
+    </div>
+    <div class="banner-button-group">
+      <button class="banner-button secondary" type="button" data-solitude-action="travelling">
+        <i class="solitude fas fa-tower-broadcast" aria-hidden="true"></i>
+        <span class="banner-button-text">随机访问</span>
+      </button>
+      <a class="banner-button" href="{{ $applyTarget }}">
+        <i class="solitude fas fa-circle-chevron-right" aria-hidden="true"></i>
+        <span class="banner-button-text">申请友链</span>
+      </a>
+    </div>
+    <div class="tags-group-all nowrapMove" aria-label="{{ .Title }}">
+      <div class="tags-group-wrapper">
+        {{ range seq 0 2 (sub (len $marqueeLinks) 1) }}
+          <div class="tags-group-icon-pair">
+            {{ $first := index $marqueeLinks . }}
+            <a class="tags-group-icon" href="{{ $first.link }}" target="_blank" rel="noopener noreferrer" title="{{ $first.name }}">
+              <img class="no-lightbox" src="{{ $first.avatar | default "/img/default_avatar.avif" }}" alt="">
+              <span class="tags-group-title">{{ $first.name }}</span>
+            </a>
+            {{ $next := add . 1 }}
+            {{ if lt $next (len $marqueeLinks) }}
+              {{ $second := index $marqueeLinks $next }}
+              <a class="tags-group-icon" href="{{ $second.link }}" target="_blank" rel="noopener noreferrer" title="{{ $second.name }}">
+                <img class="no-lightbox" src="{{ $second.avatar | default "/img/default_avatar.avif" }}" alt="">
+                <span class="tags-group-title">{{ $second.name }}</span>
+              </a>
+            {{ end }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+{{ end }}
+
+<div class="flink article-container" id="friend-links-list">
+  {{ range $groups }}
+    <h2>{{ .class_name }} ({{ len .link_list }})</h2>
+    <div class="flink-desc">{{ .class_desc }}</div>
+    {{ if eq (.type | default "item") "card" }}
+      <div class="site-card-group">
+        {{ range .link_list }}
+          <div class="site-card">
+            {{ with .tag }}<span class="site-card-tag">{{ . }}</span>{{ end }}
+            <a class="img" href="{{ .link }}" target="_blank" rel="noopener noreferrer" title="{{ .name }}">
+              <img class="flink-avatar no-lightbox" src="{{ .topimg | default .avatar }}" alt="{{ .name }}">
+            </a>
+            <a class="info cf-friends-link" href="{{ .link }}" target="_blank" rel="noopener noreferrer" title="{{ .name }}">
+              <div class="site-card-avatar">
+                <img class="flink-avatar cf-friends-avatar no-lightbox" src="{{ .avatar | default "/img/default_avatar.avif" }}" alt="">
+                <div class="img-alt is-center">{{ .name }}</div>
+              </div>
+              <div class="site-card-text">
+                <span class="title cf-friends-name">{{ .name }}</span>
+                <span class="desc">{{ .descr }}</span>
+              </div>
+            </a>
+          </div>
+        {{ end }}
+      </div>
+    {{ else }}
+      <div class="flink-list">
+        {{ range .link_list }}
+          <div class="flink-list-item">
+            <a class="cf-friends-link" href="{{ .link }}" target="_blank" rel="noopener noreferrer" title="{{ .name }}">
+              <img class="flink-avatar cf-friends-avatar no-lightbox" src="{{ .avatar | default "/img/default_avatar.avif" }}" alt="">
+              <div class="flink-item-info">
+                <span class="flink-item-name cf-friends-name">{{ .name }}</span>
+                <span class="flink-item-desc" title="{{ .descr }}">{{ .descr }}</span>
+              </div>
+            </a>
+          </div>
+        {{ end }}
+      </div>
+    {{ end }}
+  {{ end }}
+  <div id="friend-links-apply">{{ .Content }}</div>
+</div>

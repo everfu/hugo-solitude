@@ -1,0 +1,1 @@
+{{ $id := .Get "id" | default (printf "tabs-%d" .Ordinal) }}<div class="solitude-tag tag-tabs tabs" id="{{ $id }}" data-solitude-tabs><div class="tab-contents">{{ .Inner }}</div></div>

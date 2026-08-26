@@ -1,0 +1,1 @@
+{{ $style := .Get "style" | default (.Get 0) | default "block" }}<span class="solitude-tag spoiler tag-spoiler {{ $style }}-text" tabindex="0" aria-label="Hidden text">{{ .Inner | plainify }}</span>

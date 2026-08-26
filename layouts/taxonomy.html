@@ -1,0 +1,8 @@
+{{ define "main" }}
+  {{ $isTags := eq .Data.Plural "tags" }}
+  {{ $hideAside := in (slice "tags" "categories") .Data.Plural }}
+  <main class="layout{{ if $hideAside }} hide-aside{{ end }}" id="content-inner">
+    <div id="page">{{ if $isTags }}{{ partial "pages/tags.html" . }}{{ else }}{{ partial "pages/categories.html" . }}{{ end }}</div>
+    {{ if not $hideAside }}{{ partial "aside.html" . }}{{ end }}
+  </main>
+{{ end }}

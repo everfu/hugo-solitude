@@ -1,0 +1,1 @@
+{{ $id := .Get "id" | default (.Get 0) }}{{ $privacy := .Get "privacy" | default true }}<div class="solitude-tag video-container tag-video-embed tag-video-youtube"><iframe src="https://www.youtube{{ if not $privacy }}{{ else }}-nocookie{{ end }}.com/embed/{{ $id }}" title="YouTube video player" loading="lazy" allowfullscreen></iframe></div>

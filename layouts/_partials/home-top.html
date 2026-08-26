@@ -1,0 +1,18 @@
+{{ $cfg := site.Params.solitude }}
+{{ $posts := first 5 (where site.RegularPages.ByDate.Reverse "Section" "posts") }}
+{{ $items := slice }}{{ $configuredURLs := slice }}
+{{ range $cfg.hometop.recommendList }}{{ if ne .enable false }}{{ $items = $items | append . }}{{ $configuredURLs = $configuredURLs | append (.url | strings.TrimSuffix "/" | strings.TrimSuffix ".html") }}{{ end }}{{ end }}
+{{ range $posts }}{{ $postKey := .RelPermalink | strings.TrimSuffix "/" | strings.TrimSuffix ".html" }}{{ if and (lt (len $items) 5) (not (in $configuredURLs $postKey)) }}{{ $label := "" }}{{ with .GetTerms "categories" }}{{ $label = (index . 0).LinkTitle }}{{ end }}{{ $items = $items | append (dict "title" .Title "url" .RelPermalink "cover" (.Params.cover | default (index $cfg.post.default.cover 0)) "label" $label) }}{{ end }}{{ end }}
+{{ if $items }}
+  <div class="home-center" id="home_center" style="--current-theme:var(--efu-main);--current-theme-op:color-mix(in srgb,var(--efu-main) 14%,transparent);--current-theme-op-deep:color-mix(in srgb,var(--efu-main) 87%,transparent)">
+    <div class="home-center-content">
+      <div class="home-center-left">
+        <div class="home-center-banner" data-mobile-loop="false">
+          {{ range $index, $item := first 5 $items }}{{ $cover := $item.cover | default (index $cfg.post.default.cover 0) }}<div class="home-center-banner-item has-banner-cover{{ if eq $index 0 }} active{{ end }}" role="link" tabindex="{{ if eq $index 0 }}0{{ else }}-1{{ end }}" aria-hidden="{{ if eq $index 0 }}false{{ else }}true{{ end }}" data-index="{{ $index }}" data-link="{{ $item.url | relURL }}" data-title="{{ $item.title }}" data-label="{{ $item.label }}" data-color="{{ $item.color }}"><div class="home-center-cover"><img class="home-center-cover-img nolazyload" src="{{ $cover | relURL }}" alt="{{ $item.title }}" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}" data-solitude-fallback="{{ index $cfg.post.default.cover 0 | relURL }}"></div><div class="home-center-mask"></div></div>{{ end }}
+        </div>
+        {{ $first := index $items 0 }}<div class="home-center-title"><a class="home-center-title-link" href="{{ $first.url | relURL }}">{{ $first.title }}</a><div class="home-center-title-tag"><i class="solitude fas fa-star"></i><span>{{ $first.label }}</span></div><div class="home-center-indicators" aria-label="推荐内容切换">{{ range $index, $_ := first 5 $items }}<button class="home-center-indicator{{ if eq $index 0 }} active{{ end }}" type="button" data-index="{{ $index }}" aria-label="查看第 {{ add $index 1 }} 条推荐" aria-current="{{ if eq $index 0 }}true{{ else }}false{{ end }}"></button>{{ end }}</div></div>
+      </div>
+      {{ if gt (len $items) 1 }}<div class="home-center-right"><div class="home-center-list">{{ range $index, $item := first 5 $items }}{{ $cover := $item.cover | default (index $cfg.post.default.cover 0) }}<div class="home-center-item{{ if eq $index 0 }} active{{ end }}" data-index="{{ $index }}" aria-current="{{ if eq $index 0 }}true{{ else }}false{{ end }}"><div class="home-center-item-icon"><img class="nolazyload" src="{{ $cover | relURL }}" alt="" loading="lazy"></div><div class="home-center-item-title"><a href="{{ $item.url | relURL }}">{{ $item.title }}</a></div></div>{{ end }}</div></div>{{ end }}
+    </div>
+  </div>
+{{ end }}

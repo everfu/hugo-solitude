@@ -1,0 +1,16 @@
+{{- $section := .section -}}
+<div class="author-content about-row about-row--personality-photo">
+  <article class="author-content-item personalities">
+    {{ with $section.personality.label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}
+    <h2 class="author-content-item-title">{{ $section.personality.title }}</h2>
+    <p class="personality-type" style="--personality-color:{{ $section.personality.color | default "var(--efu-main)" }}">{{ $section.personality.type }}</p>
+    {{ with $section.personality.image }}<img class="personality-image nolazyload" src="{{ . | relURL }}" alt="{{ $section.personality.image_alt | default "" }}"{{ if not $section.personality.image_alt }} aria-hidden="true"{{ end }}>{{ end }}
+    {{ with $section.personality.link }}<a class="personality-link" href="{{ .url | safeURL }}"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .text }}</a>{{ end }}
+  </article>
+  {{ with $section.photo }}
+    <figure class="author-content-item myphoto" tabindex="0">
+      <img class="author-content-img nolazyload" src="{{ .image | relURL }}" alt="{{ .alt | default "个人照片" }}">
+      {{ with .badge }}<img class="myphoto-badge nolazyload" src="{{ . | relURL }}" alt="" aria-hidden="true">{{ end }}
+    </figure>
+  {{ end }}
+</div>

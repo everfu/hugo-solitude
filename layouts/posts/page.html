@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{ $cfg := site.Params.solitude }}{{ $cover := .Params.cover | default (index $cfg.post.default.cover 0) }}
+  <main class="layout" id="content-inner">
+    <div id="post">
+      {{ if or .Params.not_cover (not $cover) }}{{ partial "post-meta.html" . }}{{ end }}
+      <article class="post-content article-container">{{ .Content }}</article>
+      {{ partial "post-copyright.html" . }}
+      <div class="post-tools-right"><div class="tag_share"><div class="post-meta__tag-list">{{ range .GetTerms "tags" }}<a class="post-meta__tags" href="{{ .RelPermalink }}"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>{{ .LinkTitle }}<span class="tagsPageCount">{{ len .Pages }}</span></span></a>{{ end }}</div></div></div>
+      {{ partial "post-nav.html" . }}{{ partial "related.html" . }}{{ partial "comments.html" . }}
+    </div>
+    {{ partial "aside.html" . }}
+  </main>
+{{ end }}

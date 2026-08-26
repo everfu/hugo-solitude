@@ -1,0 +1,47 @@
+links:
+  - class_name: 官方资源
+    class_desc: Solitude 的文档、源码与更新入口
+    type: card
+    link_list:
+      - name: Solitude Docs
+        link: https://solitude.js.org/
+        avatar: /img/logo.png
+        topimg: /img/demo/cover-getting-started-v2.webp
+        descr: Solitude 的安装、配置、迁移与常见问题文档
+        tag: 文档
+      - name: Solitude GitHub
+        link: https://github.com/everfu/hugo-solitude
+        avatar: /img/logo.png
+        topimg: /img/demo/cover-shortcodes-v2.webp
+        descr: 主题源码、版本记录与问题反馈
+        tag: 源码
+
+  - class_name: 基础生态
+    class_desc: 构建 Solitude Hugo 所依赖的开放技术
+    type: item
+    link_list:
+      - name: Hugo
+        link: https://gohugo.io/
+        avatar: https://gohugo.io/apple-touch-icon.png
+        descr: 快速、灵活的静态站点生成器
+      - name: TypeScript
+        link: https://www.typescriptlang.org/
+        avatar: https://www.typescriptlang.org/favicon-32x32.png
+        descr: 为主题浏览器交互提供类型安全
+
+  - class_name: 社区伙伴
+    class_desc: 为 Solitude 提供开发、设计与内容灵感的创作者
+    type: discn
+    link_list:
+      - name: 伍拾柒
+        link: https://www.efu.me/
+        avatar: https://github.com/everfu.png
+        descr: Solitude 开发与维护者
+      - name: 张洪Heo
+        link: https://zhheo.com/
+        avatar: https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://zhheo.com&size=128
+        descr: 产品设计师、独立开发者，分享设计与科技
+      - name: 亦小封
+        link: https://meuicat.com/
+        avatar: https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://meuicat.com&size=128
+        descr: 有肉有猫有生活

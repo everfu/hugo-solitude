@@ -1,0 +1,36 @@
+{{ $cfg := site.Params.solitude }}
+{{ $isPost := and .IsPage (eq .Section "posts") }}
+{{ $cover := .Params.cover | default (index $cfg.post.default.cover 0) }}
+{{ $pageTitle := cond (eq .Kind "404") (i18n "pageNotFound") (.Title | default site.Title) }}
+<header id="page-header" class="{{ if and $isPost $cover (not .Params.not_cover) }}post-bg{{ else }}not-top-img{{ end }}">
+  <nav id="nav" class="show" data-solitude-action="onNavBlankClickCloseConsole" data-solitude-event="true">
+    <div id="nav-group">
+      <div id="blog_name">
+        {{ with $cfg.nav.group }}
+          <div class="back-home-button" tabindex="-1">
+            <svg class="back-home-button-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.75 2.5C9.09721 2.5 11 4.40279 11 6.75V11H6.75C4.40279 11 2.5 9.09721 2.5 6.75C2.5 4.40279 4.40279 2.5 6.75 2.5ZM6.75 13H11V17.25C11 19.5972 9.09721 21.5 6.75 21.5C4.40279 21.5 2.5 19.5972 2.5 17.25C2.5 14.9028 4.40279 13 6.75 13ZM17.25 2.5C19.5972 2.5 21.5 4.40279 21.5 6.75C21.5 9.09721 19.5972 11 17.25 11H13V6.75C13 4.40279 14.9028 2.5 17.25 2.5ZM13 13H17.25C19.5972 13 21.5 14.9028 21.5 17.25C21.5 19.5972 19.5972 21.5 17.25 21.5C14.9028 21.5 13 19.5972 13 17.25V13Z"/></svg>
+            <div class="back-menu-list-groups">
+              {{ range $groupName, $items := . }}<div class="back-menu-list-group"><div class="back-menu-list-title">{{ $groupName }}</div><div class="back-menu-list">{{ range $items }}<a class="back-menu-item" href="{{ .url | relURL }}">{{ with .icon }}<img class="nolazyload back-menu-item-icon" src="{{ . | relURL }}" alt="">{{ end }}<span class="back-menu-item-text">{{ .name }}</span></a>{{ end }}</div></div>{{ end }}
+            </div>
+          </div>
+        {{ end }}
+        <a id="site-name" href="{{ site.Home.RelPermalink }}" title="{{ i18n "backHome" }}" heotip="{{ i18n "backHome" }}">
+          {{ if eq $cfg.site.name.class "img" }}<img src="{{ $cfg.site.name.custom | relURL }}" alt="{{ site.Title }}">{{ else if eq $cfg.site.name.class "i_class" }}<i class="solitude {{ $cfg.site.name.custom }}"></i>{{ else }}<span class="title">{{ $cfg.site.name.custom }}</span>{{ end }}
+          <i class="solitude fas fa-home"></i>
+        </a>
+      </div>
+      <div id="page-name-mask"><div id="page-name"><a id="page-name-text" data-solitude-action="toTop" title="{{ i18n "backTop" }}" heotip="{{ i18n "backTop" }}">{{ $pageTitle }}</a></div></div>
+      <div id="menus">{{ partial "menu.html" . }}</div>
+      <div id="nav-left"></div>
+      <div id="nav-right">
+        {{ range $cfg.nav.right.custom }}<div class="nav-button" id="{{ .id }}"><a class="site-page" href="{{ .url | default "javascript:void(0);" }}"{{ with .action }} data-solitude-action="{{ . }}" data-solitude-prevent="true"{{ end }} title="{{ .title | default .name }}" heotip="{{ .title | default .name }}"><i class="solitude {{ .icon }}"></i></a></div>{{ end }}
+        {{ if $cfg.nav.right.random }}<div class="nav-button" id="randomPost_button"><a class="site-page" href="javascript:void(0);" data-solitude-action="randomPost" data-solitude-prevent="true" aria-label="{{ i18n "randomPost" }}" title="{{ i18n "randomPost" }}" heotip="{{ i18n "randomPost" }}"><i class="solitude fas fa-dice-d6"></i></a></div>{{ end }}
+        {{ if $cfg.search.enable }}<div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" aria-label="{{ i18n "search" }}" title="{{ i18n "search" }}" heotip="{{ i18n "search" }}"><i class="solitude fas fa-magnifying-glass"></i></a></div>{{ end }}
+        {{ if $cfg.console.enable }}<div class="nav-button" id="nav-console"><a class="console_switchbutton" href="javascript:void(0);" data-solitude-action="toggleConsole" data-solitude-prevent="true" aria-label="{{ i18n "console" }}" title="{{ i18n "console" }}" heotip="{{ i18n "console" }}"><label><i class="left"></i><i class="center"></i><i class="right"></i></label></a></div>{{ end }}
+        <div class="nav-button" id="nav-totop" data-solitude-action="toTop" aria-label="{{ i18n "backTop" }}" title="{{ i18n "backTop" }}" heotip="{{ i18n "backTop" }}"><a class="totopbtn"><i class="solitude fas fa-arrow-up"></i><span id="percent">0</span></a></div>
+        <div id="toggle-menu"><a class="site-page" aria-label="{{ i18n "menu" }}"><i class="solitude fas fa-bars"></i></a></div>
+      </div>
+    </div>
+  </nav>
+  {{ if and $isPost $cover (not .Params.not_cover) }}<div class="post-cover-aside"><a class="post-cover-aside-link fancybox" href="{{ $cover | relURL }}"><img id="post-cover" class="post-cover-aside-img nolazyload" src="{{ $cover | relURL }}" alt="{{ .Title }}"></a></div>{{ partial "post-meta.html" . }}{{ end }}
+</header>

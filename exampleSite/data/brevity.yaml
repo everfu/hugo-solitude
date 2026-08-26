@@ -1,0 +1,18 @@
+items:
+  - date: 2026-08-25T10:00:00+08:00
+    content: Solitude Hugo 官方示例站完成内容重写，所有教程都以当前 Hugo 能力为准。
+    location: 项目仓库
+    image:
+      - /img/demo/cover-getting-started-v2.webp
+  - date: 2026-08-23T10:00:00+08:00
+    content: 关于、友链、开发工具和即刻短文统一使用 Hugo 数据文件维护。
+    location: exampleSite
+    link: /p/feature-pages.html
+  - date: 2026-08-21T10:00:00+08:00
+    content: 首页、文章、分类、标签、搜索索引与资源管线完成 Hugo 原生迁移。
+    location: hugo
+    image:
+      - /img/demo/cover-legacy-url-v2.webp
+  - date: 2023-04-20T00:00:00+08:00
+    content: Solitude 演示站开始记录主题能力、配置方式与实际使用经验。
+    location: Solitude

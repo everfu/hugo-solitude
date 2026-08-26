@@ -1,0 +1,1 @@
+{{ $id := printf "tab-%d" .Ordinal }}<section class="tab-item-content{{ if eq .Ordinal 0 }} active{{ end }}" id="{{ $id }}" data-tab-title="{{ .Get "title" }}" data-tab-icon="{{ .Get "icon" }}">{{ .Inner | markdownify }}</section>

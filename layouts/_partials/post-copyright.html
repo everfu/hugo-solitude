@@ -1,0 +1,51 @@
+{{ $cfg := site.Params.solitude }}
+{{ $copyright := $cfg.post.default.copyright }}
+{{ $author := .Params.author | default site.Params.author.name | default site.Title }}
+{{ $description := .Params.desc | default site.Params.description }}
+{{ $avatar := .Params.avatar | default $copyright.author | default $cfg.site.icon }}
+{{ $avatarBackground := .Params.avatar_background | default $copyright.author_background }}
+{{ $showShare := and $cfg.post.share.enable (gt (len $cfg.post.share.list) 0) }}
+<section class="post-copyright" aria-label="{{ i18n "copyrightSection" }}">
+  <div class="post-copyright__author_group">
+    <a class="post-copyright__author_img{{ with $avatarBackground }} post-copyright__author_img--layered{{ end }}" href="{{ "/about/" | relLangURL }}" aria-label="{{ i18n "author" }}: {{ $author }}">
+      {{ with $avatarBackground }}<img class="post-copyright__author_img_back" src="{{ . | relURL }}" alt="" aria-hidden="true">{{ end }}
+      <img class="post-copyright__author_img_front" src="{{ $avatar | relURL }}" alt="{{ $author }}">
+    </a>
+    <div class="post-copyright__author_name">{{ $author }}</div>
+    {{ with $description }}<div class="post-copyright__author_desc">{{ . }}</div>{{ end }}
+  </div>
+
+  {{ if $showShare }}
+    <div class="post-tools" role="group" aria-label="{{ i18n "copyrightActions" }}">
+      <div class="post-copyright__share">
+        {{ range $cfg.post.share.list }}
+          {{ if eq . "link" }}
+            <button class="post-copyright__share-button post-copyright__share-button--link" type="button" data-solitude-action="copy" data-solitude-value="{{ $.Permalink }}" title="{{ i18n "copyLink" }}" aria-label="{{ i18n "copyLink" }}">
+              <i class="solitude fas fa-link" aria-hidden="true"></i>
+            </button>
+          {{ else if ne . "twitter" }}
+            <a class="post-copyright__share-button post-copyright__share-button--{{ . }}" href="https://www.addtoany.com/add_to/{{ . }}?linkurl={{ $.Permalink | urlquery }}&linkname={{ $.Title | urlquery }}" target="_blank" rel="noopener noreferrer" title="{{ i18n "shareTo" }} {{ title . }}" aria-label="{{ i18n "shareTo" }} {{ title . }}">
+              <i class="solitude fab fa-{{ . }}" aria-hidden="true"></i>
+            </a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+
+  {{ if or $copyright.enable .Params.copyright }}
+    <div class="post-copyright__notice">
+      <div class="post-copyright-info">
+        {{ if .Params.reprint }}
+          {{ i18n "copyrightReprint" }}
+        {{ else }}
+          {{ i18n "copyrightOriginalPrefix" }}
+          <a href="{{ $copyright.licenurl }}">{{ $copyright.license }}</a>
+          {{ i18n "copyrightOriginalMiddle" }}
+          <a href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+          {{ i18n "copyrightOriginalSuffix" }}
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+</section>

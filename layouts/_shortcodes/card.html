@@ -1,0 +1,40 @@
+{{ $name := .Get "title" | default (.Get "name") | default "未知" }}
+{{ $url := .Get "url" }}
+{{ $cover := .Get "cover" | default (.Get "bg") | default "" }}
+{{ $description := .Inner | plainify | strings.TrimSpace | default (.Get "desc") }}
+{{ $tag := .Get "tag" }}
+{{ $width := .Get "width" | default "100%" }}
+{{ $height := .Get "height" }}
+<article
+  class="solitude-tag card_box tag-card {{ if $cover }}has-cover{{ else }}no-cover{{ end }} {{ if $url }}has-action{{ else }}no-action{{ end }}"
+  style="width:{{ $width | safeCSS }};{{ with $height }}height:{{ . | safeCSS }};{{ end }}"
+>
+  {{ with $cover }}
+    <div class="card_cover" aria-hidden="true" style="background-image:url('{{ . | safeURL }}')"></div>
+  {{ end }}
+  <div class="card_body">
+    <div class="card_top">
+      {{ with .Get "icon" }}<i class="{{ . }}" aria-hidden="true"></i>{{ end }}
+      {{ with $tag }}<span class="card_tag">{{ . }}</span>{{ end }}
+    </div>
+    <div class="card_mask card_info">
+      <div class="card_content">
+        <span class="card_title">{{ $name }}</span>
+        {{ with $description }}<span class="card_description">{{ . }}</span>{{ end }}
+      </div>
+      <div class="card_footer">
+        <div class="card_rating" aria-label="评分 {{ .Get "star" | default 0 }} / 5">
+          <i class="fa-solid fa-star" aria-hidden="true"></i>
+        </div>
+        {{ with $url }}
+          <a
+            class="card_action"
+            href="{{ . | safeURL }}"
+            aria-label="查看详情：{{ $name }}"
+            {{ if strings.HasPrefix . "http" }}target="_blank" rel="noopener noreferrer"{{ end }}
+          ><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</article>

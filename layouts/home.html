@@ -1,0 +1,20 @@
+{{ define "main" }}
+  {{ $cfg := site.Params.solitude }}
+  {{ $pages := where site.RegularPages "Section" "posts" }}
+  {{ $paginator := .Paginate $pages }}
+  <div class="home-main-flow">
+    {{ if and $cfg.hometop.enable (eq $paginator.PageNumber 1) }}<div id="home_top">{{ partial "home-top.html" . }}</div>{{ end }}
+    <div class="home-category-bar category-in-bar">{{ partial "category-bar.html" . }}</div>
+    <main class="layout layout--home" id="content-inner">
+      <div class="home-layout-row">
+        <div id="home">
+          <div class="recent-posts" id="recent-posts">
+            {{ range $index, $post := $paginator.Pages }}{{ partial "post-card.html" (dict "page" $post "index" $index) }}{{ end }}
+            {{ partial "pagination.html" . }}
+          </div>
+        </div>
+        {{ partial "aside.html" . }}
+      </div>
+    </main>
+  </div>
+{{ end }}

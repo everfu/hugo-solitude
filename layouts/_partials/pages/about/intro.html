@@ -1,0 +1,18 @@
+{{- $section := .section -}}
+<div class="author-content about-row about-row--intro">
+  <article class="author-content-item about-intro-card">
+    {{ with $section.greeting }}<p class="about-card-copy">{{ . }}</p>{{ end }}
+    <h2>{{ with $section.name_prefix }}{{ . }} {{ end }}<span class="inline-word">{{ $section.name }}</span></h2>
+    {{ with $section.description }}<p class="about-card-copy">{{ . }}</p>{{ end }}
+  </article>
+  <article class="author-content-item about-pursuit-card">
+    {{ with $section.pursuit.label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}
+    <h2>{{ range $section.pursuit.lines }}<span>{{ . }}</span>{{ end }}
+      {{ with $section.pursuit.rotating_words }}
+        <span class="about-word-mask" aria-live="polite">
+          {{ range $index, $word := . }}<span data-about-word{{ if eq $index 0 }} data-show{{ end }}>{{ $word }}</span>{{ end }}
+        </span>
+      {{ end }}
+    </h2>
+  </article>
+</div>

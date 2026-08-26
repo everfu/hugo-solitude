@@ -1,0 +1,102 @@
+#keyboard-tips {
+  --keyboard-panel-inline: 20px;
+  --keyboard-panel-top: 80px;
+  --keyboard-key-group-width: 90px;
+  position: fixed;
+  top: var(--keyboard-panel-top);
+  left: var(--keyboard-panel-inline);
+  z-index: 999;
+  display: flex;
+  max-width: calc(100vw - (var(--keyboard-panel-inline) * 2));
+  max-height: calc(100dvh - var(--keyboard-panel-top) - 20px);
+  padding: 20px;
+  overflow: auto;
+  flex-direction: column;
+  color: var(--efu-fontcolor);
+  background: var(--efu-maskbgdeep);
+  border: var(--style-border);
+  border-radius: 12px;
+  box-shadow: var(--efu-shadow-border);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateZ(0);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  transition: opacity 0.3s, visibility 0s linear 0.3s;
+}
+
+#keyboard-tips.show {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.1s;
+}
+
+#keyboard-tips .keyboardTitle {
+  color: var(--efu-secondtext);
+  font-size: 12px;
+  line-height: 1;
+}
+
+#keyboard-tips .keyboardList {
+  display: flex;
+  margin-top: 8px;
+  flex-direction: column;
+}
+
+#keyboard-tips .keyboardItem {
+  display: grid;
+  min-width: 0;
+  margin-top: 4px;
+  grid-template-columns: var(--keyboard-key-group-width) minmax(0, 1fr);
+  align-items: center;
+}
+
+#keyboard-tips .keyGroup {
+  display: flex;
+  width: var(--keyboard-key-group-width);
+  align-items: center;
+}
+
+#keyboard-tips .key {
+  display: inline-flex;
+  height: 24px;
+  margin-right: 4px;
+  padding: 0.2em 0.4em;
+  overflow: hidden;
+  align-items: center;
+  color: var(--efu-fontcolor);
+  background: var(--efu-card-bg);
+  border: var(--style-border);
+  border-color: var(--efu-secondtext);
+  border-bottom-width: 2px;
+  border-radius: 0.25rem;
+  box-shadow: var(--efu-shadow-border);
+  font-family: inherit;
+  font-size: 0.875em;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#keyboard-tips .keyContent {
+  min-width: 0;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 480px) {
+  #keyboard-tips {
+    --keyboard-panel-inline: 12px;
+    --keyboard-panel-top: 72px;
+    max-height: calc(100dvh - var(--keyboard-panel-top) - 12px);
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #keyboard-tips,
+  #keyboard-tips.show {
+    transition: none;
+  }
+}

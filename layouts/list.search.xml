@@ -1,0 +1,2 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML -}}
+<search>{{ range where site.RegularPages "Section" "posts" }}<entry><title>{{ .Title | htmlEscape }}</title><url>{{ .Permalink }}</url><content>{{ .Plain | htmlEscape }}</content>{{ range .Params.tags }}<tag>{{ . | htmlEscape }}</tag>{{ end }}</entry>{{ end }}</search>

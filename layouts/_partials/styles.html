@@ -1,0 +1,39 @@
+{{ $cfg := site.Params.solitude }}
+{{ $targets := slice "chrome115" "edge115" "firefox116" "ios16.4" "opera101" "safari16.4" }}
+{{ $vars := dict
+  "solitude-theme-light" $cfg.theme_color.light
+  "solitude-theme-dark" $cfg.theme_color.dark
+  "solitude-nav-hover-light" $cfg.theme_color.nav_hover_text.light
+  "solitude-nav-hover-dark" $cfg.theme_color.nav_hover_text.dark
+  "solitude-font-size" $cfg.font.font_size
+  "solitude-code-font-size" $cfg.font.code_font_size
+  "solitude-font-family" (css.Unquoted $cfg.font.font_family)
+  "solitude-code-font-family" (css.Unquoted $cfg.font.code_font_family)
+}}
+{{ $options := dict
+  "externals" (slice "/img/*")
+  "minify" (not hugo.IsDevelopment)
+  "sourceMap" (cond hugo.IsDevelopment "linked" "none")
+  "target" $targets
+  "targetPath" "css/solitude.css"
+  "vars" $vars
+}}
+{{ with resources.Get "css/solitude/main.css" }}
+  {{ with . | css.Build $options }}
+    {{ if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ else }}
+      {{ with . | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">{{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ with resources.Get "css/custom.css" }}
+  {{ $customOptions := merge $options (dict "targetPath" "css/custom.css") }}
+  {{ with . | css.Build $customOptions }}
+    {{ if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" data-solitude-custom-style>
+    {{ else }}
+      {{ with . | fingerprint }}<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous" data-solitude-custom-style>{{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

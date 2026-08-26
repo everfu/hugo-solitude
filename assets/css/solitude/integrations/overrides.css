@@ -1,0 +1,6 @@
+/* Unlayered third-party compatibility overrides. Keep this file intentionally small. */
+
+/* Font Awesome resets icons to block/inline-block and bypasses flex centering. */
+.card-info .bottom-group .social-icons .social-icon i {
+  display: flex;
+}

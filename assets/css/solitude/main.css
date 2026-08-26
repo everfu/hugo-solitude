@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+@layer solitude.settings, solitude.tokens, solitude.base, solitude.motion,
+  solitude.layout, solitude.components, solitude.pages, solitude.shortcodes,
+  solitude.integrations;
+
+@import "hugo:vars" layer(solitude.settings);
+@import "./foundation/tokens.css" layer(solitude.tokens);
+@import "./foundation/base.css" layer(solitude.base);
+@import "./foundation/animations.css" layer(solitude.motion);
+
+@import "./layout/shell.css" layer(solitude.layout);
+@import "./layout/footer.css" layer(solitude.layout);
+@import "./layout/navigation.css" layer(solitude.layout);
+
+@import "./components/aside-console.css" layer(solitude.components);
+@import "./components/keyboard.css" layer(solitude.components);
+@import "./components/post-feed.css" layer(solitude.components);
+@import "./components/comments-share.css" layer(solitude.components);
+
+@import "./pages/home.css" layer(solitude.pages);
+@import "./pages/taxonomy-archives.css" layer(solitude.pages);
+@import "./pages/music.css";
+@import "./pages/links-equipment.css" layer(solitude.pages);
+@import "./pages/post.css" layer(solitude.pages);
+@import "./pages/about.css" layer(solitude.pages);
+
+@import "./shortcodes/text-status.css" layer(solitude.shortcodes);
+@import "./shortcodes/disclosure.css" layer(solitude.shortcodes);
+@import "./shortcodes/actions.css" layer(solitude.shortcodes);
+@import "./shortcodes/media.css" layer(solitude.shortcodes);
+@import "./shortcodes/collections.css" layer(solitude.shortcodes);
+@import "./shortcodes/responsive.css" layer(solitude.shortcodes);
+@import "./integrations/hugo.css" layer(solitude.integrations);
+@import "./integrations/syntax.css" layer(solitude.integrations);
+@import "./integrations/search.css" layer(solitude.integrations);
+/* Comment providers ship unlayered vendor CSS at runtime. Keep our scoped
+   compatibility rules unlayered as well so the Hexo theme styles can win. */
+@import "./integrations/comments.css";
+/* APlayer ships unlayered vendor CSS, so the scoped capsule compatibility
+   rules must also remain unlayered to override its fixed player geometry. */
+@import "./integrations/music-dock.css";
+@import "./integrations/rightside.css" layer(solitude.integrations);
+@import "./integrations/right-menu.css" layer(solitude.integrations);
+
+/* Unlayered rules intentionally outrank theme layers and external vendor CSS. */
+@import "./integrations/overrides.css";

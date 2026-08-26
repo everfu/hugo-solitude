@@ -1,0 +1,1 @@
+{{ $src := .Get "url" | default (.Get "src") | default (.Get 0) }}<div class="solitude-tag video tag-video"><video controls preload="metadata" {{ with .Get "poster" }}poster="{{ . | safeURL }}"{{ end }}><source src="{{ $src | safeURL }}">Your browser does not support the video tag.</video></div>

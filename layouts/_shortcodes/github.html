@@ -1,0 +1,1 @@
+{{ partial "shortcodes/repository.html" (dict "provider" "github" "label" "GitHub" "base" "https://github.com" "api" "https://api.github.com/repos/" "repo" (.Get "repo" | default (.Get 0))) }}

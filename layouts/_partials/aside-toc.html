@@ -1,0 +1,8 @@
+<div class="card-widget" id="card-toc">
+  <div class="item-headline"><i class="solitude fas fa-bars"></i><span>{{ i18n "toc" }}</span></div>
+  <div class="toc-content" id="toc-content">
+    <ol class="toc">
+      {{- partial "aside-toc-items.html" (dict "headings" .Fragments.Headings) -}}
+    </ol>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{{- $section := .section -}}
+{{- $statsConfig := dict "source" $section.statistics.source "metrics" $section.statistics.metrics -}}
+<div class="author-content about-row about-row--stats-profile">
+  <article class="author-content-item about-statistics" data-about-stats{{ with $section.statistics.background }} style="--statistics-background:url('{{ . | relURL }}')"{{ end }}>
+    {{ with $section.statistics.label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}
+    <h2 class="author-content-item-title">{{ $section.statistics.title }}</h2>
+    <dl class="about-statistics-list">
+      {{ range $section.statistics.metrics }}<div><dt>{{ .label }}</dt><dd data-about-metric="{{ .field }}">{{ .fallback }}</dd></div>{{ end }}
+    </dl>
+    {{ with $section.statistics.button }}<a class="about-card-button" href="{{ .url | relURL }}">{{ .text }}{{ with .icon }}<i class="{{ . }}" aria-hidden="true"></i>{{ end }}</a>{{ end }}
+    <script type="application/json" data-about-stats-config>{{ $statsConfig | jsonify | safeJS }}</script>
+  </article>
+  <article class="author-content-item about-map" tabindex="0">
+    {{ with $section.location.label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}
+    <h2 class="author-content-item-title">{{ $section.location.title }}</h2>
+    <div class="about-map-visual" aria-hidden="true">
+      {{ with $section.location.map_light }}<img class="about-map-image about-map-image--light" src="{{ . | relURL }}" alt="">{{ end }}
+      {{ with $section.location.map_dark }}<img class="about-map-image about-map-image--dark" src="{{ . | relURL }}" alt="">{{ end }}
+    </div>
+  </article>
+  <article class="author-content-item about-profile">
+    {{ with $section.profile.label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}
+    <h2 class="author-content-item-title">{{ $section.profile.title }}</h2>
+    <dl class="about-profile-list">{{ range $section.profile.items }}<div>{{ with .icon }}<i class="{{ . }}" aria-hidden="true"></i>{{ end }}<dt>{{ .label }}</dt><dd>{{ .value }}</dd></div>{{ end }}</dl>
+  </article>
+</div>

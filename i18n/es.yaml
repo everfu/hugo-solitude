@@ -1,0 +1,129 @@
+home: {other: Inicio}
+startReading: {other: Empezar a leer}
+backHome: {other: Volver al inicio}
+pageNotFound: {other: Página no encontrada}
+backTop: {other: Volver arriba}
+homeSticky: {other: Fijado}
+homeNew: {other: Nuevo}
+homeRead: {other: No leído}
+randomPost: {other: Artículo aleatorio}
+console: {other: Consola}
+menu: {other: Menú}
+toggleTheme: {other: Cambiar tema}
+toggleAside: {other: Mostrar barra lateral}
+keyboardTitle: {other: Atajos del blog}
+keyboardToggle: {other: Activar o desactivar atajos}
+keyboardDisable: {other: Desactivar atajos}
+keyboardConsole: {other: Abrir consola}
+keyboardMusic: {other: Reproducir/pausar música}
+keyboardThemeDark: {other: Modo oscuro}
+keyboardThemeLight: {other: Modo claro}
+keyboardSearch: {other: Buscar en el sitio}
+keyboardRandomPost: {other: Artículo aleatorio}
+rightMenuLabel: {other: Menú contextual}
+rightMenuBack: {other: Atrás}
+rightMenuForward: {other: Adelante}
+rightMenuRefresh: {other: Recargar}
+rightMenuCopy: {other: Copiar texto}
+rightMenuPaste: {other: Pegar}
+rightMenuComment: {other: Citar}
+rightMenuNew: {other: Nueva pestaña}
+rightMenuLink: {other: Copiar enlace}
+rightMenuImage: {other: Copiar imagen}
+rightMenuDownloadImage: {other: Descargar}
+rightMenuSearch: {other: Buscar}
+rightMenuDark: {other: Oscuro}
+rightMenuLight: {other: Claro}
+rightMenuToTraditional: {other: A tradicional}
+rightMenuToSimplified: {other: A simplificado}
+rightMenuBarrageOpen: {other: Mostrar comentarios}
+rightMenuBarrageClose: {other: Ocultar comentarios}
+rightMenuMusicStart: {other: Reproducir}
+rightMenuMusicStop: {other: Pausar}
+rightMenuMusicBack: {other: Anterior}
+rightMenuMusicForward: {other: Siguiente}
+rightMenuMusicCopy: {other: Copiar título}
+rightMenuImageError: {other: Esta imagen no se puede copiar ni descargar.}
+rightMenuCtrlOriginal: {other: Mantén Ctrl + clic derecho para abrir el menú contextual del navegador}
+posts: {other: Artículos}
+allPosts: {other: Todos los artículos}
+categories: {other: Categorías}
+tags: {other: Etiquetas}
+toc: {other: Contenido}
+recentPosts: {other: Artículos recientes}
+archives: {other: Archivos}
+archiveAll: {other: Todos}
+archiveYearFilter: {other: Filtrar por año}
+archiveDateFormat: {other: 02/01/2006}
+archiveLoading: {other: Cargando artículos...}
+archiveLoadError: {other: No se pudieron cargar los artículos. Inténtalo de nuevo más tarde.}
+archiveEmpty: {other: No hay artículos de este año.}
+uncategorized: {other: Sin categoría}
+relatedPosts: {other: Artículos relacionados}
+relatedPostsLead: {other: Quienes disfrutaron este artículo también leyeron}
+browseRandomly: {other: Sorpréndeme}
+previousPost: {other: Anterior}
+nextPost: {other: Siguiente}
+previousPage: {other: Página anterior}
+nextPage: {other: Página siguiente}
+paginationNavigation: {other: Paginación}
+postNavigation: {other: Navegación de artículos}
+author: {other: Autor}
+license: {other: Licencia}
+copyrightSection: {other: Derechos de autor del artículo}
+copyrightActions: {other: Acciones del artículo}
+copyrightReprint: {other: Este artículo ha sido republicado desde otra fuente.}
+copyrightOriginalPrefix: {other: Este artículo se publica bajo la licencia}
+copyrightOriginalMiddle: {other: y ha sido publicado por}
+copyrightOriginalSuffix: {other: "."}
+copyLink: {other: Copiar enlace del artículo}
+shareTo: {other: Compartir en}
+comments: {other: Comentarios}
+commentsLoading: {other: Cargando comentarios…}
+recentComments: {other: Comentarios recientes}
+commentsEmpty: {other: Aún no hay comentarios}
+commentsError: {other: No se pudieron cargar los comentarios.}
+commentImage: {other: Imagen}
+commentLink: {other: Enlace}
+commentCode: {other: Código}
+commentEmoji: {other: Emoji}
+commentAnonymous: {other: Anónimo}
+commentParticipants: {other: "Participantes en los comentarios: ${names}"}
+commentMoreParticipants: {other: "${count} participantes más"}
+pageViews: {other: Visitas}
+search: {other: Buscar}
+searchPlaceholder: {other: Buscar artículos}
+searchEmpty: {other: "No hay resultados para ${query}"}
+searchHit: {other: "${hits} resultados en ${time} ms"}
+searchCount: {other: "${count} resultados"}
+searchLoading: {other: Buscando…}
+more: {other: Más}
+explore: {other: Explorar temas}
+frameworkBy: {other: "Framework:"}
+themeBy: {other: "Tema:"}
+themeDark: {other: Modo oscuro activado}
+themeLight: {other: Modo claro activado}
+copySuccess: {other: Copiado}
+copyError: {other: Error al copiar}
+codeCopy: {other: Copiar}
+codeExpand: {other: Expandir todo}
+timeDay: {other: días}
+timeHour: {other: horas}
+timeJust: {other: ahora}
+timeMinute: {other: minutos}
+timeMonth: {other: meses}
+dayUnit: {other: " días"}
+developerMode: {other: Modo desarrollador activado}
+commentHint: {other: Escribe un comentario}
+hello: {other: "Hola, "}
+welcomeBack: {other: "Bienvenido, "}
+linksLoading: {other: Cargando enlaces…}
+linksError: {other: No se pudieron cargar los enlaces.}
+retry: {other: Reintentar}
+randomLink: {other: Visitar un enlace aleatorio}
+visit: {other: Visitar}
+defaultSort: {other: Orden predeterminado}
+randomSort: {other: Orden aleatorio}
+sortLinks: {other: Cambiar orden}
+scrollLeft: {other: Desplazar a la izquierda}
+scrollRight: {other: Desplazar a la derecha}

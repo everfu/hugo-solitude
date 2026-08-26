@@ -1,0 +1,3 @@
+{{- $groups := slice -}}
+{{- with hugo.Data.links.links }}{{ $groups = . }}{{ else }}{{ with hugo.Data.links }}{{ $groups = . }}{{ end }}{{ end -}}
+{{- dict "links" $groups | jsonify -}}

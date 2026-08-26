@@ -1,0 +1,1 @@
+{{ $src := .Get "src" | default (.Get 0) }}<figure class="solitude-tag tag-image-wrap"><img class="solitude-tag tag-image" src="{{ $src | safeURL }}" alt="{{ .Get "alt" | default (.Get 1) }}" loading="lazy" {{ with .Get "style" }}style="{{ . | safeCSS }}"{{ end }}>{{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}</figure>

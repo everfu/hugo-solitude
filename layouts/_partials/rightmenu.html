@@ -1,0 +1,50 @@
+{{ $cfg := site.Params.solitude }}
+{{ $rightMenuPageType := lower (.Params.type | default "") }}
+{{ $rightMenuPageLayout := lower (.Layout | default "") }}
+{{ $rightMenuPageKind := lower (.Kind | default "") }}
+{{ $rightMenuExcluded := false }}
+{{ range $cfg.right_menu.exclude }}
+  {{ $excludedPage := lower . }}
+  {{ if or (eq $excludedPage $rightMenuPageType) (eq $excludedPage $rightMenuPageLayout) (eq $excludedPage $rightMenuPageKind) }}{{ $rightMenuExcluded = true }}{{ end }}
+{{ end }}
+{{ $rightMenuEnabled := and $cfg.right_menu.enable (ne .Params.right_menu false) (not $rightMenuExcluded) }}
+{{ if $cfg.right_menu.enable }}
+  <nav id="rightMenu" aria-label="{{ i18n "rightMenuLabel" }}">
+    <div class="rightMenu-group rightMenu-small">
+      <button class="rightMenu-item" id="menu-backward" type="button" aria-label="{{ i18n "rightMenuBack" }}" title="{{ i18n "rightMenuBack" }}"><i class="solitude fas fa-arrow-left" aria-hidden="true"></i></button>
+      <button class="rightMenu-item" id="menu-forward" type="button" aria-label="{{ i18n "rightMenuForward" }}" title="{{ i18n "rightMenuForward" }}"><i class="solitude fas fa-arrow-right" aria-hidden="true"></i></button>
+      <button class="rightMenu-item" id="menu-refresh" type="button" aria-label="{{ i18n "rightMenuRefresh" }}" title="{{ i18n "rightMenuRefresh" }}"><i class="solitude fas fa-arrows-rotate" aria-hidden="true"></i></button>
+      <button class="rightMenu-item" id="menu-top" type="button" aria-label="{{ i18n "backTop" }}" title="{{ i18n "backTop" }}"><i class="solitude fas fa-arrow-up" aria-hidden="true"></i></button>
+    </div>
+
+    <div class="rightMenu-group rightMenu-line rightMenuPlugin">
+      <button class="rightMenu-item" id="menu-copytext" type="button" title="{{ i18n "rightMenuCopy" }}" heotip="{{ i18n "rightMenuCopy" }}"><i class="solitude fas fa-clone" aria-hidden="true"></i><span>{{ i18n "rightMenuCopy" }}</span></button>
+      <button class="rightMenu-item" id="menu-pastetext" type="button" title="{{ i18n "rightMenuPaste" }}" heotip="{{ i18n "rightMenuPaste" }}"><i class="solitude fas fa-clipboard" aria-hidden="true"></i><span>{{ i18n "rightMenuPaste" }}</span></button>
+      {{ if $cfg.comment.use }}<button class="rightMenu-item" id="menu-commenttext" type="button" title="{{ i18n "rightMenuComment" }}" heotip="{{ i18n "rightMenuComment" }}"><i class="solitude fas fa-comment-medical" aria-hidden="true"></i><span>{{ i18n "rightMenuComment" }}</span></button>{{ end }}
+      <button class="rightMenu-item" id="menu-newwindow" type="button" title="{{ i18n "rightMenuNew" }}" heotip="{{ i18n "rightMenuNew" }}"><i class="solitude far fa-window-maximize" aria-hidden="true"></i><span>{{ i18n "rightMenuNew" }}</span></button>
+      <button class="rightMenu-item" id="menu-copylink" type="button" title="{{ i18n "rightMenuLink" }}" heotip="{{ i18n "rightMenuLink" }}"><i class="solitude fas fa-link" aria-hidden="true"></i><span>{{ i18n "rightMenuLink" }}</span></button>
+      <button class="rightMenu-item" id="menu-copyimg" type="button" title="{{ i18n "rightMenuImage" }}" heotip="{{ i18n "rightMenuImage" }}"><i class="solitude fas fa-clone" aria-hidden="true"></i><span>{{ i18n "rightMenuImage" }}</span></button>
+      <button class="rightMenu-item" id="menu-downloadimg" type="button" title="{{ i18n "rightMenuDownloadImage" }}" heotip="{{ i18n "rightMenuDownloadImage" }}"><i class="solitude fas fa-cloud-arrow-down" aria-hidden="true"></i><span>{{ i18n "rightMenuDownloadImage" }}</span></button>
+      {{ if $cfg.search.enable }}<button class="rightMenu-item" id="menu-search" type="button" title="{{ i18n "rightMenuSearch" }}" heotip="{{ i18n "rightMenuSearch" }}"><i class="solitude fas fa-magnifying-glass" aria-hidden="true"></i><span>{{ i18n "rightMenuSearch" }}</span></button>{{ end }}
+      {{ if $cfg.capsule.enable }}
+        <button class="rightMenu-item" id="menu-music-toggle" type="button" title="{{ i18n "rightMenuMusicStart" }}" heotip="{{ i18n "rightMenuMusicStart" }}"><i class="solitude fas fa-play" aria-hidden="true"></i><span>{{ i18n "rightMenuMusicStart" }}</span></button>
+        <button class="rightMenu-item" id="menu-music-back" type="button" title="{{ i18n "rightMenuMusicBack" }}" heotip="{{ i18n "rightMenuMusicBack" }}"><i class="solitude fas fa-backward" aria-hidden="true"></i><span>{{ i18n "rightMenuMusicBack" }}</span></button>
+        <button class="rightMenu-item" id="menu-music-forward" type="button" title="{{ i18n "rightMenuMusicForward" }}" heotip="{{ i18n "rightMenuMusicForward" }}"><i class="solitude fas fa-forward" aria-hidden="true"></i><span>{{ i18n "rightMenuMusicForward" }}</span></button>
+        <button class="rightMenu-item" id="menu-music-copyMusicName" type="button" title="{{ i18n "rightMenuMusicCopy" }}" heotip="{{ i18n "rightMenuMusicCopy" }}"><i class="solitude fas fa-clone" aria-hidden="true"></i><span>{{ i18n "rightMenuMusicCopy" }}</span></button>
+      {{ end }}
+    </div>
+
+    {{ with $cfg.right_menu.custom_list }}
+      <div class="rightMenu-group rightMenu-line rightMenuOther">
+        {{ range . }}<button class="rightMenu-item{{ with .class }} {{ . }}{{ end }}"{{ with .id }} id="{{ . }}"{{ end }} type="button" data-solitude-action="runConfiguredAction" data-solitude-value="{{ .click }}" title="{{ .name }}" heotip="{{ .name }}"><i class="solitude {{ .icon }}" aria-hidden="true"></i><span>{{ .name }}</span></button>{{ end }}
+      </div>
+    {{ end }}
+
+    <div class="rightMenu-group rightMenu-line rightMenuOther">
+      {{ if and $cfg.comment.use $cfg.comment.commentBarrage $cfg.right_menu.commentBarrage }}<button class="rightMenu-item" id="menu-commentBarrage" type="button" data-solitude-action="switchCommentBarrage" title="{{ i18n "rightMenuBarrageClose" }}" heotip="{{ i18n "rightMenuBarrageClose" }}"><i class="solitude fas fa-comment" aria-hidden="true"></i><span class="menu-commentBarrage-text">{{ i18n "rightMenuBarrageClose" }}</span></button>{{ end }}
+      <button class="rightMenu-item" id="menu-darkmode" type="button" data-solitude-action="switchDarkMode"><i class="solitude fas fa-circle-half-stroke" aria-hidden="true"></i><span class="menu-darkmode-text">{{ i18n "rightMenuDark" }}</span></button>
+      {{ if $cfg.right_menu.translate }}<button class="rightMenu-item" id="menu-translate" type="button"><i class="solitude fas fa-language" aria-hidden="true"></i><span>{{ if eq $cfg.translate.defaultEncoding 1 }}{{ i18n "rightMenuToSimplified" }}{{ else }}{{ i18n "rightMenuToTraditional" }}{{ end }}</span></button>{{ end }}
+    </div>
+  </nav>
+  <div id="rightmenu-mask"></div>
+{{ end }}

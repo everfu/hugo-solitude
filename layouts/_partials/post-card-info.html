@@ -1,0 +1,35 @@
+{{ $post := .post }}
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ $newestPermalink := "" }}
+{{ if gt (len $posts) 0 }}
+  {{ $newest := index $posts.ByDate.Reverse 0 }}
+  {{ $newestPermalink = $newest.RelPermalink }}
+{{ end }}
+<div class="recent-post-info">
+  <div class="recent-post-info-top">
+    <div class="recent-post-info-top-tips">
+      {{ if $post.Params.sticky }}
+        <span class="article-meta sticky-warp"><i class="solitude fas fa-thumbtack sticky orange"></i><span class="sticky orange">{{ i18n "homeSticky" }}</span></span>
+      {{ end }}
+      {{ with $post.Params.categories }}
+        {{ range . }}<span class="original">{{ . }}</span>{{ end }}
+      {{ end }}
+      {{ if eq $post.RelPermalink $newestPermalink }}<span class="original latest-post">{{ i18n "homeNew" }}</span>{{ end }}
+      <a class="unvisited-post" href="{{ $post.RelPermalink }}" title="{{ i18n "homeRead" }}">{{ i18n "homeRead" }}</a>
+    </div>
+    <a class="article-title" href="{{ $post.RelPermalink }}" title="{{ $post.Title }}">{{ $post.Title }}</a>
+  </div>
+  <div class="article-meta-wrap">
+    {{ if ne $post.Params.comment false }}
+      <div class="post-card-commenters" data-comment-path="{{ $post.RelPermalink }}" hidden></div>
+    {{ end }}
+    {{ with $post.GetTerms "tags" }}
+      <span class="article-meta tags">
+        {{ range . }}
+          <a class="article-meta__tags" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}" data-solitude-action="noop" data-solitude-stop="true"><span class="tags-punctuation"><i class="solitude fas fa-hashtag"></i>{{ .LinkTitle }}</span></a>
+        {{ end }}
+      </span>
+    {{ end }}
+    <span class="post-meta-date"><time datetime="{{ $post.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $post.Date.Format "2006-01-02" }}</time></span>
+  </div>
+</div>

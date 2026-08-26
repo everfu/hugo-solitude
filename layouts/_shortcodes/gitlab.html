@@ -1,0 +1,1 @@
+{{ partial "shortcodes/repository.html" (dict "provider" "gitlab" "label" "GitLab" "base" "https://gitlab.com" "api" "https://gitlab.com/api/v4/projects/" "repo" (.Get "repo" | default (.Get 0)) "encode" true) }}

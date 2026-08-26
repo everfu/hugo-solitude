@@ -1,0 +1,14 @@
+{{- $highlight := site.Params.solitude.highlight | default dict -}}
+{{- $language := .Type | default "text" -}}
+<figure class="code-block" data-code-block data-language="{{ $language }}">
+  <figcaption class="code-block__toolbar">
+    <span class="code-block__language">{{ $language }}</span>
+    {{- if ne $highlight.copy false }}
+      <button class="code-block__copy" type="button" data-code-copy>{{ i18n "codeCopy" }}</button>
+    {{- end }}
+  </figcaption>
+  <div class="code-block__viewport">
+    <pre class="code-block__fallback" tabindex="0"><code class="language-{{ $language }}">{{ .Inner | htmlEscape | safeHTML }}</code></pre>
+  </div>
+  <button class="code-block__expand" type="button" data-code-expand hidden>{{ i18n "codeExpand" }}</button>
+</figure>

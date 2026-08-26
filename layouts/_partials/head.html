@@ -1,0 +1,40 @@
+{{ $cfg := site.Params.solitude }}
+{{ $description := or .Description .Summary site.Params.description site.Title }}
+{{ $pageTitle := cond (eq .Kind "404") (i18n "pageNotFound") .Title }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script>
+  (() => {
+    let mode = {{ $cfg.display_mode.type | jsonify | safeJS }};
+    try {
+      const stored = JSON.parse(localStorage.getItem("theme"));
+      if (stored?.value && (!stored.expiry || stored.expiry > Date.now())) mode = stored.value;
+      else if (stored) localStorage.removeItem("theme");
+    } catch (_) {
+      localStorage.removeItem("theme");
+    }
+    if (mode === "auto") mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    document.documentElement.dataset.theme = mode === "dark" ? "dark" : "light";
+  })();
+</script>
+<meta name="description" content="{{ $description | plainify }}">
+<meta name="generator" content="Hugo {{ hugo.Version }}">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ $pageTitle }} | {{ site.Title }}{{ end }}</title>
+<link rel="icon" href="{{ $cfg.site.icon | relURL }}">
+{{ partial "pwa.html" . }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .RelPermalink }}">{{ end }}
+<meta property="og:title" content="{{ $pageTitle | default site.Title }}">
+<meta property="og:description" content="{{ $description | plainify }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ if and .IsPage (eq .Section "posts") }}article{{ else }}website{{ end }}">
+{{ with .Params.cover }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+<link rel="stylesheet" href="{{ $cfg.cdn.fontawesome }}">
+{{ if $cfg.katex.enable }}<link rel="stylesheet" href="{{ $cfg.cdn.katex_css }}">{{ end }}
+{{ if eq $cfg.lightbox "fancybox" }}<link rel="stylesheet" href="{{ $cfg.cdn.fancyapps_css }}">{{ end }}
+{{ if and $cfg.search.enable (eq $cfg.search.type "algolia") }}<link rel="stylesheet" href="{{ $cfg.cdn.instantsearch_css }}">{{ end }}
+{{ if or $cfg.capsule.enable $cfg.music.enable }}<link rel="stylesheet" href="{{ $cfg.cdn.aplayer_css }}">{{ end }}
+{{ partial "styles.html" . }}
+{{ partial "config.html" . }}
+{{ range $cfg.verify_site }}{{ . | safeHTML }}{{ end }}
+{{ range $cfg.extends.head }}{{ . | safeHTML }}{{ end }}

@@ -1,0 +1,45 @@
+name: Bug 报告 🐛
+description: 报告 Solitude Hugo 主题中可复现的问题。
+labels: ["status: needs check"]
+title: "[Bug]: "
+body:
+  - type: checkboxes
+    attributes:
+      label: 前置确认
+      options:
+        - label: 我使用 Hugo v0.164.0 或更高版本，并已阅读 README 与 MIGRATION.md。
+          required: true
+        - label: 我已搜索现有 issues 与 discussions，未发现相同问题。
+          required: true
+        - label: 问题可在未修改的 exampleSite 或最小示例中复现。
+          required: true
+  - type: input
+    attributes:
+      label: Hugo 版本
+      description: 请粘贴 `hugo version` 的完整输出。
+      placeholder: hugo v0.164.0 ...
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: 操作系统
+      options: [macOS, Linux, Windows, 其他]
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 问题描述与复现步骤
+      description: 说明期望结果、实际结果、最小配置和访问路径。
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 构建日志
+      description: 请运行严格构建命令并粘贴完整错误。
+      placeholder: hugo --source exampleSite --themesDir ../.. --theme solitude --gc --minify --panicOnWarning --printUnusedTemplates
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 补充信息
+      description: 可附加截图、浏览器控制台错误或公开的最小复现仓库。

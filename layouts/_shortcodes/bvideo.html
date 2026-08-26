@@ -1,0 +1,1 @@
+{{ $id := .Get "bvid" | default (.Get "id") | default (.Get 0) }}<div class="solitude-tag video-container tag-video-embed tag-video-bilibili"><iframe src="https://player.bilibili.com/player.html?autoplay=0&bvid={{ $id }}" title="Bilibili video player" loading="lazy" allowfullscreen></iframe></div>

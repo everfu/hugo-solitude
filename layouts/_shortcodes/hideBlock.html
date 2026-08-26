@@ -1,0 +1,1 @@
+{{ $id := printf "tag-hide-content-%d" .Ordinal }}{{ $text := .Get "text" | default "Click" }}<div class="solitude-tag tag-hide tag-hide-block"><button type="button" class="tag-hide-button" aria-expanded="false" aria-controls="{{ $id }}">{{ $text }}</button><div id="{{ $id }}" class="tag-hide-content" hidden>{{ .Inner | markdownify }}</div></div>

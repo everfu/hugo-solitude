@@ -1,0 +1,59 @@
+{{ define "main" }}
+  {{ $special := lower (or .Params.type .Layout) }}
+  {{ if eq $special "archives" }}
+    {{ $archivePageSize := 10 }}
+    {{ $archiveData := slice }}
+    {{ range (where site.RegularPages.ByDate.Reverse "Section" "posts") }}
+      {{ $category := i18n "uncategorized" }}
+      {{ with .GetTerms "categories" }}{{ $category = (index . 0).LinkTitle }}{{ end }}
+      {{ $archiveData = $archiveData | append (dict
+        "title" .Title
+        "url" .RelPermalink
+        "cover" ((.Params.cover | default "/img/default.avif") | relURL)
+        "primaryCategory" $category
+        "dateLabel" (.Date.Format (i18n "archiveDateFormat"))
+        "year" (.Date.Format "2006")
+      ) }}
+    {{ end }}
+    <main class="layout layout--archive" id="content-inner">
+      <div class="home-category-bar category-in-bar">{{ partial "category-bar.html" . }}</div>
+      <div class="archive-layout-row">
+        <div id="page">
+          <div
+            class="archive-page-shell"
+            id="archives-page"
+            data-per-page="{{ $archivePageSize }}"
+            data-initial-year="all"
+            data-initial-page="1"
+            data-label-error="{{ i18n "archiveLoadError" }}"
+            data-label-empty="{{ i18n "archiveEmpty" }}"
+            data-label-uncategorized="{{ i18n "uncategorized" }}"
+            data-label-previous="{{ i18n "previousPage" }}"
+            data-label-next="{{ i18n "nextPage" }}"
+          >
+            <section class="archive-page-section archive-page-section-toolbar">
+              <div class="archive-page-toolbar">
+                <div class="archive-page-years" role="group" aria-label="{{ i18n "archiveYearFilter" }}">
+                  <button class="archive-year-button is-active" type="button" data-year="all" aria-pressed="true">{{ i18n "archiveAll" }}</button>
+                  <div id="archives-year-filter-list"></div>
+                </div>
+              </div>
+            </section>
+            <section class="archive-page-section archive-page-section-list" aria-live="polite">
+              <div class="archive-page-list" id="archives-page-list">
+                <div class="archive-page-state">{{ i18n "archiveLoading" }}</div>
+              </div>
+            </section>
+            <section class="archive-page-section archive-page-section-pagination">
+              <nav id="pagination" aria-label="{{ i18n "paginationNavigation" }}"><div class="pagination"></div></nav>
+            </section>
+          </div>
+          <template id="archive-page-data">{{ $archiveData | jsonify | safeHTML }}</template>
+        </div>
+        {{ partial "aside.html" . }}
+      </div>
+    </main>
+  {{ else }}
+    {{ $isTaxonomyOverview := in (slice "tags" "categories") $special }}{{ $isWideOverview := or $isTaxonomyOverview (in (slice "links" "kit") $special) }}{{ $hideAside := or (in (slice "about" "music") $special) $isWideOverview (eq .Params.aside false) }}<main class="layout{{ if $hideAside }} hide-aside{{ end }}" id="content-inner"><div id="page">{{ if eq $special "about" }}{{ partial "pages/about.html" . }}{{ else if eq $special "links" }}{{ partial "pages/links.html" . }}{{ else if eq $special "kit" }}{{ partial "pages/kit.html" . }}{{ else if eq $special "music" }}{{ partial "pages/music.html" . }}{{ else if eq $special "message" }}{{ partial "pages/message.html" . }}{{ partial "comments.html" . }}{{ else if eq $special "brevity" }}{{ partial "pages/brevity.html" . }}{{ else if eq $special "recentcomment" }}{{ partial "pages/recentcomment.html" . }}{{ else if eq $special "tags" }}{{ partial "pages/tags.html" . }}{{ else if eq $special "categories" }}{{ partial "pages/categories.html" . }}{{ else }}<div id="archive"><div class="article-sort-title">{{ .Title }}</div><div class="article-sort">{{ range .Pages.ByDate.Reverse }}{{ partial "archive-item.html" . }}{{ end }}</div></div>{{ end }}{{ if eq $special "kit" }}{{ partial "comments.html" . }}{{ end }}</div>{{ if not $isWideOverview }}{{ partial "aside.html" . }}{{ end }}</main>
+  {{ end }}
+{{ end }}

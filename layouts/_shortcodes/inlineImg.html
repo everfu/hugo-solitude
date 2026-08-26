@@ -1,0 +1,1 @@
+{{ $src := .Get "src" | default (.Get 0) }}<img class="solitude-tag inline-img tag-inline-image no-lightbox" src="{{ $src | safeURL }}" alt="{{ .Get "alt" }}" {{ with .Get "height" }}style="height:{{ . | safeCSS }}"{{ end }} loading="lazy">

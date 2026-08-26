@@ -1,0 +1,17 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 关于主题使用问题
+    url: https://github.com/everfu/Solitude/discussions
+    about: 一些使用上碰到的问题 Discussion 询问。 Please ask questions in Discussion.
+
+  - name: Solitude Q&A
+    url: https://solitude.js.org/faq
+    about: Solitude Q&A
+
+  - name: QQ群
+    url: https://qm.qq.com/q/mxfomMvJPG
+    about: 新建立的QQ群
+
+  - name: Discord
+    url: https://discord.gg/aXbBcrY8
+    about: 'Official Discord Group'

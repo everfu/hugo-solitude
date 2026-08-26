@@ -1,0 +1,115 @@
+title: 关于 Solitude
+sections:
+  - type: intro
+    greeting: 你好，欢迎了解 Solitude 👋
+    name_prefix: 这是
+    name: Solitude
+    description: 一款专注内容体验的 Hugo 主题
+    pursuit:
+      label: 追求
+      lines: [让内容, 自然成为主角]
+      rotating_words: [快速, 稳定, 原生, 可扩展]
+
+  - type: skills_career
+    skills:
+      label: 技术能力
+      title: 从内容到页面
+      items:
+        - { name: Hugo, icon: fas fa-bolt, color: "#ff4088" }
+        - { name: Go Templates, icon: fas fa-code, color: "#00add8" }
+        - { name: TypeScript, icon: fab fa-js, color: "#3178c6" }
+        - { name: CSS, icon: fab fa-css3-alt, color: "#264de4" }
+        - { name: Markdown, icon: fab fa-markdown, color: "#111827" }
+        - { name: Hugo Pipes, icon: fas fa-gears, color: "#7c3aed" }
+        - { name: Taxonomies, icon: fas fa-tags, color: "#16a34a" }
+        - { name: Search, icon: fas fa-magnifying-glass, color: "#f59e0b" }
+        - { name: RSS, icon: fas fa-rss, color: "#f26522" }
+        - { name: Accessibility, icon: fas fa-universal-access, color: "#8b5cf6" }
+        - { name: Performance, icon: fas fa-gauge-high, color: "#059669" }
+        - { name: Git, icon: fab fa-git-alt, color: "#f05032" }
+    career:
+      label: 项目历程
+      title: 持续迁移与改进
+      summary:
+        - { name: "2023, Solitude 演示站", color: "#425aef" }
+        - { name: "2026, Hugo 原生版本", color: "#ff4088" }
+        - { name: "现在, 持续维护", color: "#16a34a" }
+      timeline:
+        start: 2023
+        end: 2027
+        start_label: 2023
+        end_label: 未来
+        track_label: SOLITUDE
+        aria_label: Solitude 从演示站到 Hugo 原生主题的项目时间轴
+        events:
+          - { label: 建立演示站, from: 2023, to: 2025, color: "#425aef" }
+          - { label: Hugo 原生迁移, from: 2025, to: 2026, color: "#ff4088" }
+          - { label: 持续维护, from: 2026, to: 2027, color: "#16a34a" }
+
+  - type: personality_photo
+    personality:
+      label: 性格
+      title: 主人公
+      type: ENFJ-A
+      color: "#56ad83"
+      image: /img/demo/about/personality-enfj-v2.png
+      image_alt: 男性主人公人格的低多边形持剑人物插画
+      link: { text: 了解主人公高级性格档案, url: "https://www.16personalities.com/enfj-personality", external: true }
+    photo:
+      image: /img/demo/about/personal-photo-selfie-wide.png
+      alt: 户外个人自拍照
+      badge: /img/demo/about/personal-photo-badge-self.png
+
+  - type: values
+    motto:
+      label: 座右铭
+      prefix: 破釜沉舟
+      content: 砥砺前行
+    expertise:
+      label: 擅长
+      prefix: 专注于
+      specialist: 内容体验
+      content: 还原度
+      level: 一比一
+
+  - type: interests
+    items:
+      - variant: game
+        label: 爱好游戏
+        title: 英雄联盟
+        background: /img/demo/about/game-aram-v2.webp
+        mode:
+          name: 大乱斗
+          tooltip: 极地大乱斗模式
+          image: /img/demo/about/mode-aram-v2.webp
+        heroes:
+          - { name: 老鼠, image: /img/demo/about/hero-twitch-v2.webp }
+          - { name: 妮蔻, image: /img/demo/about/hero-neeko-v2.webp }
+          - { name: 慧, image: /img/demo/about/hero-hwei-v2.webp }
+          - { name: 梅尔, image: /img/demo/about/hero-mel-v2.webp }
+          - { name: 小火龙, image: /img/demo/about/hero-smolder-v2.webp }
+          - { name: 龙王, image: /img/demo/about/hero-aurelion-sol-v2.webp }
+        right_text: 联盟一区
+        right_tip: 跨区匹配支持 比尔吉沃特 弗雷尔卓德 扭曲丛林
+      - variant: media
+        label: 音乐偏好
+        title_lines: ["Rap、民谣、", 华语流行]
+        subtitle: 来听听看 伍拾柒 制作的更多音乐
+        background: /img/demo/about/music-listening-v2.webp
+        button:
+          text: 更多推荐
+          url: /music/
+          icon: fas fa-circle-chevron-right
+          external: false
+
+  - type: story
+    label: 项目故事
+    title: 为什么维护 Solitude？
+    content: |
+      Solitude 希望提供一个可以安静积累内容、认真表达想法的地方。页面不必喧闹，但每一篇文章都应该被清楚地组织、舒适地阅读，也能被搜索、分类和长期保存。
+
+      Hugo 版本保留熟悉的视觉与交互，同时重新使用原生页面集合、Taxonomies、Go Templates 和资源管线组织主题。构建过程不再依赖 Node.js，配置与数据契约也更容易理解和维护。
+
+      这个示例站不是个人资料模板，而是一份可以直接运行的项目说明：从首页、文章和侧栏，到关于、友链、开发工具、音乐与即刻短文，每一部分都展示当前主题真实支持的能力。
+
+      Solitude 会继续围绕**内容体验、无障碍、性能与长期维护**改进，让主题的丰富功能始终服务于表达本身。

@@ -1,0 +1,13 @@
+{{ $cfg := site.Params.solitude.capsule }}
+<div class="needEndHide" id="nav-music">
+  <button class="music-capsule-hitarea" type="button" data-solitude-action="handleMusicClick" data-solitude-event="true" aria-keyshortcuts="ArrowLeft ArrowRight Home End" aria-label="{{ i18n "rightMenuMusicStart" }}" title="{{ i18n "rightMenuMusicStart" }}"></button>
+  <output class="music-progress-tooltip" aria-hidden="true">0:00 / 0:00</output>
+  <span class="music-progress-status" role="status" aria-live="polite"></span>
+  <div id="nav-music-hoverTips">
+    <button class="music-control-btn" id="music-prev" type="button" data-solitude-action="musicSkipBack" data-solitude-stop="true" aria-label="{{ i18n "rightMenuMusicBack" }}" title="{{ i18n "rightMenuMusicBack" }}"><i class="solitude fas fa-backward-step" aria-hidden="true"></i></button>
+    <button class="music-control-btn" id="music-pause" type="button" data-solitude-action="musicToggle" data-solitude-stop="true" aria-label="{{ i18n "rightMenuMusicStop" }}" title="{{ i18n "rightMenuMusicStop" }}"><i class="solitude fas fa-pause" aria-hidden="true"></i></button>
+    <button class="music-control-btn" id="music-play" type="button" data-solitude-action="musicToggle" data-solitude-stop="true" aria-label="{{ i18n "rightMenuMusicStart" }}" title="{{ i18n "rightMenuMusicStart" }}"><i class="solitude fas fa-play" aria-hidden="true"></i></button>
+    <button class="music-control-btn" id="music-next" type="button" data-solitude-action="musicSkipForward" data-solitude-stop="true" aria-label="{{ i18n "rightMenuMusicForward" }}" title="{{ i18n "rightMenuMusicForward" }}"><i class="solitude fas fa-forward-step" aria-hidden="true"></i></button>
+  </div>
+  <meting-js id="{{ $cfg.id }}" server="{{ $cfg.server }}" type="{{ $cfg.type }}" mutex="true" volume="{{ $cfg.volume }}" preload="none" theme="var(--efu-main)" data-lrctype="0" order="random"></meting-js>
+</div>

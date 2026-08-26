@@ -1,0 +1,6 @@
+{{- $section := .section -}}
+<article class="author-content-item about-story">
+  {{ with $section.label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}
+  <h2 class="author-content-item-title">{{ $section.title }}</h2>
+  <div class="about-story-content">{{ $section.content | markdownify }}</div>
+</article>

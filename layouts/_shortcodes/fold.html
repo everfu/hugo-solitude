@@ -1,0 +1,1 @@
+<details class="solitude-tag tag-fold" {{ if .Get "open" }}open{{ end }}><summary class="tag-fold-summary"><span class="tag-fold-title">{{ .Get "title" | default (.Get 0) }}</span><span class="tag-fold-icon" aria-hidden="true"></span></summary><div class="tag-fold-content">{{ .Inner | markdownify }}</div></details>

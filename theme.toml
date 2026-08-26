@@ -1,0 +1,10 @@
+name = "Solitude"
+license = "Apache-2.0"
+licenselink = "https://github.com/everfu/hugo-solitude/blob/hugo/LICENSE"
+description = "An elegant, feature-rich Hugo theme migrated from Solitude."
+homepage = "https://github.com/everfu/hugo-solitude"
+min_version = "0.164.0"
+
+[author]
+  name = "everfu"
+  homepage = "https://www.efu.me/"

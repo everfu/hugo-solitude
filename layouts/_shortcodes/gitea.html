@@ -1,0 +1,1 @@
+{{ $host := .Get "host" | default (.Get "server") | strings.TrimRight "/" }}{{ partial "shortcodes/repository.html" (dict "provider" "gitea" "label" "Gitea" "base" $host "api" (printf "%s/api/v1/repos/" $host) "repo" (.Get "repo" | default (.Get 0))) }}

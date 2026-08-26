@@ -1,0 +1,293 @@
+baseURL: https://example.org/
+title: Solitude
+locale: zh-CN
+defaultContentLanguage: zh-cn
+timeZone: Asia/Shanghai
+enableRobotsTXT: true
+enableGitInfo: false
+uglyURLs:
+  posts: true
+
+outputs:
+  home: [HTML, RSS, Search, Links]
+  section: [HTML, RSS]
+  taxonomy: [HTML, RSS]
+  term: [HTML, RSS]
+
+pagination:
+  pagerSize: 10
+
+permalinks:
+  posts: /p/:slug
+
+menus:
+  main:
+    - name: 文库
+      identifier: library
+      weight: 10
+    - name: 友链
+      identifier: friends
+      weight: 20
+    - name: 项目
+      identifier: personal
+      weight: 30
+    - name: 全部文章
+      pageRef: /archives
+      parent: library
+      weight: 10
+      params:
+        icon: fas fa-folder-closed
+    - name: 全部分类
+      pageRef: /categories
+      parent: library
+      weight: 20
+      params:
+        icon: fas fa-clone
+    - name: 全部标签
+      pageRef: /tags
+      parent: library
+      weight: 30
+      params:
+        icon: fas fa-tags
+    - name: 友情链接
+      pageRef: /links
+      parent: friends
+      weight: 10
+      params:
+        icon: fas fa-link
+    - name: 宝藏博主
+      parent: friends
+      weight: 20
+      params:
+        action: travelling
+        icon: fas fa-gift
+    - name: 我的装备
+      pageRef: /equipment
+      parent: personal
+      weight: 10
+      params:
+        icon: fas fa-cogs
+    - name: 关于主题
+      pageRef: /about
+      parent: personal
+      weight: 20
+      params:
+        icon: fas fa-user
+
+params:
+  author:
+    name: Solitude
+    email: solitude@example.org
+  description: Solitude Hugo 主题演示、配置指南与前端实践
+  solitude:
+    site:
+      name:
+        class: text
+        custom: Solitude
+    nav:
+      group:
+        项目:
+          - name: Solitude
+            url: https://github.com/everfu/hugo-solitude
+            icon: /img/logo.png
+          - name: 官方文档
+            url: https://solitude.js.org/
+            icon: /img/logo.png
+    hometop:
+      banner:
+        title: 用 Solitude<br>记录与创造
+        desc: Hugo 主题演示、配置指南与前端实践
+      recommendList:
+        - title: 开始使用 Solitude Hugo
+          url: /p/getting-started.html
+          cover: /img/demo/cover-getting-started-v2.webp
+          label: 迁移指南
+          color: "#3b82f6"
+        - title: 配置首页推荐与侧栏组合
+          url: /p/homepage-and-aside.html
+          cover: /img/demo/cover-pagination-v2.webp
+          label: 配置指南
+          color: "#16a34a"
+    aside:
+      home:
+        noSticky: about
+        Sticky: newest_comment,allInfo
+      post:
+        noSticky: about
+        Sticky: newestPost,newest_comment,allInfo
+      page:
+        noSticky: about
+        Sticky: newestPost,newest_comment,allInfo
+      my_card:
+        author:
+          img: https://github.com/everfu.png
+          emoji: "😊"
+        description: 简洁、优雅、功能丰富的 Hugo 主题。
+        content: 这里集中展示页面能力、配置方式与真实使用示例。
+        witty_words: [让内容自然成为主角, 从一个配置开始, 保持克制与表达]
+        information:
+          - name: GitHub
+            url: https://github.com/everfu/hugo-solitude
+            icon: fab fa-github
+      siteinfo:
+        runtime: 2023-04-20 00:00:00
+    post:
+      default:
+        copyright:
+          author_background: /img/demo/cover-shortcodes-v2.webp
+      meta:
+        pv: true
+        comment: true
+      covercolor:
+        enable: true
+        mode: local
+      award:
+        enable: true
+        list:
+          - name: Demo
+            qrcode: /img/demo/reward-qr.svg
+      share:
+        enable: false
+        list: []
+    footer:
+      information:
+        author: /img/logo.png
+        left:
+          - name: GitHub
+            url: https://github.com/everfu/hugo-solitude
+            icon: fab fa-github
+        right:
+          - name: 订阅
+            url: /index.xml
+            icon: fas fa-rss
+      group:
+        探索:
+          - name: 文章
+            url: /archives/
+          - name: 分类
+            url: /categories/
+          - name: 标签
+            url: /tags/
+        项目:
+          - name: 官方文档
+            url: https://solitude.js.org/
+          - name: GitHub
+            url: https://github.com/everfu/hugo-solitude
+        关于:
+          - name: 友链
+            url: /links/
+          - name: 关于主题
+            url: /about/
+      links:
+        - name: 订阅
+          url: /index.xml
+    comment:
+      use: valine
+      commentBarrage: true
+      lazyload: false
+      count: true
+      sidebar: true
+      pv: true
+      avatar: https://weavatar.com
+      hot_tip:
+        enable: false
+        count: 3
+      newest_comment:
+        enable: true
+        storage: 0.5
+        limit: 5
+    valine:
+      appId: lUYWcy5GblLUZOCvcSdDiLP9-gzGzoHsz
+      appKey: nKcAGPsR1ydwQjEFZcMFNGJG
+      serverURLs: https://luywcy5g.lc-cn-n1-shared.com
+      avatar: https://weavatar.com/avatar/
+      visitor: true
+      style: true
+      option: {}
+    console:
+      recentComment:
+        enable: true
+        storage: 0.2
+    right_menu:
+      commentBarrage: true
+    recent_comments:
+      enable: true
+      limit: 50
+      cache: 0.2
+      page: /recentcomments/
+    brevity:
+      enable: true
+      page: /brevity/
+    envelope:
+      enable: true
+      line: 6
+      speed: 20
+      hover: true
+      loop: true
+      page: /message/
+    capsule:
+      enable: true
+      id: "8407304077"
+      server: netease
+      type: playlist
+      volume: 0.8
+    music:
+      enable: true
+      id: "8407304077"
+      server: netease
+      type: playlist
+      mutex: true
+      volume: 0.8
+      order: list
+    keyboard:
+      enable: true
+      list:
+        - modifier: shift
+          key: K
+          action: toggleKeyboard
+        - modifier: shift
+          key: A
+          action: showConsole
+        - modifier: shift
+          key: M
+          action: musicToggle
+        - modifier: shift
+          key: D
+          action: toggleTheme
+        - modifier: mod
+          key: F
+          action: openSearch
+        # AI is intentionally site-defined. Register this action with
+        # Solitude.registerShortcutAction("openAi", handler), or use url: ai/.
+        # - name: 打开AI智能对话
+        #   modifier: shift
+        #   key: C
+        #   action: openAi
+        - modifier: shift
+          key: R
+          action: randomPost
+        - name: 返回首页
+          modifier: shift
+          key: H
+          url: ./
+        - name: 友链页面
+          modifier: shift
+          key: L
+          url: links/
+    highlight:
+      enable: true
+      copy: true
+      line_numbers: true
+      max_height: 360
+      themes:
+        light: github-light
+        dark: github-dark
+    lightbox: fancybox
+    cdn:
+      shiki: https://esm.sh/shiki@4.4.3
+    search:
+      enable: true
+      type: local
+      local:
+        preload: true
+        CDN: /search.xml

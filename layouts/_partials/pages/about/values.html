@@ -1,0 +1,5 @@
+{{- $section := .section -}}
+<div class="author-content about-row about-row--values">
+  <article class="author-content-item maxim">{{ with $section.motto.label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}<h2><span>{{ $section.motto.prefix }}</span><span>{{ $section.motto.content }}</span></h2></article>
+  <article class="author-content-item buff">{{ with $section.expertise.label }}<p class="author-content-item-tips">{{ . }}</p>{{ end }}<h2><span>{{ $section.expertise.prefix }}<strong>{{ $section.expertise.specialist }}</strong></span><span>{{ $section.expertise.content }} <strong>{{ $section.expertise.level }}</strong></span></h2></article>
+</div>

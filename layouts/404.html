@@ -1,0 +1,25 @@
+{{ define "main" }}
+  {{ $cfg := site.Params.solitude.errorpage }}
+  <main id="error-wrap" aria-labelledby="error-page-title">
+    <div class="error-content">
+      <div class="error-img" style="background-image:url('{{ $cfg.img | relURL }}')" aria-hidden="true"></div>
+      <div class="error-info">
+        <h1 class="error_title" id="error-page-title">404</h1>
+        <div class="error_subtitle">{{ $cfg.text }}</div>
+        <a class="button--animated" href="{{ site.Home.RelPermalink }}"><i class="solitude fas fa-arrow-up-right-from-square" aria-hidden="true"></i>{{ i18n "backHome" }}</a>
+      </div>
+    </div>
+  </main>
+  {{ if $cfg.recommendList }}
+    <section class="aside-list" aria-label="{{ i18n "recentPosts" }}">
+      <div class="aside-list-group">
+        {{ range first 5 (where site.RegularPages.ByDate.Reverse "Section" "posts") }}
+          <article class="aside-list-item">
+            <a class="thumbnail" href="{{ .RelPermalink }}"><img src="{{ .Params.cover | default "/img/default.avif" | relURL }}" alt="{{ .Title }}" loading="lazy"></a>
+            <div class="content"><a class="title" href="{{ .RelPermalink }}">{{ .Title }}</a></div>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

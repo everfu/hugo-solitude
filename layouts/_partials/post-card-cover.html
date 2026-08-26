@@ -1,0 +1,7 @@
+{{ with .cover }}
+  <div class="post_cover">
+    <a href="{{ $.post.RelPermalink }}" title="{{ $.post.Title }}" aria-label="{{ $.post.Title }}">
+      <img class="post_bg" src="{{ . | relURL }}" alt="{{ $.post.Title }}" loading="lazy">
+    </a>
+  </div>
+{{ end }}

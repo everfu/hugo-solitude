@@ -1,0 +1,1 @@
+{{ $id := printf "typeit-%d" .Ordinal }}<div class="solitude-tag tag-typeit typeit"><span id="{{ $id }}" data-typeit data-speed="{{ .Get "speed" | default 80 }}">{{ .Inner | plainify }}</span></div>
