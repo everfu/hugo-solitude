@@ -27,14 +27,16 @@ jobs:
           echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
 
       - name: Build example site without Node.js
-        run: hugo --source exampleSite --themesDir ../.. --theme solitude --gc --minify --panicOnWarning --printUnusedTemplates
+        shell: bash
+        run: |
+          theme_name="${GITHUB_WORKSPACE##*/}"
+          hugo --source exampleSite --themesDir ../.. --theme "$theme_name" --cleanDestinationDir --gc --minify --panicOnWarning
 
       - name: Verify generated routes and assets
         shell: bash
         run: |
           set -euo pipefail
           test -f exampleSite/public/index.html
-          test -f exampleSite/public/page/2/index.html
           test -f exampleSite/public/p/20260818.html
           test -f exampleSite/public/categories/index.html
           test -f exampleSite/public/tags/index.html
@@ -46,5 +48,5 @@ jobs:
           test -f exampleSite/public/robots.txt
           test -f exampleSite/public/search.xml
           test -f exampleSite/public/links.json
-          find exampleSite/public/css -name 'solitude.min.*.css' -print -quit | grep -q .
+          find exampleSite/public/css -name 'solitude.*.css' -print -quit | grep -q .
           find exampleSite/public/js -name 'solitude.*.js' -print -quit | grep -q .

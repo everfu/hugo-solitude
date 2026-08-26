@@ -1,10 +1,18 @@
 name = "Solitude"
 license = "Apache-2.0"
 licenselink = "https://github.com/everfu/hugo-solitude/blob/hugo/LICENSE"
-description = "An elegant, feature-rich Hugo theme migrated from Solitude."
+description = "A fast, elegant and feature-rich Hugo theme."
 homepage = "https://github.com/everfu/hugo-solitude"
+demosite = "https://hugo-solitude.efu.me/"
+tags = ["blog", "personal", "dark", "light", "multilingual", "two-column"]
+features = ["responsive", "dark mode", "local search", "multilingual", "comments", "shortcodes", "PJAX"]
 min_version = "0.164.0"
 
 [author]
   name = "everfu"
   homepage = "https://www.efu.me/"
+
+[original]
+  author = "everfu"
+  homepage = "https://github.com/everfu/hexo-theme-solitude"
+  repo = "https://github.com/everfu/hexo-theme-solitude"

@@ -1,7 +1,7 @@
 [简体中文](README.md) | [English](README_en-US.md) | [繁體中文](README_zh-Hant.md) | Español
 
 <div align="center">
-  <img width="50%" src=".github/logo.avif" alt="Solitude">
+  <img width="50%" src="https://raw.githubusercontent.com/everfu/hugo-solitude/hugo/.github/logo.avif" alt="Solitude">
   <hr>
   <p>Un tema de Hugo elegante, completo y sin Node.js, creado para quienes publican contenido.</p>
 </div>
