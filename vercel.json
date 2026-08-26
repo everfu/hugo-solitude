@@ -1,5 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "sh scripts/build-example-site.sh",
+  "framework": "hugo",
+  "build": {
+    "env": {
+      "HUGO_VERSION": "0.165.0"
+    }
+  },
+  "buildCommand": "hugo --source exampleSite --themesDir \"$(dirname \"$PWD\")\" --theme \"$(basename \"$PWD\")\" --destination public --cleanDestinationDir --gc --minify",
   "outputDirectory": "exampleSite/public"
 }

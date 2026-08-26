@@ -6,3 +6,5 @@
 /exampleSite/public/
 /exampleSite/resources/
 MIGRATION.md
+.vercel
+.env*.local
