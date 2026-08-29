@@ -88,9 +88,10 @@ tags: [Hugo, Solitude]
 comment: true
 aside: true
 toc: true
+home: true
 ```
 
-Sustituye `updated` de Hexo por `lastmod` de Hugo. Los ejemplos compilables de todos los shortcodes están en [`exampleSite/content/posts/shortcodes.md`](exampleSite/content/posts/shortcodes.md).
+Configura `home: false` para excluir una entrada de la lista, las recomendaciones y la barra lateral de entradas recientes de la página de inicio. Las entradas siguen visibles si se omite el campo o se establece en `true`; los archivos, taxonomías, la búsqueda, RSS y la página de la entrada siguen disponibles. Sustituye `updated` de Hexo por `lastmod` de Hugo. Los ejemplos compilables de todos los shortcodes están en [`exampleSite/content/posts/shortcodes.md`](exampleSite/content/posts/shortcodes.md).
 
 ### Estilos personalizados
 

@@ -88,9 +88,10 @@ tags: [Hugo, Solitude]
 comment: true
 aside: true
 toc: true
+home: true
 ```
 
-Replace Hexo's `updated` with Hugo's `lastmod`. Buildable examples of every shortcode are available in [`exampleSite/content/posts/shortcodes.md`](exampleSite/content/posts/shortcodes.md).
+Set `home: false` to exclude a post from the home post list, home recommendations, and the home recent-posts sidebar. Posts remain visible when the field is omitted or set to `true`; archives, taxonomies, search, RSS, and the post page remain available. Replace Hexo's `updated` with Hugo's `lastmod`. Buildable examples of every shortcode are available in [`exampleSite/content/posts/shortcodes.md`](exampleSite/content/posts/shortcodes.md).
 
 ### Custom styles
 

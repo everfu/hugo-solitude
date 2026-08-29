@@ -55,11 +55,20 @@
   background: var(--efu-secondbg);
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 #equipment .equipment-item .equipment-item-content-item .equipment-item-content-item-cover .equipment-item-content-item-image {
-  object-fit: cover;
-  height: 100%;
+  object-fit: contain;
+  width: auto;
+  height: auto;
+  max-width: 64%;
+  max-height: 64%;
+}
+
+#equipment .equipment-item:not(:first-child) .equipment-item-content-item .equipment-item-content-item-cover .equipment-item-content-item-image {
+  max-width: 48%;
+  max-height: 48%;
 }
 
 #equipment .equipment-item .equipment-item-content-item .equipment-item-content-item-info {

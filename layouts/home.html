@@ -1,6 +1,6 @@
 {{ define "main" }}
   {{ $cfg := site.Params.solitude }}
-  {{ $pages := where site.RegularPages "Section" "posts" }}
+  {{ $pages := partial "home-posts.html" . }}
   {{ $paginator := .Paginate $pages }}
   <div class="home-main-flow">
     {{ if and $cfg.hometop.enable (eq $paginator.PageNumber 1) }}<div id="home_top">{{ partial "home-top.html" . }}</div>{{ end }}

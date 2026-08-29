@@ -1,7 +1,10 @@
 {{ $cfg := site.Params.solitude }}
-{{ $posts := first 5 (where site.RegularPages.ByDate.Reverse "Section" "posts") }}
+{{ $homePosts := partial "home-posts.html" . }}
+{{ $posts := first 5 $homePosts.ByDate.Reverse }}
+{{ $hiddenPostURLs := slice }}
+{{ range where (where site.RegularPages "Section" "posts") "Params.home" "eq" false }}{{ $hiddenPostURLs = $hiddenPostURLs | append (.RelPermalink | strings.TrimSuffix "/" | strings.TrimSuffix ".html") }}{{ end }}
 {{ $items := slice }}{{ $configuredURLs := slice }}
-{{ range $cfg.hometop.recommendList }}{{ if ne .enable false }}{{ $items = $items | append . }}{{ $configuredURLs = $configuredURLs | append (.url | strings.TrimSuffix "/" | strings.TrimSuffix ".html") }}{{ end }}{{ end }}
+{{ range $cfg.hometop.recommendList }}{{ $itemKey := .url | strings.TrimSuffix "/" | strings.TrimSuffix ".html" }}{{ if and (ne .enable false) (not (in $hiddenPostURLs $itemKey)) }}{{ $items = $items | append . }}{{ $configuredURLs = $configuredURLs | append $itemKey }}{{ end }}{{ end }}
 {{ range $posts }}{{ $postKey := .RelPermalink | strings.TrimSuffix "/" | strings.TrimSuffix ".html" }}{{ if and (lt (len $items) 5) (not (in $configuredURLs $postKey)) }}{{ $label := "" }}{{ with .GetTerms "categories" }}{{ $label = (index . 0).LinkTitle }}{{ end }}{{ $items = $items | append (dict "title" .Title "url" .RelPermalink "cover" (.Params.cover | default (index $cfg.post.default.cover 0)) "label" $label) }}{{ end }}{{ end }}
 {{ if $items }}
   <div class="home-center" id="home_center" style="--current-theme:var(--efu-main);--current-theme-op:color-mix(in srgb,var(--efu-main) 14%,transparent);--current-theme-op-deep:color-mix(in srgb,var(--efu-main) 87%,transparent)">

@@ -88,9 +88,10 @@ tags: [Hugo, Solitude]
 comment: true
 aside: true
 toc: true
+home: true
 ```
 
-Hexo 的 `updated` 應改為 Hugo 的 `lastmod`。全部 shortcode 的可建構範例位於 [`exampleSite/content/posts/shortcodes.md`](exampleSite/content/posts/shortcodes.md)。
+設定 `home: false` 可讓文章不出現在首頁文章列表、首頁推薦和首頁最近文章側欄中；該欄位省略或設為 `true` 時正常顯示，歸檔、分類、搜尋、RSS 與文章頁面不受影響。Hexo 的 `updated` 應改為 Hugo 的 `lastmod`。全部 shortcode 的可建構範例位於 [`exampleSite/content/posts/shortcodes.md`](exampleSite/content/posts/shortcodes.md)。
 
 ### 自訂樣式
 
