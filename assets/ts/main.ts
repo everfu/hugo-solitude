@@ -1110,12 +1110,13 @@ const actions = {
     });
   },
   addRuntime() {
-    const el = document.getElementById("runtimeshow");
-    if (el && Solitude.config.runtime) {
-      el.innerText =
-        Solitude.timeDiff(new Date(Solitude.config.runtime), new Date()) +
-        Solitude.config.lang.day;
-    }
+    if (!Solitude.config.runtime) return;
+    const runtime =
+      Solitude.timeDiff(new Date(Solitude.config.runtime), new Date()) +
+      Solitude.config.lang.day;
+    document
+      .querySelectorAll(".runtimeshow, #runtimeshow")
+      .forEach((element) => (element.textContent = runtime));
   },
   toTalk(txt) {
     const inputs = [
