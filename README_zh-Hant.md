@@ -1,7 +1,7 @@
 [简体中文](README.md)｜[English](README_en-US.md)｜繁體中文｜[Español](README_es-ES.md)
 
 <div align="center">
-  <img width="50%" src="https://raw.githubusercontent.com/everfu/hugo-solitude/hugo/.github/logo.avif" alt="Solitude">
+  <img width="50%" src="https://raw.githubusercontent.com/everfu/hugo-solitude/main/.github/logo.avif" alt="Solitude">
   <hr>
   <p>為內容創作者打造的優雅、完整且無需 Node.js 的 Hugo 主題。</p>
 </div>
