@@ -203,8 +203,8 @@
   background: var(--efu-fontcolor);
   color: var(--efu-card-bg);
   position: absolute;
-  top: 2px;
-  right: 2px;
+  inset: 0;
+  margin: auto;
   transition: 0.3s;
 }
 
@@ -858,6 +858,10 @@
   opacity: 1;
   color: var(--efu-card-bg);
   transition: 0.3s;
+}
+
+[data-theme='dark'] #nav-totop:hover .totopbtn i {
+  color: var(--efu-fontcolor);
 }
 
 #nav-totop:hover #percent {
