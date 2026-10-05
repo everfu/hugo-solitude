@@ -1,10 +1,16 @@
 [English](README_en-US.md)｜简体中文｜[繁體中文](README_zh-Hant.md)｜[Español](README_es-ES.md)
 
 <div align="center">
-  <img width="50%" src="https://raw.githubusercontent.com/everfu/hugo-solitude/hugo/.github/logo.avif" alt="Solitude">
+  <img src="static/img/logo.png" width="120" height="120" alt="Solitude paper airplane logo" />
+
+# Solitude for Hugo
   <hr>
   <p>为内容创作者打造的优雅、完整且无需 Node.js 的 Hugo 主题。</p>
 </div>
+
+<p align="center">
+  <img src="static/img/brand/solitude-banner.webp" width="960" height="540" alt="Solitude paper airplane over a layered paper landscape" />
+</p>
 
 Solitude for Hugo 是 [Hexo Theme Solitude](https://github.com/everfu/hexo-theme-solitude) 的原生 Hugo 实现。使用 Hugo 模板、Pipes、Menus、Taxonomies、Page Collections 实现。
 

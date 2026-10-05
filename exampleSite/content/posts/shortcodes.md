@@ -338,7 +338,7 @@ C D E F|G A B c|
 {{< galleryItem src="/img/demo/about/music-listening-v2.webp" alt="音乐主题示例图片" >}}
 {{< galleryItem src="/img/demo/generated/solitude-crystal-orbit.png" alt="Solitude 水晶轨道" >}}
 {{< galleryItem src="/img/demo/about/personality-enfj-v2.png" alt="ENFJ 性格主题图片" >}}
-{{< galleryItem src="/img/demo/about/personal-photo-selfie-wide.png" alt="宽幅生活照片" >}}
+{{< galleryItem src="/img/brand/creative-space.webp" alt="纸雕创作空间插画" >}}
 {{< galleryItem src="/img/demo/about/game-apex-v1.webp" alt="游戏主题示例图片" >}}
 {{< /gallery >}}
 

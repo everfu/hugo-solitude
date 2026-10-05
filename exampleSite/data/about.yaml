@@ -56,9 +56,9 @@ sections:
       image_alt: 男性主人公人格的低多边形持剑人物插画
       link: { text: 了解主人公高级性格档案, url: "https://www.16personalities.com/enfj-personality", external: true }
     photo:
-      image: /img/demo/about/personal-photo-selfie-wide.png
-      alt: 户外个人自拍照
-      badge: /img/demo/about/personal-photo-badge-self.png
+      image: /img/brand/creative-space.webp
+      alt: 纸雕创作空间、笔记本与纸飞机
+      badge: /img/brand/paper-plane-badge.webp
 
   - type: values
     motto:

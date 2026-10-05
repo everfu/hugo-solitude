@@ -9,3 +9,9 @@ hugo --source exampleSite --themesDir ../.. --theme solitude --gc --minify --cle
 ```
 
 Add or update example content for every template, shortcode, route, or configuration change. Do not commit `exampleSite/public`, generated resources, local editor settings, or downloaded Hugo binaries.
+
+## Shared brand assets
+
+Shared static assets originate in Astro Solitude. See [the synchronization guide](docs/shared-assets.md)
+and [the asset inventory](docs/shared-assets.json). Asset synchronization is a maintainer operation;
+the Hugo theme build remains independent of Node.js and the other repositories.

@@ -1,10 +1,16 @@
 [简体中文](README.md) | [English](README_en-US.md) | [繁體中文](README_zh-Hant.md) | Español
 
 <div align="center">
-  <img width="50%" src="https://raw.githubusercontent.com/everfu/hugo-solitude/hugo/.github/logo.avif" alt="Solitude">
+  <img src="static/img/logo.png" width="120" height="120" alt="Solitude paper airplane logo" />
+
+# Solitude for Hugo
   <hr>
   <p>Un tema de Hugo elegante, completo y sin Node.js, creado para quienes publican contenido.</p>
 </div>
+
+<p align="center">
+  <img src="static/img/brand/solitude-banner.webp" width="960" height="540" alt="Solitude paper airplane over a layered paper landscape" />
+</p>
 
 Solitude para Hugo es una implementación nativa para Hugo de [Hexo Theme Solitude](https://github.com/everfu/hexo-theme-solitude). Está construida con plantillas, Pipes, Menus, Taxonomies y Page Collections de Hugo.
 
