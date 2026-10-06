@@ -4,3 +4,10 @@
 .card-info .bottom-group .social-icons .social-icon i {
   display: flex;
 }
+
+/* Keep the progress arrow centered across the full button, including its long state. */
+#nav-totop .totopbtn i {
+  display: flex;
+  width: 100%;
+  line-height: 1;
+}

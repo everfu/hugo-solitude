@@ -2,9 +2,9 @@ name: Hugo
 
 on:
   push:
-    branches: [hugo]
+    branches: [main]
   pull_request:
-    branches: [hugo]
+    branches: [main]
 
 permissions:
   contents: read

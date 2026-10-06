@@ -695,13 +695,14 @@ const actions = {
     }
     $console?.classList.toggle("on", this.musicPlaying);
 
-    if (Solitude.rightMenu?.menuItems?.music?.[0]) {
+    const musicLabels = Solitude.config.right_menu?.music;
+    if (musicLabels && Solitude.rightMenu?.menuItems?.music?.[0]) {
       const $rmText = document.querySelector("#menu-music-toggle span");
       const $rmIcon = document.querySelector("#menu-music-toggle i");
       if ($rmText) {
         const label = this.musicPlaying
-          ? Solitude.config.right_menu.music.stop
-          : Solitude.config.right_menu.music.start;
+          ? musicLabels.stop
+          : musicLabels.start;
         Solitude.rightMenu.setLabel($rmText, label);
       }
       if ($rmIcon) {
@@ -1110,12 +1111,13 @@ const actions = {
     });
   },
   addRuntime() {
-    const el = document.getElementById("runtimeshow");
-    if (el && Solitude.config.runtime) {
-      el.innerText =
-        Solitude.timeDiff(new Date(Solitude.config.runtime), new Date()) +
-        Solitude.config.lang.day;
-    }
+    if (!Solitude.config.runtime) return;
+    const runtime =
+      Solitude.timeDiff(new Date(Solitude.config.runtime), new Date()) +
+      Solitude.config.lang.day;
+    document
+      .querySelectorAll(".runtimeshow, #runtimeshow")
+      .forEach((element) => (element.textContent = runtime));
   },
   toTalk(txt) {
     const inputs = [

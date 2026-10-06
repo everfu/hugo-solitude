@@ -6,6 +6,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="{{ . }}">
     <meta name="msapplication-TileColor" content="{{ . }}">
   {{ end }}
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   {{ with $pwa.manifest }}<link rel="manifest" href="{{ strings.TrimPrefix "/" . | relURL }}">{{ end }}
   {{ with $pwa.mask_icon }}<link rel="mask-icon" href="{{ strings.TrimPrefix "/" . | relURL }}"{{ with $pwa.theme_color }} color="{{ . }}"{{ end }}>{{ end }}
